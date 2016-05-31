@@ -48,7 +48,9 @@ public class MyGcmListenerService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         String message = data.getString("message");
-        String nume = data.getString("account_nume");
+        String type = data.getString("type");
+        String punctPlecare = data.getString("punct_plecare");
+        String punctSosire = data.getString("punct_sosire");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
@@ -71,7 +73,7 @@ public class MyGcmListenerService extends GcmListenerService {
          * In some cases it may be useful to show a notification indicating to the user
          * that a message was received.
          */
-        sendNotification(message, nume);
+        sendNotification(message, type, punctPlecare, punctSosire);
         // [END_EXCLUDE]
     }
     // [END receive_message]
@@ -81,7 +83,7 @@ public class MyGcmListenerService extends GcmListenerService {
      *
      * @param message GCM message received.
      */
-    private void sendNotification(String message, String nume) {
+    private void sendNotification(String message, String type, String punctPlecare, String punctSosire) {
         
         
         Intent intent = new Intent(this, MainActivity.class);
@@ -91,11 +93,15 @@ public class MyGcmListenerService extends GcmListenerService {
 
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.cont_eye_icon)
-                .setContentTitle("Notificare de la " + nume)
+                .setSmallIcon(R.drawable.ic_cast_light)
+                .setContentTitle("Notificare de tip " + type)
                 .setContentText(message)
-                .setAutoCancel(false)
+                .setContentInfo("Click for more")
+                .setAutoCancel(true)
+                .setTicker("Notificare de la Ridesharing")
                 .setSound(defaultSoundUri)
                 .setVibrate(new long[]{500, 500})
                 .setLights(Color.YELLOW, 1500, 1500)
@@ -106,33 +112,5 @@ public class MyGcmListenerService extends GcmListenerService {
 
         notificationManager.notify(1, notificationBuilder.build());
 
-
-        /*
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion >= 16)
-        {
-            Context context = this;
-
-            Intent notificationIntent = new Intent(context, MainActivity.class);
-            PendingIntent contentIntent = PendingIntent.getService(context, 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-            NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-            Resources res = context.getResources();
-            Notification.Builder builder = new Notification.Builder(context);
-
-            builder.setContentIntent(contentIntent)
-                    .setSmallIcon(R.drawable.ic_cast_light)
-                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.cont_eye_icon))
-                    .setTicker("Ticker")
-                    .setWhen(System.currentTimeMillis())
-                    .setAutoCancel(true)
-                    .setContentTitle(res.getString(R.string.app_name))
-                    .setContentText("Content");
-            Notification n = builder.build();
-
-            nm.notify(007, n);
-        }
-        */
     }
 }

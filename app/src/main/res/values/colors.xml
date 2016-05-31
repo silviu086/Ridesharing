@@ -13,14 +13,16 @@
     <color name="colorAzure">#35aee2</color>
     <color name="colorGray">#b4b4b4</color>
     <color name="colorSilver">#f7f7f7</color>
+    <color name="colorGrayDarker">#666666</color>
     <color name="colorRedLighter">#ff8c8e</color>
+    <color name="colorSilverDarker">#eaeaea</color>
 
     <!-- MainActivity colors -->
     <color name="tabSelectedBackgroundColor">#c82069b4</color>
     <color name="tabBackgroundColor">#c8b1b1b1</color>
     <color name="tabTextColor">#fff</color>
     <color name="tabSelectedBarColor">#202020</color>
-    <color name="backgroundLogoColor">#c8dadada</color>
+    <color name="backgroundLogoColor">#c80f489e</color>
     <color name="backgroundViewPagerColor">#efefef</color>
 
     <!-- NavigationView colors -->

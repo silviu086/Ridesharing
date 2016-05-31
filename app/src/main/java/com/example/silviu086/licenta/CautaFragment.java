@@ -52,6 +52,11 @@ public class CautaFragment extends Fragment {
     private ImageView imageViewMap;
     private GoogleMap map;
     private LinearLayout linearLayoutCauta;
+    private LinearLayout linearLayoutInfoCalatorie;
+    private TextView textViewPunctPlecare;
+    private TextView textViewPunctSosire;
+    private TextView textViewDurataCalatorie;
+    private TextView textViewDistantaCalatorie;
     private Button buttonCauta;
     private TextView textViewSearchResult;
     private ListView listViewCalatorii;
@@ -83,6 +88,11 @@ public class CautaFragment extends Fragment {
         imageViewMap = (ImageView) v.findViewById(R.id.imageViewMap);
         final LinearLayout linearLayoutLocatii = (LinearLayout) v.findViewById(R.id.linearLayoutLocatii);
         linearLayoutCauta = (LinearLayout) v.findViewById(R.id.linearLayoutCauta);
+        linearLayoutInfoCalatorie = (LinearLayout) v.findViewById(R.id.linearLayoutInfoCalatorie);
+        textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
+        textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
+        textViewDurataCalatorie = (TextView) v.findViewById(R.id.textViewDurataCalatorie);
+        textViewDistantaCalatorie = (TextView) v.findViewById(R.id.textViewDistantaCalatorie);
         buttonCauta = (Button) v.findViewById(R.id.buttonCauta);
         textViewSearchResult = (TextView) v.findViewById(R.id.textViewSearchResult);
         listViewCalatorii = (ListView) v.findViewById(R.id.listViewCalatorii);
@@ -229,6 +239,7 @@ public class CautaFragment extends Fragment {
                                 textViewSearchResult.setVisibility(View.GONE);
                                 //linearLayoutCauta.setVisibility(View.GONE);
                                 linearLayoutSearch.setVisibility(View.GONE);
+                                linearLayoutInfoCalatorie.setVisibility(View.VISIBLE);
                                 linearLayoutSearchInfo.setVisibility(View.VISIBLE);
                                 JSONObject jsonObject = new JSONObject(result);
                                 int success = jsonObject.getInt("success");
@@ -239,6 +250,7 @@ public class CautaFragment extends Fragment {
                                         CalatorieBuilder builder = new CalatorieBuilder();
                                         Calatorie calatorie = builder
                                                 .setId(Integer.valueOf(jsonCalatorie.getString("id")))
+                                                .setDataCreare(jsonCalatorie.getString("data_creare"))
                                                 .setPunctPlecare(jsonCalatorie.getString("punct_plecare"))
                                                 .setPunctSosire(jsonCalatorie.getString("punct_sosire"))
                                                 .setPret(Integer.valueOf(jsonCalatorie.getString("pret")))
@@ -255,11 +267,17 @@ public class CautaFragment extends Fragment {
                                                 .setDistantaCalatorie(jsonCalatorie.getString("distanta_calatorie"))
                                                 .setNume(jsonCalatorie.getString("nume"))
                                                 .setTelefon(jsonCalatorie.getString("telefon"))
+                                                .setPasageriInAsteptare(jsonCalatorie.getString("pasageri_in_asteptare"))
+                                                .setPasageriConfirmati(jsonCalatorie.getString("pasageri_confirmati"))
                                                 .build();
                                         listaCalatorii.add(calatorie);
                                     }
                                     CalatoriiAdapter adapter = new CalatoriiAdapter(getContext(), listaCalatorii);
                                     linearLayoutLocatii.setVisibility(View.GONE);
+                                    textViewPunctPlecare.setText(listaCalatorii.get(0).getPunctPlecare());
+                                    textViewPunctSosire.setText(listaCalatorii.get(0).getPunctSosire());
+                                    textViewDurataCalatorie.setText(listaCalatorii.get(0).getDurataCalatorie());
+                                    textViewDistantaCalatorie.setText(listaCalatorii.get(0).getDistantaCalatorie());
                                     listViewCalatorii.setAdapter(adapter);
                                     if (listaCalatorii.size() == 1) {
                                         textViewSearchInfo.setText("o calatorie gasita");
@@ -267,11 +285,12 @@ public class CautaFragment extends Fragment {
                                         textViewSearchInfo.setText(listaCalatorii.size() + " calatorii gasite");
                                     }
                                 } else {
+                                    linearLayoutInfoCalatorie.setVisibility(View.GONE);
                                     textViewSearchResult.setVisibility(View.VISIBLE);
                                     textViewSearchInfo.setText("nicio calatorie gasita");
                                 }
                             } catch (JSONException e) {
-                                Log.e("exception", e.getMessage());
+                                Log.e("CautaFragment", e.getMessage());
                             }
 
                         }
@@ -288,6 +307,7 @@ public class CautaFragment extends Fragment {
                 autoCompleteTextViewSosire.setText("");
                 //linearLayoutCauta.setVisibility(View.GONE);
                 linearLayoutSearchInfo.setVisibility(View.GONE);
+                linearLayoutInfoCalatorie.setVisibility(View.GONE);
                 imageViewMap.setVisibility(View.VISIBLE);
                 linearLayoutLocatii.setVisibility(View.VISIBLE);
                 linearLayoutSearch.setVisibility(View.VISIBLE);

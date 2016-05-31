@@ -11,8 +11,14 @@ public class CalatorieBuilder implements IBuilder {
         this.calatorie = new Calatorie();
     }
 
+
     public CalatorieBuilder setId(int id){
         this.calatorie.setId(id);
+        return this;
+    }
+
+    public CalatorieBuilder setDataCreare(String data){
+        this.calatorie.setDataCreare(data);
         return this;
     }
 
@@ -95,6 +101,16 @@ public class CalatorieBuilder implements IBuilder {
 
     public CalatorieBuilder setTelefon(String telefon){
         this.calatorie.setTelefon(telefon);
+        return this;
+    }
+
+    public CalatorieBuilder setPasageriInAsteptare(String pasageriInAsteptare){
+        this.calatorie.setPasageriInAsteptare(pasageriInAsteptare);
+        return this;
+    }
+
+    public CalatorieBuilder setPasageriConfirmati(String pasageriConfirmati){
+        this.calatorie.setPasageriConfirmati(pasageriConfirmati);
         return this;
     }
 

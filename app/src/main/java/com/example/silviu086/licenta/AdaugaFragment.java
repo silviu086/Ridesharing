@@ -5,7 +5,9 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.TimeUtils;
 import android.text.Editable;
@@ -29,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -79,6 +82,7 @@ public class AdaugaFragment extends Fragment {
     private int timeMinute;
     private int locuriDisponibile;
 
+    private ScrollView scrollView;
     // CONTROALE STEP1
     private TextView textViewUnuHead;
     private TextView textViewUnuBody;
@@ -165,6 +169,7 @@ public class AdaugaFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_adauga, container, false);
 
+        scrollView = (ScrollView) v.findViewById(R.id.scrollViewAdauga);
         //step1
         textViewUnuHead = (TextView) v.findViewById(R.id.textViewUnuHead);
         textViewUnuBody = (TextView) v.findViewById(R.id.textViewUnuBody);
@@ -668,8 +673,12 @@ public class AdaugaFragment extends Fragment {
         buttonAdauga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                Date date = new Date();
+                String dateCreated = dateFormat.format(date);
                 CalatorieBuilder builder = new CalatorieBuilder();
                 Calatorie calatorie = builder.setPunctPlecare(autoCompleteTextViewPunctPlecare.getText().toString())
+                        .setDataCreare(dateCreated)
                         .setPunctSosire(autoCompleteTextViewPunctSosire.getText().toString())
                         .setPret(pret)
                         .setDataPlecare(textViewDate.getText().toString())
@@ -722,7 +731,26 @@ public class AdaugaFragment extends Fragment {
         }
     }
 
+    public static void scrollToView(final ScrollView scrollView, final View view) {
+
+        // View needs a focus
+        //view.requestFocus();
+
+        // Determine if scroll needs to happen
+        final Rect scrollBounds = new Rect();
+        scrollView.getHitRect(scrollBounds);
+        if (!view.getLocalVisibleRect(scrollBounds)) {
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.smoothScrollTo(0, view.getBottom()+300);
+                }
+            });
+        }
+    }
+
     private void enableStep2() {
+        scrollToView(scrollView, buttonPasulUrmatorDoi);
         textViewUnuBody.setBackgroundColor(getResources().getColor(R.color.colorBlue));
         textViewDoiHead.setTextColor(getResources().getColor(R.color.colorBlue));
         linearLayoutDoi.setBackground(getResources().getDrawable(R.drawable.cont_layout_shape));
@@ -775,6 +803,7 @@ public class AdaugaFragment extends Fragment {
     }
 
     public void enableStep3() {
+        scrollToView(scrollView, buttonPasulUrmatorTrei);
         textViewDoiBody.setBackgroundColor(getResources().getColor(R.color.colorBlue));
         textViewTreiHead.setTextColor(getResources().getColor(R.color.colorBlue));
         linearLayoutTrei.setBackground(getResources().getDrawable(R.drawable.cont_layout_shape));
@@ -817,6 +846,13 @@ public class AdaugaFragment extends Fragment {
     }
 
     private void enableStep4(){
+        scrollView.post(new Runnable() {
+
+            @Override
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
         textViewTreiBody.setBackgroundColor(getResources().getColor(R.color.colorBlue));
         textViewPatruHead.setTextColor(getResources().getColor(R.color.colorBlue));
         linearLayoutPatru.setBackground(getResources().getDrawable(R.drawable.cont_layout_shape));

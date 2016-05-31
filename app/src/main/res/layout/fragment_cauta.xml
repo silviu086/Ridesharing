@@ -15,6 +15,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="visible"
             android:id="@+id/linearLayoutSearch">
 
             <LinearLayout
@@ -184,6 +185,138 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone"
+            android:background="#4e9cea"
+            android:id="@+id/linearLayoutInfoCalatorie">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="9dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/cauta_layout_shape_8">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/cauta_punct_plecare"
+                            android:id="@+id/imageView12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Turnu Magurele,Teleorman"
+                            android:textSize="16dp"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/colorWhite"
+                            android:id="@+id/textViewPunctPlecare" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/cauta_punct_sosire"
+                            android:id="@+id/imageView14" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Alexandria,Teleorman"
+                            android:textSize="16dp"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/colorWhite"
+                            android:id="@+id/textViewPunctSosire" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/cauta_durata_calatorie"
+                            android:id="@+id/imageView18" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="1 ora 23 min"
+                            android:textSize="16dp"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/colorWhite"
+                            android:id="@+id/textViewDurataCalatorie" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/cauta_distanta"
+                            android:id="@+id/imageView19" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="98,4 km"
+                            android:textSize="16dp"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/colorWhite"
+                            android:id="@+id/textViewDistantaCalatorie" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
         <TextView

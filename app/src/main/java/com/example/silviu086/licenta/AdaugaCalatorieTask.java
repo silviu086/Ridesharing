@@ -57,8 +57,11 @@ public class AdaugaCalatorieTask extends AsyncTask<String, Integer, String> {
             connection.setDoInput(true);
             connection.connect();
 
+
+
             Uri.Builder builder = new Uri.Builder();
             String query = builder
+                    .appendQueryParameter("data_creare", calatorie.getDataCreare())
                     .appendQueryParameter("punct_plecare", calatorie.getPunctPlecare())
                     .appendQueryParameter("punct_sosire", calatorie.getPunctSosire())
                     .appendQueryParameter("pret", String.valueOf(calatorie.getPret()))

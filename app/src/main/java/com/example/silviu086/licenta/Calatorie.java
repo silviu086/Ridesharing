@@ -5,6 +5,7 @@ package com.example.silviu086.licenta;
  */
 public class Calatorie {
     private int id;
+    private String dataCreare;
     private String punctPlecare;
     private String punctSosire;
     private int pret;
@@ -21,9 +22,19 @@ public class Calatorie {
     private String distantaCalatorie;
     private String nume;
     private String telefon;
+    private String pasageriInAsteptare;
+    private String pasageriConfirmati;
 
     public Calatorie(){
 
+    }
+
+    public String getDataCreare(){
+        return this.dataCreare;
+    }
+
+    public void setDataCreare(String data){
+        this.dataCreare = data;
     }
 
     public int getId(){
@@ -160,5 +171,21 @@ public class Calatorie {
 
     public void setTelefon(String telefon){
         this.telefon = telefon;
+    }
+
+    public String getPasageriInAsteptare() {
+        return pasageriInAsteptare;
+    }
+
+    public String getPasageriConfirmati() {
+        return pasageriConfirmati;
+    }
+
+    public void setPasageriInAsteptare(String pasageriInAsteptare) {
+        this.pasageriInAsteptare = pasageriInAsteptare;
+    }
+
+    public void setPasageriConfirmati(String pasageriConfirmati) {
+        this.pasageriConfirmati = pasageriConfirmati;
     }
 }

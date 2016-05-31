@@ -22,25 +22,14 @@ import java.util.Map;
  * Created by Silviu086 on 29.05.2016.
  */
 public class GCMServer {
-    public static void register(String gcm_regid, String account_id){
+    public static void register(String token, String account_id){
         String serverUrl = UrlLinks.URL_GCM_REGISTER;
         Map<String, String> params = new HashMap<>();
-        params.put("gcm_regid", gcm_regid);
+        params.put("token", token);
         params.put("account_id", account_id);
-
         try{
             post(serverUrl, params);
         }catch (IOException ex){
-        }
-    }
-
-    public static void unregister(String gcm_regid){
-        //String serverUrl = UrlLinks.URL_GCM_UNREGISTER;
-        //Map<String, String> params = new HashMap<>();
-        //params.put("gcm_regid", gcm_regid);
-        try{
-            //post(serverUrl, params);
-        }catch (Exception ex){
         }
     }
 
@@ -56,7 +45,7 @@ public class GCMServer {
             con.connect();
 
             String query = new Uri.Builder()
-                    .appendQueryParameter("gcm_regid", params.get("gcm_regid"))
+                    .appendQueryParameter("token", params.get("token"))
                     .appendQueryParameter("account_id", params.get("account_id"))
                     .build().getEncodedQuery();
             OutputStream os = con.getOutputStream();
@@ -68,7 +57,6 @@ public class GCMServer {
             if(status != 200){
                 throw new IOException("Post failed with error code " + status);
             }
-
             InputStream is = con.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();

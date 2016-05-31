@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         sViewPager = viewPager;
         slidingTab = (SlidingTabLayout) findViewById(R.id.tabs);
         slidingTab.setDistributeEvenly(true);
-        slidingTab.setViewPager(viewPager);
+        slidingTab.setViewPager(viewPager);;
         slidingTab.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {

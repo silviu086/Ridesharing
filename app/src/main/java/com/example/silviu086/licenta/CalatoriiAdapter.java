@@ -1,11 +1,14 @@
 package com.example.silviu086.licenta;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,24 +46,16 @@ public class CalatoriiAdapter extends BaseAdapter {
         return listaCalatorii.get(position).getId();
     }
 
-    public class Holder {
-        TextView textViewAccount;
-        TextView textViewTelefon;
-        TextView textViewPunctPlecare;
-        TextView textViewPunctSosire;
+    static class Holder {
+        TextView textViewNumar;
+        TextView textViewDataAdaugare;
+        TextView textViewNume;
+        Button buttonDetalii;
+        TextView textViewDataPlecare;
+        TextView textViewOraPlecare;
         TextView textViewPret;
         TextView textViewLocuriDisponibile;
-        TextView textViewDate;
-        TextView textViewTime;
-        TextView textViewMarca;
-        TextView textViewModel;
-        TextView textViewAn;
-        TextView textViewExperienta;
-        TextView textViewConfort;
-        TextView textViewBagaj;
-        TextView textViewDurataCalatorie;
-        TextView textViewDistantaCalatorie;
-        Button buttonMerg;
+        TextView buttonMerg;
     }
 
     private void setClipboard(String text) {
@@ -74,62 +69,69 @@ public class CalatoriiAdapter extends BaseAdapter {
         }
     }
 
+    private boolean searchPasageriInAsteptare(String pasager, String[] listaPasageri){
+        for(int i=0;i<listaPasageri.length;i++){
+            if(listaPasageri[i].equals(pasager)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v;
-        v = convertView;
-        if(v == null) {
-            v = inflater.inflate(R.layout.calatorii_list, null);
-        }
+        v = inflater.inflate(R.layout.calatorii_list, null);
+        Calatorie calatorie = listaCalatorii.get(position);
         final Holder h = new Holder();
-        h.textViewAccount = (TextView) v.findViewById(R.id.textViewAccount);
-        h.textViewTelefon = (TextView) v.findViewById(R.id.textViewTelefon);
-        h.textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
-        h.textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
+        h.textViewNumar = (TextView) v.findViewById(R.id.textViewNumar);
+        h.textViewDataAdaugare = (TextView) v.findViewById(R.id.textViewDataAdaugare);
+        h.textViewNume = (TextView) v.findViewById(R.id.textViewNume);
+        h.buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
+        h.textViewDataPlecare = (TextView) v.findViewById(R.id.textViewDataPlecare);
+        h.textViewOraPlecare = (TextView) v.findViewById(R.id.textViewOraPlecare);
         h.textViewPret = (TextView) v.findViewById(R.id.textViewPret);
         h.textViewLocuriDisponibile = (TextView) v.findViewById(R.id.textViewLocuriDisponibile);
-        h.textViewDate = (TextView) v.findViewById(R.id.textViewDate);
-        h.textViewTime = (TextView) v.findViewById(R.id.textViewTime);
-        h.textViewMarca = (TextView) v.findViewById(R.id.textViewMarcaMasina);
-        h.textViewModel = (TextView) v.findViewById(R.id.textViewModelMasina);
-        h.textViewAn = (TextView) v.findViewById(R.id.textViewAnFabricatie);
-        h.textViewExperienta = (TextView) v.findViewById(R.id.textViewExperientaAuto);
-        h.textViewConfort = (TextView) v.findViewById(R.id.textViewConfort);
-        h.textViewBagaj = (TextView) v.findViewById(R.id.textViewBagaj);
-        h.textViewDurataCalatorie = (TextView) v.findViewById(R.id.textViewDurataCalatorie);
-        h.textViewDistantaCalatorie = (TextView) v.findViewById(R.id.textViewDistantaCalatorie);
         h.buttonMerg = (Button) v.findViewById(R.id.buttonMerg);
 
+        h.textViewNumar.setText(String.valueOf(position + 1));
+        h.textViewDataAdaugare.setText(calatorie.getDataCreare());
+        h.textViewNume.setText(calatorie.getNume());
+        h.textViewDataPlecare.setText(calatorie.getDataPlecare());
+        h.textViewOraPlecare.setText(calatorie.getOraPlecare());
+        h.textViewPret.setText(String.valueOf(calatorie.getPret()) + " lei");
+        h.textViewLocuriDisponibile.setText(String.valueOf(calatorie.getLocuriDisponibile()) + " locuri");
 
-        h.textViewAccount.setText(listaCalatorii.get(position).getNume());
-        h.textViewTelefon.setText(listaCalatorii.get(position).getTelefon());
-        h.textViewPunctPlecare.setText(listaCalatorii.get(position).getPunctPlecare());
-        h.textViewPunctSosire.setText(listaCalatorii.get(position).getPunctSosire());
-        h.textViewPret.setText(String.valueOf(listaCalatorii.get(position).getPret()) + " lei");
-        h.textViewLocuriDisponibile.setText(String.valueOf(listaCalatorii.get(position).getLocuriDisponibile()) + " locuri");
-        h.textViewDate.setText(listaCalatorii.get(position).getDataPlecare());
-        h.textViewTime.setText(listaCalatorii.get(position).getOraPlecare());
-        h.textViewMarca.setText(listaCalatorii.get(position).getMarcaMasina());
-        h.textViewModel.setText(listaCalatorii.get(position).getModelMasina());
-        h.textViewAn.setText(String.valueOf(listaCalatorii.get(position).getAnFabricatie()));
-        h.textViewExperienta.setText(listaCalatorii.get(position).getExperientaAuto());
-        h.textViewConfort.setText("Confort " + listaCalatorii.get(position).getNivelConfort());
-        h.textViewBagaj.setText(listaCalatorii.get(position).getMarimeBagaj());
-        h.textViewDurataCalatorie.setText(listaCalatorii.get(position).getDurataCalatorie());
-        h.textViewDistantaCalatorie.setText(listaCalatorii.get(position).getDistantaCalatorie());
-
-        h.textViewTelefon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setClipboard(h.textViewTelefon.getText().toString());
-                Toast.makeText(context, "Telefon copiat in Clipboard!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        final String[] accountInAsteptare = calatorie.getPasageriInAsteptare().split(",");
+        if(searchPasageriInAsteptare(String.valueOf(NavigationActivity.account.getId()), accountInAsteptare)){
+            h.buttonMerg.setText("In asteptare");
+            h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
+            h.buttonMerg.setEnabled(false);
+        }
 
         h.buttonMerg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Ati selectat calatoria " + String.valueOf(listaCalatorii.get(position).getId()), Toast.LENGTH_SHORT).show();
+                CalatorieTask calatorieTask = new CalatorieTask(listaCalatorii.get(position), new TaskCompleted() {
+                    @Override
+                    public void onTaskCompleted(String result) {
+                        if(result.equals("sent|adaugat")){
+                            Toast.makeText(context, "O cerere a fost trimisa catre " + listaCalatorii.get(position).getNume() + "!", Toast.LENGTH_LONG).show();
+                            h.buttonMerg.setText("In asteptare");
+                            h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
+                            h.buttonMerg.setEnabled(false);
+                            Handler mainHandler = new Handler(context.getMainLooper());
+                            mainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SystemClock.sleep(1000);
+                                    NavigationActivity.setFragment(4);
+                                }
+                            });
+                        }
+                    }
+                });
+                calatorieTask.execute();
             }
         });
 

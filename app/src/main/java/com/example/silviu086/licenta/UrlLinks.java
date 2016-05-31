@@ -33,4 +33,6 @@ public class UrlLinks {
     public static String URL_ADAUGA_CALATORIE = "http://" + IP + "/adauga_calatorie.php";
     public static String URL_CAUTA_CALATORII = "http://" + IP + "/cauta_calatorii.php";
     public static String URL_GCM_REGISTER = "http://" + IP + "/gcm_register.php";
+    public static String URL_GCM_MESSAGE = "http://" + IP + "/gcm_send_message.php";
+    public static String URL_ADAUGA_PASAGER_IN_ASTEPTARE = "http://" + IP + "/adauga_pasager_in_asteptare.php";
 }
