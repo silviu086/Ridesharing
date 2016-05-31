@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lista_marci">
+        <item>Opel</item>
+        <item>BMW</item>
+    </string-array>
+
+    <string-array name="lista_model_opel">
+        <item>Astra</item>
+        <item>Corsa</item>
+    </string-array>
+
+    <string-array name="lista_model_bmw">
+        <item>320d</item>
+        <item>520d</item>
+    </string-array>
+
+    <string-array name="lista_nivel_experienta">
+        <item>mai putin de 1 an</item>
+        <item>1 an</item>
+        <item>2 ani</item>
+        <item>3 ani</item>
+        <item>4 ani</item>
+        <item>mai mult de 4 ani</item>
+        <item>selecteaza din lista</item>
+    </string-array>
+</resources>

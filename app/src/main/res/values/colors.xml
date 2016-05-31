@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default colors -->
+    <color name="colorPrimary">#5290da</color>
+    <color name="colorPrimaryDark">#3a6fbe</color>
+    <color name="colorAccent">#459944</color>
+    <color name="colorGreen">#29d743</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorRed">#e2171b</color>
+    <color name="colorBlue">#3181d7</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorPurple">#a137d6</color>
+    <color name="colorAzure">#35aee2</color>
+    <color name="colorGray">#b4b4b4</color>
+    <color name="colorSilver">#f7f7f7</color>
+    <color name="colorRedLighter">#ff8c8e</color>
+
+    <!-- MainActivity colors -->
+    <color name="tabSelectedBackgroundColor">#c82069b4</color>
+    <color name="tabBackgroundColor">#c8b1b1b1</color>
+    <color name="tabTextColor">#fff</color>
+    <color name="tabSelectedBarColor">#202020</color>
+    <color name="backgroundLogoColor">#c8dadada</color>
+    <color name="backgroundViewPagerColor">#efefef</color>
+
+    <!-- NavigationView colors -->
+    <color name="navIconColor">#9e9e9e</color>
+    <color name="navIconColorSelected">#e24370</color>
+    <color name="navTextColor">#e60f4c</color>
+    <color name="navHeaderTextColor">#ffffff</color>
+    <color name="navHeaderBackgroundColor">#77aad6</color>
+
+    <!-- Toolbar colors -->
+    <color name="toolbarBackgroundColor">#528ce2</color>
+    <color name="toolbarTitleTextColor">#e6e6e6</color>
+    <color name="toolbarSubTitleTextColor">#9e9e9e</color>
+
+    <color name="frameBackgroundColor">#f1f1f1</color>
+</resources>

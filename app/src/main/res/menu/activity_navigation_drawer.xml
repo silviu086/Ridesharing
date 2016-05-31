@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/account"
+            android:icon="@drawable/nav_account"
+            android:title="@string/nav_account" />
+
+        <item
+            android:id="@+id/cauta"
+            android:icon="@drawable/nav_cautare"
+            android:title="@string/nav_cauta" />
+
+        <item
+            android:id="@+id/adauga"
+            android:icon="@drawable/nav_add"
+            android:title="@string/nav_adauga" />
+
+        <item
+            android:id="@+id/calatorii"
+            android:icon="@drawable/nav_calatorii"
+            android:title="@string/nav_calatorii" />
+
+        <item
+            android:id="@+id/setari"
+            android:icon="@drawable/nav_setari"
+            android:title="@string/nav_setari" />
+
+
+    </group>
+</menu>

@@ -1,0 +1,327 @@
+package com.example.silviu086.licenta;
+
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
+import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
+public class NavigationActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    private final int navigationItemNumber = 5;
+
+    //Defining Variables
+    private static Toolbar toolbar;
+    private static NavigationView navigationView;
+    private static android.support.v4.app.FragmentTransaction fragmentTransaction;
+    private static FragmentManager fragmentManager;
+    private static ContFragment fragmentCont;
+    private static CautaFragment fragmentCauta;
+    private static AdaugaFragment fragmentAdauga;
+    private static CalatoriiFragment fragmentCalatorii;
+    private static SetariFragment fragmentSetari;
+    private TextView navigationEmail;
+    private TextView navigationNume;
+    private MesajeFragment fragmentMesaje;
+    public static Account account;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private boolean isReceiverRegistered;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_navigation);
+        //navigationView.addHeaderView(headerLayout);
+
+        navigationEmail = (TextView) headerLayout.findViewById(R.id.emailNavigation);
+        navigationNume = (TextView) headerLayout.findViewById(R.id.numeNavigation);
+
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        navigationNume.setText(account.getNume());
+        navigationEmail.setText(account.getEmail());
+
+        //Initializing fragments
+        fragmentCont = ContFragment.newInstance(account);
+        fragmentCauta = CautaFragment.newInstance(account);
+        fragmentAdauga = AdaugaFragment.newInstance(account);
+        fragmentCalatorii = CalatoriiFragment.newInstance(account);
+        fragmentSetari = SetariFragment.newInstance(account);
+        fragmentMesaje = MesajeFragment.newInstance(account);
+
+
+        //Default navigation select
+        navigationView.getMenu().findItem(R.id.calatorii).setChecked(true);
+
+        //Default fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
+        fragmentTransaction.commit();
+
+        //GCM
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(context);
+                boolean sentToken = sharedPreferences
+                        .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
+            }
+        };
+
+        // Registering BroadcastReceiver
+        registerReceiver();
+
+        // Start IntentService to register this application with GCM.
+        Intent intent = new Intent(this, RegistrationIntentService.class);
+        startService(intent);
+    }
+
+    private void registerReceiver(){
+        if(!isReceiverRegistered) {
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+            isReceiverRegistered = true;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver();
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        isReceiverRegistered = false;
+        super.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.navigation, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        final ProgressDialog dialog = new ProgressDialog(NavigationActivity.this);
+        dialog.setTitle("Loading...");
+        dialog.setMessage("Se incarca pagina");
+        dialog.show();
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        switch (item.getItemId()) {
+            case R.id.account:
+                new Thread() {
+                    @Override
+                    public void run() {
+                        SystemClock.sleep(200);
+                        NavigationActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                drawer.closeDrawers();
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                }.start();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contentPanel, fragmentCont);
+                fragmentTransaction.commit();
+                toolbar.setTitle("Contul meu");
+                break;
+
+            case R.id.cauta:
+                new Thread() {
+                    @Override
+                    public void run() {
+                        SystemClock.sleep(200);
+                        NavigationActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                drawer.closeDrawers();
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                }.start();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentCauta = CautaFragment.newInstance(account);
+                fragmentTransaction.replace(R.id.contentPanel, fragmentCauta);
+                fragmentTransaction.commit();
+                toolbar.setTitle("Cauta o calatorie");
+                break;
+
+            case R.id.adauga:
+                new Thread() {
+                    @Override
+                    public void run() {
+                        SystemClock.sleep(800);
+                        NavigationActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                drawer.closeDrawers();
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                }.start();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentAdauga = AdaugaFragment.newInstance(account);
+                fragmentTransaction.replace(R.id.contentPanel, fragmentAdauga);
+                fragmentTransaction.commit();
+                toolbar.setTitle("Adauga o calatorie");
+                break;
+
+            case R.id.calatorii:
+                new Thread() {
+                    @Override
+                    public void run() {
+                        SystemClock.sleep(200);
+                        NavigationActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                drawer.closeDrawers();
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                }.start();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
+                fragmentTransaction.commit();
+                toolbar.setTitle("Calatoriile mele");
+                break;
+
+            case R.id.setari:
+                new Thread() {
+                    @Override
+                    public void run() {
+                        SystemClock.sleep(200);
+                        NavigationActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                drawer.closeDrawers();
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                }.start();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contentPanel, fragmentSetari);
+                fragmentTransaction.commit();
+                toolbar.setTitle("Setari");
+                break;
+
+            default:
+                Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
+    public static void setFragment(int index){
+        if(index == 1){
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentPanel, fragmentCont);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Contul meu");
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
+        }else if(index == 2){
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentPanel, fragmentCauta);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Cauta o calatorie");
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
+        }else if(index == 3){
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentPanel, fragmentAdauga);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Adauga o calatorie");
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
+        }else if(index == 4){
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Calatoriile mele");
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
+
+        }else if(index == 5){
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentPanel, fragmentSetari);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Setari");
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
+        }
+    }
+}

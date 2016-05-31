@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Licenta</string>
+    <string name="api_key">AIzaSyANTZD0c5Qe0cLomQXeVzK1oNFwll7Atik</string>
+
+    <!-- Main Activity-->
+    <string name="logo_description">logo</string>
+    <string name="title_login">Login</string>
+    <string name="text_view_email">EMAIL</string>
+    <string name="hint_email">introduceti email...</string>
+    <string name="text_view_password">PASSWORD</string>
+    <string name="hint_password">introduceti parola...</string>
+    <string name="check_box_login">Tine minte pentru logare ulterioara</string>
+    <string name="buton_login">LOGIN</string>
+    <string name="title_date_logare">Date logare</string>
+    <string name="text_view_password_again">PASSWORD AGAIN</string>
+    <string name="title_date_persoanle">Date personale</string>
+    <string name="text_view_nume">NUME</string>
+    <string name="hint_nume">introduceti nume...</string>
+    <string name="text_view_telefon">TELEFON</string>
+    <string name="hint_telefon">introduceti telefon...</string>
+    <string name="text_view_varsta">VARSTA</string>
+    <string name="hint_varsta">introduceti varsta...</string>
+    <string name="title_masina">Masina</string>
+    <string name="text_view_marca">MARCA</string>
+    <string name="hint_marca">introduceti marca...</string>
+    <string name="text_view_model">MODEL</string>
+    <string name="hint_model">introduceti model...</string>
+    <string name="text_view_an">AN FABRICATIE</string>
+    <string name="hint_an">introduceti anul...</string>
+    <string name="text_view_experienta">EXPERIENTA AUTO</string>
+    <string name="check_box_masina_cont">Am masina, doresc sa postez calatorii</string>
+    <string name="check_box_termeni">Accept termenii de ultilizare</string>
+    <string name="buton_register">CREATE</string>
+
+    <!-- NavigationView -->
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+    <string name="nav_account">Contul meu</string>
+    <string name="nav_cauta">Cauta o calatorie</string>
+    <string name="nav_adauga">Adauga o calatorie</string>
+    <string name="nav_calatorii">Calatoriile mele</string>
+    <string name="nav_setari">Setari</string>
+
+    <!-- Cont Fragment -->
+    <string name="cont_textview_parola">Parola</string>
+    <string name="cont_textview_nume">Nume</string>
+    <string name="cont_textview_telefon">Telefon</string>
+    <string name="cont_textview_varsta">Varsta</string>
+    <string name="cont_textview_marca">Marca masina</string>
+    <string name="cont_textview_model">Model masina</string>
+    <string name="cont_textview_an">An fabricatie</string>
+    <string name="cont_textview_experienta">Experienta auto</string>
+    <string name="cont_button_modifica">Modifica</string>
+    <string name="cont_button_adauga">Adauga</string>
+    <string name="cont_texview_masina_adauga">Nu ai masina adaugata!</string>
+    <string name="title_activity_navigation2">NavigationActivity2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_navigation">Calatoriile mele</string>
+
+    <!-- Modify password -->
+    <string name="modify_current_password">Parola curenta</string>
+    <string name="modify_new_password">Parola noua</string>
+    <string name="modify_new_password_again">Parola noua din nou</string>
+    <string name="modify_button">Modifica</string>
+
+    <!-- Adauga fragment -->
+    <string name="adauga_pret_valuta">lei</string>
+
+</resources>
