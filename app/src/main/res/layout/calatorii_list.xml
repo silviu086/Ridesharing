@@ -139,7 +139,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="17.06.2016"
                         android:textStyle="bold"
-                        android:textColor="#87cf63"
+                        android:textColor="#63b9cf"
                         android:textSize="17dp"
                         android:id="@+id/textViewDataPlecare" />
                 </LinearLayout>
@@ -175,7 +175,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="15:00"
                         android:textStyle="bold"
-                        android:textColor="#63cf85"
+                        android:textColor="#63abcf"
                         android:textSize="17dp"
                         android:id="@+id/textViewOraPlecare" />
                 </LinearLayout>
@@ -210,7 +210,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="20 lei"
                         android:textStyle="bold"
-                        android:textColor="#63c1cf"
+                        android:textColor="#639dcf"
                         android:textSize="17dp"
                         android:id="@+id/textViewPret" />
                 </LinearLayout>
@@ -245,7 +245,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="4 locuri"
                         android:textStyle="bold"
-                        android:textColor="#63a2cf"
+                        android:textColor="#6395cf"
                         android:textSize="17dp"
                         android:id="@+id/textViewLocuriDisponibile" />
                 </LinearLayout>

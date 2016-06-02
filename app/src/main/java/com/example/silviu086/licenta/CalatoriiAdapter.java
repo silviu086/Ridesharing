@@ -1,6 +1,7 @@
 package com.example.silviu086.licenta;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -23,11 +25,13 @@ public class CalatoriiAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<Calatorie> listaCalatorii;
+    private ArrayList<Account> listaConturi;
 
 
-    public CalatoriiAdapter(Context context, ArrayList<Calatorie> listaCalatorii) {
+    public CalatoriiAdapter(Context context, ArrayList<Calatorie> listaCalatorii, ArrayList<Account> listaConturi) {
         this.context = context;
         this.listaCalatorii = listaCalatorii;
+        this.listaConturi = listaConturi;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -58,17 +62,6 @@ public class CalatoriiAdapter extends BaseAdapter {
         TextView buttonMerg;
     }
 
-    private void setClipboard(String text) {
-        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(text);
-        } else {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
-            clipboard.setPrimaryClip(clip);
-        }
-    }
-
     private boolean searchPasageriInAsteptare(String pasager, String[] listaPasageri){
         for(int i=0;i<listaPasageri.length;i++){
             if(listaPasageri[i].equals(pasager)){
@@ -82,7 +75,8 @@ public class CalatoriiAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v;
         v = inflater.inflate(R.layout.calatorii_list, null);
-        Calatorie calatorie = listaCalatorii.get(position);
+        final Calatorie calatorie = listaCalatorii.get(position);
+        final Account account = listaConturi.get(position);
         final Holder h = new Holder();
         h.textViewNumar = (TextView) v.findViewById(R.id.textViewNumar);
         h.textViewDataAdaugare = (TextView) v.findViewById(R.id.textViewDataAdaugare);
@@ -96,7 +90,7 @@ public class CalatoriiAdapter extends BaseAdapter {
 
         h.textViewNumar.setText(String.valueOf(position + 1));
         h.textViewDataAdaugare.setText(calatorie.getDataCreare());
-        h.textViewNume.setText(calatorie.getNume());
+        h.textViewNume.setText(account.getNume());
         h.textViewDataPlecare.setText(calatorie.getDataPlecare());
         h.textViewOraPlecare.setText(calatorie.getOraPlecare());
         h.textViewPret.setText(String.valueOf(calatorie.getPret()) + " lei");
@@ -109,6 +103,12 @@ public class CalatoriiAdapter extends BaseAdapter {
             h.buttonMerg.setEnabled(false);
         }
 
+        if(NavigationActivity.account.getId() == account.getId()){
+            h.buttonMerg.setText("Calatoria ta");
+            h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
+            h.buttonMerg.setEnabled(false);
+        }
+
         h.buttonMerg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +116,7 @@ public class CalatoriiAdapter extends BaseAdapter {
                     @Override
                     public void onTaskCompleted(String result) {
                         if(result.equals("sent|adaugat")){
-                            Toast.makeText(context, "O cerere a fost trimisa catre " + listaCalatorii.get(position).getNume() + "!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "O cerere a fost trimisa catre " + account.getNume() + "!", Toast.LENGTH_LONG).show();
                             h.buttonMerg.setText("In asteptare");
                             h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
                             h.buttonMerg.setEnabled(false);
@@ -132,6 +132,16 @@ public class CalatoriiAdapter extends BaseAdapter {
                     }
                 });
                 calatorieTask.execute();
+            }
+        });
+
+        h.buttonDetalii.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CalatorieDetaliiActivity.class);
+                intent.putExtra("calatorie", calatorie);
+                intent.putExtra("account", account);
+                context.startActivity(intent);
             }
         });
 

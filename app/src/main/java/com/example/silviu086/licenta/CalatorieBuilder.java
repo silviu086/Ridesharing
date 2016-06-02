@@ -94,15 +94,6 @@ public class CalatorieBuilder implements IBuilder {
         return this;
     }
 
-    public CalatorieBuilder setNume(String nume){
-        this.calatorie.setNume(nume);
-        return this;
-    }
-
-    public CalatorieBuilder setTelefon(String telefon){
-        this.calatorie.setTelefon(telefon);
-        return this;
-    }
 
     public CalatorieBuilder setPasageriInAsteptare(String pasageriInAsteptare){
         this.calatorie.setPasageriInAsteptare(pasageriInAsteptare);

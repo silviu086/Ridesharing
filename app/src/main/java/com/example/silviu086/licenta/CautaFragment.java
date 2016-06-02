@@ -64,6 +64,7 @@ public class CautaFragment extends Fragment {
     private Button buttonAltaCautare;
     private OraseRomania oraseRomania;
     private ArrayList<Calatorie> listaCalatorii;
+    private ArrayList<Account> listaConturi;
     private Account account;
     private boolean showOnMap;
 
@@ -232,6 +233,7 @@ public class CautaFragment extends Fragment {
                     //in.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
                     ProgressDialog progressDialog = new ProgressDialog(getContext());
                     listaCalatorii = new ArrayList<>();
+                    listaConturi = new ArrayList<Account>();
                     CautaCalatoriiTask cautaCalatoriiTask = new CautaCalatoriiTask(punctPlecare, punctSosire, progressDialog, new TaskCompleted() {
                         @Override
                         public void onTaskCompleted(String result) {
@@ -239,11 +241,11 @@ public class CautaFragment extends Fragment {
                                 textViewSearchResult.setVisibility(View.GONE);
                                 //linearLayoutCauta.setVisibility(View.GONE);
                                 linearLayoutSearch.setVisibility(View.GONE);
-                                linearLayoutInfoCalatorie.setVisibility(View.VISIBLE);
                                 linearLayoutSearchInfo.setVisibility(View.VISIBLE);
                                 JSONObject jsonObject = new JSONObject(result);
                                 int success = jsonObject.getInt("success");
                                 if (success == 1) {
+                                    linearLayoutInfoCalatorie.setVisibility(View.VISIBLE);
                                     JSONArray jsonCalatorii = jsonObject.getJSONArray("calatorii");
                                     for (int i = 0; i < jsonCalatorii.length(); i++) {
                                         JSONObject jsonCalatorie = jsonCalatorii.getJSONObject(i);
@@ -265,14 +267,21 @@ public class CautaFragment extends Fragment {
                                                 .setMarimeBagaj(jsonCalatorie.getString("marime_bagaj"))
                                                 .setDurataCalatorie(jsonCalatorie.getString("durata_calatorie"))
                                                 .setDistantaCalatorie(jsonCalatorie.getString("distanta_calatorie"))
-                                                .setNume(jsonCalatorie.getString("nume"))
-                                                .setTelefon(jsonCalatorie.getString("telefon"))
                                                 .setPasageriInAsteptare(jsonCalatorie.getString("pasageri_in_asteptare"))
                                                 .setPasageriConfirmati(jsonCalatorie.getString("pasageri_confirmati"))
                                                 .build();
+                                        AccountBuilder accountBuilder = new AccountBuilder();
+                                        Account account = accountBuilder
+                                                .setId(Integer.valueOf(jsonCalatorie.getString("id_account")))
+                                                .setNume(jsonCalatorie.getString("nume"))
+                                                .setTelefon(jsonCalatorie.getString("telefon"))
+                                                .setEmail(jsonCalatorie.getString("email"))
+                                                .setVarsta(Integer.valueOf(jsonCalatorie.getString("varsta")))
+                                                .setExperientaAuto(jsonCalatorie.getString("experienta_auto")).build();
                                         listaCalatorii.add(calatorie);
+                                        listaConturi.add(account);
                                     }
-                                    CalatoriiAdapter adapter = new CalatoriiAdapter(getContext(), listaCalatorii);
+                                    CalatoriiAdapter adapter = new CalatoriiAdapter(getContext(), listaCalatorii, listaConturi);
                                     linearLayoutLocatii.setVisibility(View.GONE);
                                     textViewPunctPlecare.setText(listaCalatorii.get(0).getPunctPlecare());
                                     textViewPunctSosire.setText(listaCalatorii.get(0).getPunctSosire());

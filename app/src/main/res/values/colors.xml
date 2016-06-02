@@ -18,14 +18,18 @@
     <color name="colorSilverDarker">#eaeaea</color>
 
     <!-- MainActivity colors -->
-    <color name="tabSelectedBackgroundColor">#c82069b4</color>
+    <color name="tabSelectedBackgroundColor">#c82a67c1</color>
     <color name="tabBackgroundColor">#c8b1b1b1</color>
     <color name="tabTextColor">#fff</color>
-    <color name="tabSelectedBarColor">#202020</color>
+    <color name="tabSelectedBarColor">#696969</color>
     <color name="backgroundLogoColor">#c80f489e</color>
     <color name="backgroundViewPagerColor">#efefef</color>
 
-    <!-- NavigationView colors -->
+    <!-- NavigationView colors -->c2c2c2
+    <color name="tabSelectedBackgroundColorCalatorii">#dc377dd1</color>
+    <color name="tabBackgroundColorCalatorii">#e2e2e2</color>
+    <color name="tabTextColorCalatorii">#747474</color>
+    <color name="tabSelectedBarColorCalatorii">#dc377dd1</color>
     <color name="navIconColor">#9e9e9e</color>
     <color name="navIconColorSelected">#e24370</color>
     <color name="navTextColor">#e60f4c</color>

@@ -673,7 +673,7 @@ public class AdaugaFragment extends Fragment {
         buttonAdauga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
                 Date date = new Date();
                 String dateCreated = dateFormat.format(date);
                 CalatorieBuilder builder = new CalatorieBuilder();

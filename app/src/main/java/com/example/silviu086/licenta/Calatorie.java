@@ -1,9 +1,11 @@
 package com.example.silviu086.licenta;
 
+import java.io.Serializable;
+
 /**
  * Created by Silviu086 on 25.05.2016.
  */
-public class Calatorie {
+public class Calatorie implements Serializable {
     private int id;
     private String dataCreare;
     private String punctPlecare;
@@ -20,8 +22,6 @@ public class Calatorie {
     private String marimeBagaj;
     private String durataCalatorie;
     private String distantaCalatorie;
-    private String nume;
-    private String telefon;
     private String pasageriInAsteptare;
     private String pasageriConfirmati;
 
@@ -157,21 +157,6 @@ public class Calatorie {
         this.distantaCalatorie = distantaCalatorie;
     }
 
-    public String getNume(){
-        return this.nume;
-    }
-
-    public void setNume(String nume){
-        this.nume = nume;
-    }
-
-    public String getTelefon(){
-        return this.telefon;
-    }
-
-    public void setTelefon(String telefon){
-        this.telefon = telefon;
-    }
 
     public String getPasageriInAsteptare() {
         return pasageriInAsteptare;

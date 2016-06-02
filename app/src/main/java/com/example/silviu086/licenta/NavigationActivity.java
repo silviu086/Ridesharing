@@ -30,6 +30,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import java.util.ArrayList;
+
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,6 +39,8 @@ public class NavigationActivity extends AppCompatActivity
     private final int navigationItemNumber = 5;
 
     //Defining Variables
+    public static Account account;
+
     private static Toolbar toolbar;
     private static NavigationView navigationView;
     private static android.support.v4.app.FragmentTransaction fragmentTransaction;
@@ -49,7 +53,6 @@ public class NavigationActivity extends AppCompatActivity
     private TextView navigationEmail;
     private TextView navigationNume;
     private MesajeFragment fragmentMesaje;
-    public static Account account;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private boolean isReceiverRegistered;
 
@@ -258,8 +261,9 @@ public class NavigationActivity extends AppCompatActivity
                         });
                     }
                 }.start();
+                fragmentCalatorii = new CalatoriiFragment().newInstance(account);
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
+                fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
                 fragmentTransaction.commit();
                 toolbar.setTitle("Calatoriile mele");
                 break;
@@ -310,6 +314,7 @@ public class NavigationActivity extends AppCompatActivity
             toolbar.setTitle("Adauga o calatorie");
             navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
         }else if(index == 4){
+            fragmentCalatorii = CalatoriiFragment.newInstance(account);
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
             fragmentTransaction.commit();
