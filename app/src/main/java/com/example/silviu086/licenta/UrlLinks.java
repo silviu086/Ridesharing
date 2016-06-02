@@ -24,7 +24,7 @@ public class UrlLinks {
     */
 
 
-    public static String IP = "192.168.1.181";
+    public static String IP = "192.168.1.147";
     public static String URL_LOGIN = "http://" + IP + "/login.php";
     public static String URL_CREATE_ACCOUNT = "http://" + IP + "/create_account.php";
     public static String URL_MODIFY_DATE = "http://" + IP + "/modify_date.php";
@@ -35,4 +35,5 @@ public class UrlLinks {
     public static String URL_GCM_REGISTER = "http://" + IP + "/gcm_register.php";
     public static String URL_GCM_MESSAGE = "http://" + IP + "/gcm_send_message.php";
     public static String URL_ADAUGA_PASAGER_IN_ASTEPTARE = "http://" + IP + "/adauga_pasager_in_asteptare.php";
+    public static String URL_CAUTA_CALATORIILE_MELE = "http://" + IP + "/cauta_calatoriile_mele.php";
 }

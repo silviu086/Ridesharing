@@ -40,7 +40,7 @@ public class NavigationActivity extends AppCompatActivity
 
     //Defining Variables
     public static Account account;
-
+    public static CalatoriiHolder calatoriiHolder;
     private static Toolbar toolbar;
     private static NavigationView navigationView;
     private static android.support.v4.app.FragmentTransaction fragmentTransaction;
@@ -87,7 +87,7 @@ public class NavigationActivity extends AppCompatActivity
         fragmentCont = ContFragment.newInstance(account);
         fragmentCauta = CautaFragment.newInstance(account);
         fragmentAdauga = AdaugaFragment.newInstance(account);
-        fragmentCalatorii = CalatoriiFragment.newInstance(account);
+        fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
         fragmentSetari = SetariFragment.newInstance(account);
         fragmentMesaje = MesajeFragment.newInstance(account);
 
@@ -182,10 +182,10 @@ public class NavigationActivity extends AppCompatActivity
         final ProgressDialog dialog = new ProgressDialog(NavigationActivity.this);
         dialog.setTitle("Loading...");
         dialog.setMessage("Se incarca pagina");
-        dialog.show();
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
             case R.id.account:
+                dialog.show();
                 new Thread() {
                     @Override
                     public void run() {
@@ -206,6 +206,7 @@ public class NavigationActivity extends AppCompatActivity
                 break;
 
             case R.id.cauta:
+                dialog.show();
                 new Thread() {
                     @Override
                     public void run() {
@@ -227,6 +228,7 @@ public class NavigationActivity extends AppCompatActivity
                 break;
 
             case R.id.adauga:
+                dialog.show();
                 new Thread() {
                     @Override
                     public void run() {
@@ -248,11 +250,13 @@ public class NavigationActivity extends AppCompatActivity
                 break;
 
             case R.id.calatorii:
+                dialog.show();
                 new Thread() {
                     @Override
                     public void run() {
-                        SystemClock.sleep(200);
+                        SystemClock.sleep(300);
                         NavigationActivity.this.runOnUiThread(new Runnable() {
+
                             @Override
                             public void run() {
                                 drawer.closeDrawers();
@@ -261,14 +265,22 @@ public class NavigationActivity extends AppCompatActivity
                         });
                     }
                 }.start();
-                fragmentCalatorii = new CalatoriiFragment().newInstance(account);
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
-                fragmentTransaction.commit();
-                toolbar.setTitle("Calatoriile mele");
+                CalatoriiFragmentTask task = new CalatoriiFragmentTask(account.getId(), new TaskCompletedCalatorii() {
+                    @Override
+                    public void onTaskCompleted(CalatoriiHolder result) {
+                        calatoriiHolder = result;
+                        fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
+                        fragmentTransaction.commit();
+                        toolbar.setTitle("Calatoriile mele");
+                    }
+                });
+                task.execute();
                 break;
 
             case R.id.setari:
+                dialog.show();
                 new Thread() {
                     @Override
                     public void run() {
@@ -295,38 +307,45 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     public static void setFragment(int index){
-        if(index == 1){
+        final int i = index;
+        if(i == 1){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contentPanel, fragmentCont);
             fragmentTransaction.commit();
             toolbar.setTitle("Contul meu");
-            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
-        }else if(index == 2){
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(i - 1).getItemId());
+        }else if(i == 2){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contentPanel, fragmentCauta);
             fragmentTransaction.commit();
             toolbar.setTitle("Cauta o calatorie");
-            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
-        }else if(index == 3){
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(i - 1).getItemId());
+        }else if(i == 3){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contentPanel, fragmentAdauga);
             fragmentTransaction.commit();
             toolbar.setTitle("Adauga o calatorie");
-            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
-        }else if(index == 4){
-            fragmentCalatorii = CalatoriiFragment.newInstance(account);
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
-            fragmentTransaction.commit();
-            toolbar.setTitle("Calatoriile mele");
-            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
-
-        }else if(index == 5){
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(i - 1).getItemId());
+        }else if(i == 4){
+            CalatoriiFragmentTask task = new CalatoriiFragmentTask(account.getId(), new TaskCompletedCalatorii() {
+                @Override
+                public void onTaskCompleted(CalatoriiHolder result) {
+                    calatoriiHolder = result;
+                    fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
+                    fragmentTransaction.commit();
+                    toolbar.setTitle("Calatoriile mele");
+                    navigationView.setCheckedItem(navigationView.getMenu().getItem(i - 1).getItemId());
+                }
+            });
+            task.execute();
+        }else if(i == 5){
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.contentPanel, fragmentSetari);
             fragmentTransaction.commit();
             toolbar.setTitle("Setari");
-            navigationView.setCheckedItem(navigationView.getMenu().getItem(index - 1).getItemId());
+            navigationView.setCheckedItem(navigationView.getMenu().getItem(i - 1).getItemId());
         }
     }
 }

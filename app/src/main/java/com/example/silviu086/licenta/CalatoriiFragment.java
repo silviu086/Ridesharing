@@ -29,14 +29,14 @@ public class CalatoriiFragment extends Fragment {
     private SlidingTabLayoutCalatorii slidingTab;
     private CharSequence [] tabTitle = {TITLE_LOGIN_ADAUGATE, TITLE_IN_ASTEPTARE, TITLE_CONFIRMATE};
     private int tabCount = 3;
-    private Account account;
+    private CalatoriiHolder calatorii;
 
     public CalatoriiFragment() {
         // Required empty public constructor
     }
 
-    public void setAccount(Account account){
-        this.account = account;
+    public void setCalatorii(CalatoriiHolder calatorii){
+        this.calatorii = calatorii;
     }
 
     @Override
@@ -63,9 +63,13 @@ public class CalatoriiFragment extends Fragment {
         return v;
     }
 
-    public static CalatoriiFragment newInstance(Account account){
+    public static void setPage(int i){
+        sViewPager.setCurrentItem(i);
+    }
+
+    public static CalatoriiFragment newInstance(CalatoriiHolder calatoriiHolder){
         CalatoriiFragment calatoriiFragment = new CalatoriiFragment();
-        calatoriiFragment.setAccount(account);
+        calatoriiFragment.setCalatorii(calatoriiHolder);
         return calatoriiFragment;
     }
 

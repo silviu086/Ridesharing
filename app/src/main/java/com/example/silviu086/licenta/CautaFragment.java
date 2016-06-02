@@ -185,10 +185,14 @@ public class CautaFragment extends Fragment {
                 if (autoCompleteTextViewPlecare.getText().toString().equals("") || !oraseRomania.find(autoCompleteTextViewPlecare.getText().toString())) {
                     autoCompleteTextViewPlecare.setError("Selectati o locatie valida!");
                 }else if(oraseRomania.find(autoCompleteTextViewSosire.getText().toString())) {
-                    imageViewMap.setVisibility(View.GONE);
-                    DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                    directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
-                    //linearLayoutCauta.setVisibility(View.VISIBLE);
+                    if(Internet.haveInternet(getContext())){
+                        imageViewMap.setVisibility(View.GONE);
+                        DirectionsMap directionsMap = new DirectionsMap(map, getContext());
+                        directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
+                        //linearLayoutCauta.setVisibility(View.VISIBLE);
+                    }else{
+                        Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     autoCompleteTextViewSosire.setError("Selectati o locatie valida!");
                 }
@@ -202,10 +206,14 @@ public class CautaFragment extends Fragment {
                     if (!oraseRomania.find(autoCompleteTextViewPlecare.getText().toString())) {
                         autoCompleteTextViewPlecare.setError("Selectati o locatie valida!");
                     } else if (oraseRomania.find(autoCompleteTextViewSosire.getText().toString())) {
-                        imageViewMap.setVisibility(View.GONE);
-                        DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                        directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
-                        //linearLayoutCauta.setVisibility(View.VISIBLE);
+                        if(Internet.haveInternet(getContext())){
+                            imageViewMap.setVisibility(View.GONE);
+                            DirectionsMap directionsMap = new DirectionsMap(map, getContext());
+                            directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
+                            //linearLayoutCauta.setVisibility(View.VISIBLE);
+                        }else{
+                            Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         autoCompleteTextViewSosire.setError("Selectati din lista o locatie!");
                     }
@@ -228,6 +236,8 @@ public class CautaFragment extends Fragment {
                     autoCompleteTextViewPlecare.setError("Selectati o locatie valida!");
                 } else if (!oraseRomania.find(punctSosire)) {
                     autoCompleteTextViewSosire.setError("Selectati o locatie valida!");
+                }else if(!Internet.haveInternet(getContext())){
+                    Toast.makeText(getContext(), "Nu s-a putut realiza cautarea, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                 } else {
                     //InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     //in.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);

@@ -287,22 +287,26 @@ public class AdaugaFragment extends Fragment {
                 if (oraseRomania.find(s.toString())) {
                     punctPlecare = s.toString();
                     if (punctSosireCheck && punctSosireCheck) {
-                        imageViewMap.setVisibility(View.GONE);
-                        DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                        directionsMap.drawRoute(punctPlecare, punctSosire);
-                        while (directionsMap.getDistanta() == null) {
+                        if(Internet.haveInternet(getContext())){
+                            imageViewMap.setVisibility(View.GONE);
+                            DirectionsMap directionsMap = new DirectionsMap(map, getContext());
+                            directionsMap.drawRoute(punctPlecare, punctSosire);
+                            while (directionsMap.getDistanta() == null) {
+                            }
+                            durata = directionsMap.getDurata();
+                            distanta = directionsMap.getDistanta();
+                            pret = calculeazaPret(distanta);
+                            textViewPret.setText(String.valueOf(pret));
+                            int numarSchimbare = numarSchimbarePret(pret);
+                            limitaPretSup = pret + numarSchimbare;
+                            limitaPretInf = pret - numarSchimbare;
+                            enableStep2();
+                            disableStep3();
+                            disableStep4();
+                            disableStep5();
+                        }else{
+                            Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                         }
-                        durata = directionsMap.getDurata();
-                        distanta = directionsMap.getDistanta();
-                        pret = calculeazaPret(distanta);
-                        textViewPret.setText(String.valueOf(pret));
-                        int numarSchimbare = numarSchimbarePret(pret);
-                        limitaPretSup = pret + numarSchimbare;
-                        limitaPretInf = pret - numarSchimbare;
-                        enableStep2();
-                        disableStep3();
-                        disableStep4();
-                        disableStep5();
                     }
                 }
             }
@@ -333,22 +337,26 @@ public class AdaugaFragment extends Fragment {
                 if (oraseRomania.find(s.toString())) {
                     punctSosire = s.toString();
                     if (punctPlecareCheck && punctSosireCheck) {
-                        imageViewMap.setVisibility(View.GONE);
-                        DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                        directionsMap.drawRoute(punctPlecare, punctSosire);
-                        while (directionsMap.getDistanta() == null) {
+                        if(Internet.haveInternet(getContext())){
+                            imageViewMap.setVisibility(View.GONE);
+                            DirectionsMap directionsMap = new DirectionsMap(map, getContext());
+                            directionsMap.drawRoute(punctPlecare, punctSosire);
+                            while (directionsMap.getDistanta() == null) {
+                            }
+                            durata = directionsMap.getDurata();
+                            distanta = directionsMap.getDistanta();
+                            pret = calculeazaPret(distanta);
+                            textViewPret.setText(String.valueOf(pret));
+                            int numarSchimbare = numarSchimbarePret(pret);
+                            limitaPretSup = pret + numarSchimbare;
+                            limitaPretInf = pret - numarSchimbare;
+                            enableStep2();
+                            disableStep3();
+                            disableStep4();
+                            disableStep5();
+                        }else{
+                            Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                         }
-                        durata = directionsMap.getDurata();
-                        distanta = directionsMap.getDistanta();
-                        pret = calculeazaPret(distanta);
-                        textViewPret.setText(String.valueOf(pret));
-                        int numarSchimbare = numarSchimbarePret(pret);
-                        limitaPretSup = pret + numarSchimbare;
-                        limitaPretInf = pret - numarSchimbare;
-                        enableStep2();
-                        disableStep3();
-                        disableStep4();
-                        disableStep5();
                     }
                 }
             }

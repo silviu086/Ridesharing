@@ -1,6 +1,7 @@
 package com.example.silviu086.licenta;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -81,7 +82,7 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
             try {
                 JSONObject json = new JSONObject(result);
                 JSONObject jsonAccount = json.getJSONObject("account");
-                Account account = new AccountBuilder()
+                final Account account = new AccountBuilder()
                         .setId(Integer.valueOf(jsonAccount.getString("id")))
                         .setEmail(jsonAccount.getString("email"))
                         .setParola(jsonAccount.getString("parola"))
@@ -94,9 +95,16 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                         .setAnFabricatie(Integer.valueOf(jsonAccount.getString("an_fabricatie").equals("null")? "0" : jsonAccount.getString("an_fabricatie")))
                         .setExperientaAuto(jsonAccount.getString("experienta_auto").equals("null")? "" : jsonAccount.getString("experienta_auto"))
                         .build();
-                Intent it = new Intent(getActivity(), NavigationActivity.class);
-                it.putExtra("account", account);
-                startActivity(it);
+                CalatoriiFragmentTask task = new CalatoriiFragmentTask(account.getId(), new TaskCompletedCalatorii() {
+                    @Override
+                    public void onTaskCompleted(CalatoriiHolder result) {
+                        NavigationActivity.calatoriiHolder = result;
+                        Intent it = new Intent(getActivity(), NavigationActivity.class);
+                        it.putExtra("account", account);
+                        startActivity(it);
+                    }
+                });
+                task.execute();
             } catch (Exception ex) {
                 Log.e("JSONException", ex.toString());
             }

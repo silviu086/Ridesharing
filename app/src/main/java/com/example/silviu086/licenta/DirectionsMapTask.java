@@ -1,5 +1,7 @@
 package com.example.silviu086.licenta;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -15,10 +17,13 @@ public class DirectionsMapTask extends AsyncTask<String, Integer, String> {
 
     private String punctPlecare;
     private String punctSosire;
+    private Context context;
+    private ProgressDialog progressDialog;
 
-    public DirectionsMapTask(String punctPlecare, String punctSosire) {
+    public DirectionsMapTask(String punctPlecare, String punctSosire, Context context) {
         this.punctPlecare = punctPlecare;
         this.punctSosire = punctSosire;
+        this.context = context;
     }
 
     private String buildDirectionsUrl(String origin, String dest){
@@ -42,11 +47,16 @@ public class DirectionsMapTask extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Asteptati...");
+        progressDialog.setMessage("Se calculeaza traseul!");
+        progressDialog.show();
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        progressDialog.dismiss();
         //taskCompleted.onTaskCompleted(s);
     }
 

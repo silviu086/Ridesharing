@@ -74,7 +74,7 @@ public class DirectionsMap{
             progressDialog.setTitle("Asteptati...");
             progressDialog.setMessage("Se incarca harta!");
             progressDialog.show();
-            DirectionsMapTask directionsMapTask = new DirectionsMapTask(mPunctPlecare, mPunctSosire);
+            DirectionsMapTask directionsMapTask = new DirectionsMapTask(mPunctPlecare, mPunctSosire, mContext);
             try {
                 result = directionsMapTask.execute().get();
             } catch (InterruptedException e) {

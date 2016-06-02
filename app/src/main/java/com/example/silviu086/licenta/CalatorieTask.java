@@ -14,6 +14,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Silviu086 on 31.05.2016.
@@ -87,9 +90,14 @@ public class CalatorieTask extends AsyncTask<String, Integer, String> {
             con.setRequestMethod("POST");
             con.connect();
 
+            DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+            Date date = new Date();
+            String data = dateFormat.format(date);
+
             String query = new Uri.Builder()
                     .appendQueryParameter("id_calatorie", String.valueOf(calatorie.getId()))
                     .appendQueryParameter("id_account", String.valueOf(NavigationActivity.account.getId()))
+                    .appendQueryParameter("data", data)
                     .build().getEncodedQuery();
 
             OutputStream os = con.getOutputStream();

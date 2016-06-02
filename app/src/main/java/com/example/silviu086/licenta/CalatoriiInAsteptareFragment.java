@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class CalatoriiInAsteptareFragment extends Fragment {
     public CalatoriiInAsteptareFragment() {
@@ -17,7 +21,13 @@ public class CalatoriiInAsteptareFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calatorii_in_asteptare, container, false);
+        View v = inflater.inflate(R.layout.fragment_calatorii_in_asteptare, container, false);
+
+
+        List<CalatorieInAsteptare> calatorii = NavigationActivity.calatoriiHolder.calatoriiInAsteptare;
+        TextView tv = (TextView) v.findViewById(R.id.textView1);
+        tv.setText(String.valueOf(calatorii.size()));
+        return v;
     }
 
 }

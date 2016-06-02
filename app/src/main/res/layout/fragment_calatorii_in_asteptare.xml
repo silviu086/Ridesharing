@@ -5,11 +5,11 @@
     tools:context="com.example.silviu086.licenta.CalatoriiInAsteptareFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:background="@color/colorWhite"
-        android:text="fragment in asteptare" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView1" />
 </FrameLayout>
