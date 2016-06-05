@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -41,10 +42,10 @@ public class NavigationActivity extends AppCompatActivity
     //Defining Variables
     public static Account account;
     public static CalatoriiHolder calatoriiHolder;
-    private static Toolbar toolbar;
+    public static Toolbar toolbar;
     private static NavigationView navigationView;
     private static android.support.v4.app.FragmentTransaction fragmentTransaction;
-    private static FragmentManager fragmentManager;
+    public static FragmentManager fragmentManager;
     private static ContFragment fragmentCont;
     private static CautaFragment fragmentCauta;
     private static AdaugaFragment fragmentAdauga;
@@ -189,7 +190,7 @@ public class NavigationActivity extends AppCompatActivity
                 new Thread() {
                     @Override
                     public void run() {
-                        SystemClock.sleep(200);
+                        SystemClock.sleep(300);
                         NavigationActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -210,7 +211,7 @@ public class NavigationActivity extends AppCompatActivity
                 new Thread() {
                     @Override
                     public void run() {
-                        SystemClock.sleep(200);
+                        SystemClock.sleep(700);
                         NavigationActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -232,7 +233,7 @@ public class NavigationActivity extends AppCompatActivity
                 new Thread() {
                     @Override
                     public void run() {
-                        SystemClock.sleep(800);
+                        SystemClock.sleep(700);
                         NavigationActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -251,20 +252,6 @@ public class NavigationActivity extends AppCompatActivity
 
             case R.id.calatorii:
                 dialog.show();
-                new Thread() {
-                    @Override
-                    public void run() {
-                        SystemClock.sleep(300);
-                        NavigationActivity.this.runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                drawer.closeDrawers();
-                                dialog.dismiss();
-                            }
-                        });
-                    }
-                }.start();
                 CalatoriiFragmentTask task = new CalatoriiFragmentTask(account.getId(), new TaskCompletedCalatorii() {
                     @Override
                     public void onTaskCompleted(CalatoriiHolder result) {
@@ -274,6 +261,8 @@ public class NavigationActivity extends AppCompatActivity
                         fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
                         fragmentTransaction.commit();
                         toolbar.setTitle("Calatoriile mele");
+                        drawer.closeDrawers();
+                        dialog.dismiss();
                     }
                 });
                 task.execute();
@@ -284,7 +273,7 @@ public class NavigationActivity extends AppCompatActivity
                 new Thread() {
                     @Override
                     public void run() {
-                        SystemClock.sleep(200);
+                        SystemClock.sleep(300);
                         NavigationActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

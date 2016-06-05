@@ -12,10 +12,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.util.TimeUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -259,108 +261,84 @@ public class AdaugaFragment extends Fragment {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(44.42677, 26.10254), 4));
 
         autoCompleteTextViewPunctPlecare.setAdapter(arrayAdapterOrase);
-        autoCompleteTextViewPunctPlecare.setThreshold(1);
+        autoCompleteTextViewPunctPlecare.setThreshold(2);
         autoCompleteTextViewPunctSosire.setAdapter(arrayAdapterOrase);
-        autoCompleteTextViewPunctSosire.setThreshold(1);
+        autoCompleteTextViewPunctSosire.setThreshold(2);
 
-        autoCompleteTextViewPunctPlecare.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        autoCompleteTextViewPunctSosire.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (!autoCompleteTextViewPunctSosire.getText().toString().equals("")) {
-                    InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-                }
-            }
-        });
-        autoCompleteTextViewPunctPlecare.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                punctPlecareCheck = true;
-                if (oraseRomania.find(s.toString())) {
-                    punctPlecare = s.toString();
-                    if (punctSosireCheck && punctSosireCheck) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!oraseRomania.find(autoCompleteTextViewPunctPlecare.getText().toString())) {
+                        autoCompleteTextViewPunctPlecare.setError("Selectati o locatie valida!");
+                    } else if (oraseRomania.find(autoCompleteTextViewPunctSosire.getText().toString())) {
                         if(Internet.haveInternet(getContext())){
                             imageViewMap.setVisibility(View.GONE);
-                            DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                            directionsMap.drawRoute(punctPlecare, punctSosire);
-                            while (directionsMap.getDistanta() == null) {
-                            }
-                            durata = directionsMap.getDurata();
-                            distanta = directionsMap.getDistanta();
-                            pret = calculeazaPret(distanta);
-                            textViewPret.setText(String.valueOf(pret));
-                            int numarSchimbare = numarSchimbarePret(pret);
-                            limitaPretSup = pret + numarSchimbare;
-                            limitaPretInf = pret - numarSchimbare;
-                            enableStep2();
-                            disableStep3();
-                            disableStep4();
-                            disableStep5();
+                            DirectionsMap directionsMap = new DirectionsMap(
+                                    map, getContext(),
+                                    autoCompleteTextViewPunctPlecare.getText().toString(),
+                                    autoCompleteTextViewPunctSosire.getText().toString(),
+                                    new TaskCompleted() {
+                                        @Override public void onTaskCompleted(String result) {
+                                            durata = DirectionsMap.mDurata;
+                                            distanta = DirectionsMap.mDistanta;
+                                            pret = calculeazaPret(distanta);
+                                            textViewPret.setText(String.valueOf(pret));
+                                            int numarSchimbare = numarSchimbarePret(pret);
+                                            limitaPretSup = pret + numarSchimbare;
+                                            limitaPretInf = pret - numarSchimbare;
+                                            enableStep2();
+                                            disableStep3();
+                                            disableStep4();
+                                            disableStep5();
+                                        }});
+                            directionsMap.execute();
                         }else{
                             Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                         }
+                    } else {
+                        autoCompleteTextViewPunctSosire.setError("Selectati din lista o locatie!");
                     }
                 }
+                return false;
             }
         });
-
 
         autoCompleteTextViewPunctSosire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-            }
-        });
-        autoCompleteTextViewPunctSosire.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                punctSosireCheck = true;
-                if (oraseRomania.find(s.toString())) {
-                    punctSosire = s.toString();
-                    if (punctPlecareCheck && punctSosireCheck) {
-                        if(Internet.haveInternet(getContext())){
-                            imageViewMap.setVisibility(View.GONE);
-                            DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                            directionsMap.drawRoute(punctPlecare, punctSosire);
-                            while (directionsMap.getDistanta() == null) {
-                            }
-                            durata = directionsMap.getDurata();
-                            distanta = directionsMap.getDistanta();
-                            pret = calculeazaPret(distanta);
-                            textViewPret.setText(String.valueOf(pret));
-                            int numarSchimbare = numarSchimbarePret(pret);
-                            limitaPretSup = pret + numarSchimbare;
-                            limitaPretInf = pret - numarSchimbare;
-                            enableStep2();
-                            disableStep3();
-                            disableStep4();
-                            disableStep5();
-                        }else{
-                            Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
-                        }
+                if (!oraseRomania.find(autoCompleteTextViewPunctPlecare.getText().toString())) {
+                    autoCompleteTextViewPunctPlecare.setError("Selectati o locatie valida!");
+                } else if (oraseRomania.find(autoCompleteTextViewPunctSosire.getText().toString())) {
+                    if(Internet.haveInternet(getContext())){
+                        imageViewMap.setVisibility(View.GONE);
+                        DirectionsMap directionsMap = new DirectionsMap(
+                                map, getContext(),
+                                autoCompleteTextViewPunctPlecare.getText().toString(),
+                                autoCompleteTextViewPunctSosire.getText().toString(),
+                                new TaskCompleted() {
+                                    @Override public void onTaskCompleted(String result) {
+                                        durata = DirectionsMap.mDurata;
+                                        distanta = DirectionsMap.mDistanta;
+                                        pret = calculeazaPret(distanta);
+                                        textViewPret.setText(String.valueOf(pret));
+                                        int numarSchimbare = numarSchimbarePret(pret);
+                                        limitaPretSup = pret + numarSchimbare;
+                                        limitaPretInf = pret - numarSchimbare;
+                                        enableStep2();
+                                        disableStep3();
+                                        disableStep4();
+                                        disableStep5();
+                                    }});
+                        directionsMap.execute();
                     }
+                }else{
+                    Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                 }
             }
-        });
+            });
 
         // STEP 2
         imageButtonPretMinus.setOnClickListener(new View.OnClickListener() {
@@ -739,26 +717,17 @@ public class AdaugaFragment extends Fragment {
         }
     }
 
-    public static void scrollToView(final ScrollView scrollView, final View view) {
-
-        // View needs a focus
-        //view.requestFocus();
-
-        // Determine if scroll needs to happen
-        final Rect scrollBounds = new Rect();
-        scrollView.getHitRect(scrollBounds);
-        if (!view.getLocalVisibleRect(scrollBounds)) {
-            new Handler().post(new Runnable() {
-                @Override
-                public void run() {
-                    scrollView.smoothScrollTo(0, view.getBottom()+300);
-                }
-            });
-        }
+    public static void scrollToView(final ScrollView scrollView, final int position) {
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.smoothScrollTo(0, position);
+            }
+        });
     }
 
     private void enableStep2() {
-        scrollToView(scrollView, buttonPasulUrmatorDoi);
+        scrollToView(scrollView, 270);
         textViewUnuBody.setBackgroundColor(getResources().getColor(R.color.colorBlue));
         textViewDoiHead.setTextColor(getResources().getColor(R.color.colorBlue));
         linearLayoutDoi.setBackground(getResources().getDrawable(R.drawable.cont_layout_shape));
@@ -811,7 +780,7 @@ public class AdaugaFragment extends Fragment {
     }
 
     public void enableStep3() {
-        scrollToView(scrollView, buttonPasulUrmatorTrei);
+        scrollToView(scrollView, 900);
         textViewDoiBody.setBackgroundColor(getResources().getColor(R.color.colorBlue));
         textViewTreiHead.setTextColor(getResources().getColor(R.color.colorBlue));
         linearLayoutTrei.setBackground(getResources().getDrawable(R.drawable.cont_layout_shape));

@@ -55,7 +55,7 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="345dp"
+                        android:layout_height="365dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="10dp"
                         android:padding="15dp"
@@ -101,6 +101,7 @@
                                     android:gravity="center_vertical"
                                     android:hint="punct de plecare"
                                     android:ems="10"
+                                    android:textSize="17dp"
                                     android:imeOptions="actionNext"
                                     android:singleLine="true"
                                     android:layout_marginBottom="15dp"
@@ -113,7 +114,8 @@
                                     android:layout_gravity="center_vertical"
                                     android:hint="punct de sosire"
                                     android:ems="10"
-                                    android:imeOptions="actionNext"
+                                    android:textSize="17dp"
+                                    android:imeOptions="actionDone"
                                     android:singleLine="true"
                                     android:gravity="center_vertical"
                                     android:id="@+id/autoCompleteTextViewSosire" />
@@ -121,19 +123,31 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                        <ImageView
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="60dp"
+                            android:padding="4dp"
+                            android:background="@drawable/adauga_map_shape">
+
+                            <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:id="@+id/imageViewMap"
                             android:src="@drawable/map_background"/>
 
-                        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:id="@+id/map"
-                            class="com.google.android.gms.maps.SupportMapFragment"
-                            tools:layout="@layout/dummy_mapviewfragment" />
+                            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                                xmlns:tools="http://schemas.android.com/tools"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:id="@+id/map"
+                                class="com.google.android.gms.maps.SupportMapFragment"
+                                tools:layout="@layout/dummy_mapviewfragment" />
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
                 </LinearLayout>
@@ -746,7 +760,8 @@
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="15dp">
 
                             <Button
                                 android:layout_width="wrap_content"

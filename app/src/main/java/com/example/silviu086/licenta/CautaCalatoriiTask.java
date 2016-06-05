@@ -37,7 +37,7 @@ public class CautaCalatoriiTask extends AsyncTask<String, Integer, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         mProgressDialog.setTitle("Loading...");
-        mProgressDialog.setMessage("Se cauta calatorii...");
+        mProgressDialog.setMessage("Se cauta calatorii");
         mProgressDialog.show();
     }
 

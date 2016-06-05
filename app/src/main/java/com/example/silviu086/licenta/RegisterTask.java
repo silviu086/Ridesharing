@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.text.Normalizer;
 
 /**
  * Created by Silviu086 on 01.04.2016.

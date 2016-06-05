@@ -116,64 +116,9 @@ public class CautaFragment extends Fragment {
         );
 
         autoCompleteTextViewPlecare.setAdapter(arrayAdapterOrase);
-        autoCompleteTextViewPlecare.setThreshold(1);
+        autoCompleteTextViewPlecare.setThreshold(2);
         autoCompleteTextViewSosire.setAdapter(arrayAdapterOrase);
-        autoCompleteTextViewSosire.setThreshold(1);
-
-
-        /*
-        autoCompleteTextViewPlecare.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //punctSosireCheck = true;
-                if (autoCompleteTextViewPlecare.getText().toString().equals("") || !oraseRomania.find(autoCompleteTextViewPlecare.getText().toString())) {
-                    autoCompleteTextViewPlecare.setError("Introduceti o locatie valida!");
-                }
-            }
-        });
-
-        autoCompleteTextViewSosire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-            }
-        });
-        autoCompleteTextViewSosire.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //punctSosireCheck = true;
-                if(oraseRomania.find(s.toString())) {
-                    imageViewMap.setVisibility(View.GONE);
-                    DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                    directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
-                        //while (directionsMap.getDistanta() == null) {
-                        //}
-                }else{
-                    autoCompleteTextViewSosire.setError("Introduceti o locatie valida!");
-                }
-            }
-        });*/
+        autoCompleteTextViewSosire.setThreshold(2);
 
         autoCompleteTextViewSosire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -187,9 +132,12 @@ public class CautaFragment extends Fragment {
                 }else if(oraseRomania.find(autoCompleteTextViewSosire.getText().toString())) {
                     if(Internet.haveInternet(getContext())){
                         imageViewMap.setVisibility(View.GONE);
-                        DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                        directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
-                        //linearLayoutCauta.setVisibility(View.VISIBLE);
+                        DirectionsMap directionsMap = new DirectionsMap(
+                                map, getContext(),
+                                autoCompleteTextViewPlecare.getText().toString(),
+                                autoCompleteTextViewSosire.getText().toString(),
+                                new TaskCompleted() {@Override public void onTaskCompleted(String result) {}});
+                        directionsMap.execute();
                     }else{
                         Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                     }
@@ -208,19 +156,18 @@ public class CautaFragment extends Fragment {
                     } else if (oraseRomania.find(autoCompleteTextViewSosire.getText().toString())) {
                         if(Internet.haveInternet(getContext())){
                             imageViewMap.setVisibility(View.GONE);
-                            DirectionsMap directionsMap = new DirectionsMap(map, getContext());
-                            directionsMap.drawRoute(autoCompleteTextViewPlecare.getText().toString(), autoCompleteTextViewSosire.getText().toString());
-                            //linearLayoutCauta.setVisibility(View.VISIBLE);
+                            DirectionsMap directionsMap = new DirectionsMap(
+                                    map, getContext(),
+                                    autoCompleteTextViewPlecare.getText().toString(),
+                                    autoCompleteTextViewSosire.getText().toString(),
+                                    new TaskCompleted() { @Override public void onTaskCompleted(String result) {}});
+                            directionsMap.execute();
                         }else{
                             Toast.makeText(getContext(), "Nu s-a putut realiza traseul, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                         }
                     } else {
                         autoCompleteTextViewSosire.setError("Selectati din lista o locatie!");
                     }
-                }
-
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
                 }
                 return false;
             }
@@ -287,7 +234,7 @@ public class CautaFragment extends Fragment {
                                                 .setTelefon(jsonCalatorie.getString("telefon"))
                                                 .setEmail(jsonCalatorie.getString("email"))
                                                 .setVarsta(Integer.valueOf(jsonCalatorie.getString("varsta")))
-                                                .setExperientaAuto(jsonCalatorie.getString("experienta_auto")).build();
+                                                .build();
                                         listaCalatorii.add(calatorie);
                                         listaConturi.add(account);
                                     }

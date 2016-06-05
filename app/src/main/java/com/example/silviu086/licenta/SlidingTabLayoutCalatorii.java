@@ -65,7 +65,7 @@ public class SlidingTabLayoutCalatorii extends HorizontalScrollView {
 
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 15;
+    private static final int TAB_VIEW_TEXT_SIZE_DP = 13;
 
     private int mTitleOffset;
 
@@ -167,10 +167,11 @@ public class SlidingTabLayoutCalatorii extends HorizontalScrollView {
     protected TextView createDefaultTabView(Context context, int backgroundColor, int textColor) {
         TextView textView = new TextView(context);
         textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, TAB_VIEW_TEXT_SIZE_DP);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
         textView.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        textView.setSingleLine(true);
 
         /*TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
@@ -234,7 +235,7 @@ public class SlidingTabLayoutCalatorii extends HorizontalScrollView {
                 tabView.setSelected(true);
             }
 
-            tabTitleView.setTextSize(12.0f);
+            //tabTitleView.setTextSize(12.0f);
         }
     }
 
