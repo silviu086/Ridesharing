@@ -16,12 +16,11 @@
     </string-array>
 
     <string-array name="lista_nivel_experienta">
-        <item>mai putin de 1 an</item>
-        <item>1 an</item>
-        <item>2 ani</item>
-        <item>3 ani</item>
-        <item>4 ani</item>
-        <item>mai mult de 4 ani</item>
+        <item>sub 1 an</item>
+        <item>1-5 ani</item>
+        <item>5-10 ani</item>
+        <item>10-15 ani</item>
+        <item>peste 15 ani</item>
         <item>selecteaza din lista</item>
     </string-array>
 </resources>

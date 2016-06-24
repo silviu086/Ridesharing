@@ -90,7 +90,7 @@ public class CalatorieTask extends AsyncTask<String, Integer, String> {
             con.setRequestMethod("POST");
             con.connect();
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm:ss");
             Date date = new Date();
             String data = dateFormat.format(date);
 

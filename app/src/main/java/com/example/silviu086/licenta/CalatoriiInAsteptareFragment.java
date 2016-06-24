@@ -7,12 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 public class CalatoriiInAsteptareFragment extends Fragment {
+    private ListView listView;
+
     public CalatoriiInAsteptareFragment() {
         // Required empty public constructor
     }
@@ -25,8 +28,9 @@ public class CalatoriiInAsteptareFragment extends Fragment {
 
 
         List<CalatorieInAsteptare> calatorii = NavigationActivity.calatoriiHolder.calatoriiInAsteptare;
-        TextView tv = (TextView) v.findViewById(R.id.textView1);
-        tv.setText(String.valueOf(calatorii.size()));
+        listView = (ListView) v.findViewById(R.id.listView);
+        CalatoriiInAsteptareAdapter adapter = new CalatoriiInAsteptareAdapter(getContext(), calatorii);
+        listView.setAdapter(adapter);
         return v;
     }
 

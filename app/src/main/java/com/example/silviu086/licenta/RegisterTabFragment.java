@@ -236,11 +236,12 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
 
     @Override
     public void onTaskCompleted(String result) {
-        Toast.makeText(getContext(), result, Toast.LENGTH_LONG).show();
         if(result.equals("success")){
             resetCampuriDateLogare();
             resetCompuriDatePersonale();
             resetCampuriMasina();
+        } else{
+            Toast.makeText(getContext(), "Nu s-a putut inregistra!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -260,7 +261,7 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
         autoCompleteMarca.setText("");
         autoCompleteModel.setText("");
         editTextAnFabricatie.setText("");
-        spinnerExperienta.setSelection(6);
+        spinnerExperienta.setSelection(5);
     }
 
     private Boolean verificaCampuri(){

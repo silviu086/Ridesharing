@@ -75,7 +75,7 @@
                             android:inputType="textEmailAddress"
                             android:hint="@string/hint_email"
                             style="@style/EditInputText"
-                            android:id="@+id/editTextEmail" />
+                            android:id="@+id/editTextEmailLogin" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -102,7 +102,7 @@
                         android:fontFamily="sans-serif"
                         android:hint="@string/hint_password"
                         style="@style/EditInputText"
-                        android:id="@+id/editTextPassword" />
+                        android:id="@+id/editTextPasswordLogin" />
                 </LinearLayout>
 
                 <CheckBox

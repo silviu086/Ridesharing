@@ -131,23 +131,20 @@ public class ModifyMasina extends AppCompatActivity {
 
         int poz = -1;
         switch (account.getExperientaAuto().toString().toLowerCase()){
-            case "mai putin de 1 an":
+            case "sub 1 an":
                 poz = 0;
                 break;
-            case "1 an":
+            case "1-5 ani":
                 poz = 1;
                 break;
-            case "2 ani":
+            case "5-10 ani":
                 poz = 2;
                 break;
-            case "3 ani":
+            case "10-15 ani":
                 poz = 3;
                 break;
-            case "4 ani":
+            case "peste 15 ani":
                 poz = 4;
-                break;
-            case  "mai mult de 4 ani":
-                poz = 5;
                 break;
         }
         if(poz != -1){

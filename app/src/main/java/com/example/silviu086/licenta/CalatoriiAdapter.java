@@ -112,22 +112,25 @@ public class CalatoriiAdapter extends BaseAdapter {
         h.buttonMerg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                h.buttonMerg.setEnabled(false);
+                h.buttonMerg.setText("Trimitere cerere...");
+                h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
                 CalatorieTask calatorieTask = new CalatorieTask(listaCalatorii.get(position), new TaskCompleted() {
                     @Override
                     public void onTaskCompleted(String result) {
                         if(result.equals("sent|adaugat")){
                             Toast.makeText(context, "O cerere a fost trimisa catre " + account.getNume() + "!", Toast.LENGTH_LONG).show();
                             h.buttonMerg.setText("In asteptare");
-                            h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
-                            h.buttonMerg.setEnabled(false);
+                            /*
                             Handler mainHandler = new Handler(context.getMainLooper());
                             mainHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     SystemClock.sleep(1000);
-                                    NavigationActivity.setFragment(4);
+                                    NavigationActivity.setFragmentCalatorii(2);
                                 }
                             });
+                            */
                         }
                     }
                 });

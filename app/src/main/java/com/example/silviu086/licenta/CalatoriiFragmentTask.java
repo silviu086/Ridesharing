@@ -109,7 +109,7 @@ public class CalatoriiFragmentTask extends AsyncTask<String, Integer, CalatoriiH
 
                 for(int j=0;j<jsonInAsteptare.length();j++){
                     JSONObject obj = jsonInAsteptare.getJSONObject(j);
-                    c.addPasagerConfirmat(obj.getString("id"), obj.getString("email"), obj.getString("nume"), obj.getString("data"));
+                    c.addPasagerInAsteptare(obj.getString("id"), obj.getString("email"), obj.getString("nume"), obj.getString("data"));
                 }
 
                 for(int j=0;j<jsonArrayConfirmate.length();j++){

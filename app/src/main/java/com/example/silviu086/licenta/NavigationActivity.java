@@ -57,7 +57,6 @@ public class NavigationActivity extends AppCompatActivity
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private boolean isReceiverRegistered;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -258,7 +257,7 @@ public class NavigationActivity extends AppCompatActivity
                         calatoriiHolder = result;
                         fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
+                        fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
                         fragmentTransaction.commit();
                         toolbar.setTitle("Calatoriile mele");
                         drawer.closeDrawers();
@@ -295,6 +294,23 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+
+    public static void setFragmentCalatorii(final int page){
+        CalatoriiFragmentTask task = new CalatoriiFragmentTask(account.getId(), new TaskCompletedCalatorii() {
+            @Override
+            public void onTaskCompleted(CalatoriiHolder result) {
+                calatoriiHolder = result;
+                fragmentCalatorii.setCalatorii(calatoriiHolder);
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
+                fragmentTransaction.commit();
+                CalatoriiFragment.sViewPager.setCurrentItem(2);
+                toolbar.setTitle("Calatoriile mele");
+                navigationView.setCheckedItem(navigationView.getMenu().getItem(3).getItemId());
+            }
+        });
+        task.execute();
+    }
     public static void setFragment(int index){
         final int i = index;
         if(i == 1){

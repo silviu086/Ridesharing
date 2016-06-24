@@ -41,8 +41,8 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
         View v = inflater.inflate(R.layout.login_tab, container, false);
 
         //PRELUARE CONTROALE
-        editTextEmail = (EditText) v.findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) v.findViewById(R.id.editTextPassword);
+        editTextEmail = (EditText) v.findViewById(R.id.editTextEmailLogin);
+        editTextPassword = (EditText) v.findViewById(R.id.editTextPasswordLogin);
         checkboxRemember = (CheckBox) v.findViewById(R.id.checkBoxRemember);
         buttonLogin = (Button) v.findViewById(R.id.buttonLogin);
         buttonLoginSkip = (Button) v.findViewById(R.id.buttonLoginSkip);

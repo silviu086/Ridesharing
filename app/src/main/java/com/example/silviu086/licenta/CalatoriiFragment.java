@@ -22,7 +22,7 @@ public class CalatoriiFragment extends Fragment {
     private static final String TITLE_IN_ASTEPTARE = "In asteptare";
     private static final String TITLE_CONFIRMATE = "Confirmate";
     private static Context mContext;
-    private static ViewPager sViewPager;
+    public static ViewPager sViewPager;
 
     private ViewPager viewPager;
     private ViewPagerAdapterCalatorii viewPagerAdapter;
@@ -51,7 +51,7 @@ public class CalatoriiFragment extends Fragment {
         sViewPager = viewPager;
         slidingTab = (SlidingTabLayoutCalatorii) v.findViewById(R.id.tabs);
         slidingTab.setDistributeEvenly(true);
-        slidingTab.setViewPager(viewPager);;
+        slidingTab.setViewPager(viewPager);
         slidingTab.setCustomTabColorizer(new SlidingTabLayoutCalatorii.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
@@ -63,14 +63,9 @@ public class CalatoriiFragment extends Fragment {
         return v;
     }
 
-    public static void setPage(int i){
-        sViewPager.setCurrentItem(i);
-    }
-
     public static CalatoriiFragment newInstance(CalatoriiHolder calatoriiHolder){
         CalatoriiFragment calatoriiFragment = new CalatoriiFragment();
         calatoriiFragment.setCalatorii(calatoriiHolder);
         return calatoriiFragment;
     }
-
 }
