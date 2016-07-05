@@ -102,6 +102,21 @@ public class CalatorieInAsteptareBuilder implements IBuilder {
         return this;
     }
 
+    public CalatorieInAsteptareBuilder setEmail(String email){
+        this.calatorie.setEmail(email);
+        return this;
+    }
+
+    public CalatorieInAsteptareBuilder setTelefon(String telefon){
+        this.calatorie.setTelefon(telefon);
+        return this;
+    }
+
+    public CalatorieInAsteptareBuilder setVarsta(String varsta){
+        this.calatorie.setVarsta(varsta);
+        return this;
+    }
+
     @Override
     public CalatorieInAsteptare build() {
         return calatorie;

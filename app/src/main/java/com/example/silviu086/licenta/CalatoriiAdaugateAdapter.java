@@ -59,7 +59,8 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         final List<HolderPasageri> pasageriInAsteptare = calatorie.getListaPasageriInAsteptare();
         final List<HolderPasageri> pasageriConfirmati = calatorie.getListaPasageriConfirmati();
 
-        HolderCalatorie hCalatorie = new HolderCalatorie();
+
+        final HolderCalatorie hCalatorie = new HolderCalatorie();
         hCalatorie.textViewCalatorieNumar = (TextView) v.findViewById(R.id.textViewCalatorieNumar);
         hCalatorie.buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
         hCalatorie.textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
@@ -74,29 +75,81 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         hCalatorie.textViewPunctSosire.setText(calatorie.getPunctSosire());
         hCalatorie.textViewDataCalatorie.setText(calatorie.getDataPlecare() + ", " + calatorie.getOraPlecare());
         hCalatorie.textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()));
+        hCalatorie.buttonDetalii.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Detalii calatorie", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         if(pasageriInAsteptare.size() != 0 || pasageriConfirmati.size() != 0){
             hCalatorie.linearLayoutFaraCereri.setVisibility(View.GONE);
             for(int i=0;i<pasageriInAsteptare.size();i++){
                 View view = inflater.inflate(R.layout.calatorii_adaugate_cereri_layout, null);
-                HolderCerere hCerere = new HolderCerere();
+                final HolderCerere hCerere = new HolderCerere();
                 hCerere.textViewNume = (TextView) view.findViewById(R.id.textViewNume);
                 hCerere.textViewEmail = (TextView) view.findViewById(R.id.textViewEmail);
                 hCerere.textViewDataCerere = (TextView) view.findViewById(R.id.textViewDataCerere);
                 hCerere.buttonConfirma = (Button) view.findViewById(R.id.buttonConfirma);
-
                 hCerere.textViewNume.setText(pasageriInAsteptare.get(i).getNume());
                 hCerere.textViewEmail.setText("(" + pasageriInAsteptare.get(i).getEmail() + ")");
                 hCerere.textViewDataCerere.setText(pasageriInAsteptare.get(i).getData());
+                hCerere.buttonConfirma.setBackground(context.getResources().getDrawable(R.drawable.cauta_layout_shape_8));
+                hCerere.buttonConfirma.setTextColor(context.getResources().getColor(R.color.colorWhite));
                 hCalatorie.linearLayoutCereri.addView(view);
                 final int finalI = i;
                 hCerere.buttonConfirma.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Cerere nr " + String.valueOf(finalI), Toast.LENGTH_SHORT).show();
+                        if(calatorie.getLocuriDisponibile()>0){
+                            hCerere.buttonConfirma.setEnabled(false);
+                            hCerere.buttonConfirma.setText("Confirmare...");
+                            //hCerere.buttonConfirma.setTextColor(context.getResources().getColor(R.color.colorGray));
+                            CalatoriiAdaugateConfirmareTask confirmareTask = new CalatoriiAdaugateConfirmareTask(String.valueOf(calatorie.getId()), pasageriInAsteptare.get(finalI).getId(), new TaskCompleted() {
+                                @Override
+                                public void onTaskCompleted(String result) {
+                                    if (result.equals("success")){
+                                        calatorie.setLocuriDisponibile(calatorie.getLocuriDisponibile() - 1);
+                                        hCalatorie.textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()));
+                                        Toast.makeText(context, "Cererea lui " + pasageriInAsteptare.get(finalI).getNume() + " a fost confirmata!", Toast.LENGTH_LONG).show();
+                                        NavigationActivity.setFragmentCalatorii(0);
+                                    }else{
+                                        hCerere.buttonConfirma.setEnabled(true);
+                                        hCerere.buttonConfirma.setText("Confirma");
+                                        hCerere.buttonConfirma.setTextColor(context.getResources().getColor(R.color.colorWhite));
+                                        Toast.makeText(context, "A aparut o problema la confirmare!", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                            confirmareTask.execute();
+                        }else{
+                            Toast.makeText(context, "Numai sunt locuri libere!", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             }
 
+            for(int i=0;i<pasageriConfirmati.size();i++){
+                View view = inflater.inflate(R.layout.calatorii_adaugate_cereri_layout, null);
+                final HolderCerere hCerere = new HolderCerere();
+                hCerere.textViewNume = (TextView) view.findViewById(R.id.textViewNume);
+                hCerere.textViewEmail = (TextView) view.findViewById(R.id.textViewEmail);
+                hCerere.textViewDataCerere = (TextView) view.findViewById(R.id.textViewDataCerere);
+                hCerere.buttonConfirma = (Button) view.findViewById(R.id.buttonConfirma);
+                hCerere.textViewNume.setText(pasageriConfirmati.get(i).getNume());
+                hCerere.textViewEmail.setText("(" + pasageriConfirmati.get(i).getEmail() + ")");
+                hCerere.textViewDataCerere.setText(pasageriConfirmati.get(i).getData());
+                hCerere.buttonConfirma.setBackground(context.getResources().getDrawable(R.drawable.calatorii_adaugate_shape));
+                hCerere.buttonConfirma.setTextColor(context.getResources().getColor(R.color.colorGray));
+                hCerere.buttonConfirma.setText("Confirmat");
+                hCalatorie.linearLayoutCereri.addView(view);
+                hCerere.buttonConfirma.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "Deja confirmat!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
         return v;
     }

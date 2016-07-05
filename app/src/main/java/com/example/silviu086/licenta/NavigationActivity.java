@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -61,28 +62,22 @@ public class NavigationActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_navigation);
-        //navigationView.addHeaderView(headerLayout);
-
         navigationEmail = (TextView) headerLayout.findViewById(R.id.emailNavigation);
         navigationNume = (TextView) headerLayout.findViewById(R.id.numeNavigation);
-
         account = (Account) getIntent().getExtras().getSerializable("account");
         navigationNume.setText(account.getNume());
         navigationEmail.setText(account.getEmail());
-
         //Initializing fragments
         fragmentCont = ContFragment.newInstance(account);
         fragmentCauta = CautaFragment.newInstance(account);
@@ -91,7 +86,7 @@ public class NavigationActivity extends AppCompatActivity
         fragmentSetari = SetariFragment.newInstance(account);
         fragmentMesaje = MesajeFragment.newInstance(account);
 
-
+        fragmentCalatorii.setIndexPage(0);
         //Default navigation select
         navigationView.getMenu().findItem(R.id.calatorii).setChecked(true);
 
@@ -256,6 +251,7 @@ public class NavigationActivity extends AppCompatActivity
                     public void onTaskCompleted(CalatoriiHolder result) {
                         calatoriiHolder = result;
                         fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
+                        fragmentCalatorii.setIndexPage(0);
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
                         fragmentTransaction.commit();
@@ -296,17 +292,18 @@ public class NavigationActivity extends AppCompatActivity
 
 
     public static void setFragmentCalatorii(final int page){
+        calatoriiHolder = null;
         CalatoriiFragmentTask task = new CalatoriiFragmentTask(account.getId(), new TaskCompletedCalatorii() {
             @Override
             public void onTaskCompleted(CalatoriiHolder result) {
                 calatoriiHolder = result;
-                fragmentCalatorii.setCalatorii(calatoriiHolder);
+                fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
+                fragmentCalatorii.setIndexPage(page);
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
                 fragmentTransaction.commit();
-                CalatoriiFragment.sViewPager.setCurrentItem(2);
                 toolbar.setTitle("Calatoriile mele");
-                navigationView.setCheckedItem(navigationView.getMenu().getItem(3).getItemId());
+                navigationView.setCheckedItem(navigationView.getMenu().getItem(3).getItemId());;
             }
         });
         task.execute();
@@ -337,6 +334,7 @@ public class NavigationActivity extends AppCompatActivity
                 public void onTaskCompleted(CalatoriiHolder result) {
                     calatoriiHolder = result;
                     fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
+                    fragmentCalatorii.setIndexPage(0);
                     fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.contentPanel, new CalatoriiFragment());
                     fragmentTransaction.commit();

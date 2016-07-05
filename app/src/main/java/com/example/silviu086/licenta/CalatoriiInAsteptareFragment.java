@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class CalatoriiInAsteptareFragment extends Fragment {
     private ListView listView;
+    private LinearLayout linearLayoutFaraCalatorii;
 
     public CalatoriiInAsteptareFragment() {
         // Required empty public constructor
@@ -29,8 +31,13 @@ public class CalatoriiInAsteptareFragment extends Fragment {
 
         List<CalatorieInAsteptare> calatorii = NavigationActivity.calatoriiHolder.calatoriiInAsteptare;
         listView = (ListView) v.findViewById(R.id.listView);
-        CalatoriiInAsteptareAdapter adapter = new CalatoriiInAsteptareAdapter(getContext(), calatorii);
-        listView.setAdapter(adapter);
+        linearLayoutFaraCalatorii = (LinearLayout) v.findViewById(R.id.linearLayoutFaraCalatorii);
+        if(calatorii.size()>0){
+            linearLayoutFaraCalatorii.setVisibility(View.GONE);
+            CalatoriiInAsteptareAdapter adapter = new CalatoriiInAsteptareAdapter(getContext(), calatorii);
+            listView.setAdapter(adapter);
+        }
+        CalatoriiFragment.setPage();
         return v;
     }
 

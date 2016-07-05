@@ -1,6 +1,7 @@
 package com.example.silviu086.licenta;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,17 +66,27 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
         h.textViewDataCerere = (TextView) v.findViewById(R.id.textViewDataCerere);
         h.buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
 
-        CalatorieInAsteptare calatorie = calatorii.get(position);
+        final CalatorieInAsteptare calatorie = calatorii.get(position);
         h.textViewNume.setText(calatorie.getNume());
         h.textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         h.textViewPunctSosire.setText(calatorie.getPunctSosire());
-        h.textViewPret.setText(String.valueOf(calatorie.getPret()));
+        h.textViewPret.setText(String.valueOf(calatorie.getPret()) + " lei");
         h.textViewData.setText(calatorie.getDataPlecare() + ", " + calatorie.getOraPlecare());
         h.textViewDataCerere.setText(calatorie.getDataCerere());
         h.buttonDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent it = new Intent(context, CalatorieDetaliiActivity.class);
+                it.putExtra("calatorie", calatorie.getCalatorie());
+                AccountBuilder builder = new AccountBuilder();
+                Account ac = builder
+                        .setNume(calatorie.getNume())
+                        .setEmail(calatorie.getEmail())
+                        .setTelefon(calatorie.getTelefon())
+                        .setVarsta(Integer.valueOf(calatorie.getVarsta()))
+                        .build();
+                it.putExtra("account", ac);
+                context.startActivity(it);
             }
         });
         return v;

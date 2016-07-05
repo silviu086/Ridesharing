@@ -9,6 +9,9 @@ public class CalatorieInAsteptare {
     private Calatorie calatorie;
     private String dataCerere;
     private String nume;
+    private String email;
+    private String telefon;
+    private String varsta;
 
     public CalatorieInAsteptare(){
         calatorie = new Calatorie();
@@ -174,5 +177,33 @@ public class CalatorieInAsteptare {
 
     public void setNume(String nume){
         this.nume = nume;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public void setVarsta(String varsta) {
+        this.varsta = varsta;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public String getVarsta() {
+        return varsta;
+    }
+
+    public Calatorie getCalatorie(){
+        return this.calatorie;
     }
 }

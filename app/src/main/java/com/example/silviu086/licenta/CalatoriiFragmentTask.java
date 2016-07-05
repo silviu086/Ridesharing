@@ -112,7 +112,7 @@ public class CalatoriiFragmentTask extends AsyncTask<String, Integer, CalatoriiH
                     c.addPasagerInAsteptare(obj.getString("id"), obj.getString("email"), obj.getString("nume"), obj.getString("data"));
                 }
 
-                for(int j=0;j<jsonArrayConfirmate.length();j++){
+                for(int j=0;j<jsonConfirmate.length();j++){
                     JSONObject obj = jsonConfirmate.getJSONObject(j);
                     c.addPasagerConfirmat(obj.getString("id"), obj.getString("email"), obj.getString("nume"), obj.getString("data"));
                 }
@@ -142,6 +142,9 @@ public class CalatoriiFragmentTask extends AsyncTask<String, Integer, CalatoriiH
                         .setDistantaCalatorie(ob.getString("distanta_calatorie"))
                         .setDataCerere(ob.getString("data"))
                         .setNume(ob.getString("nume"))
+                        .setEmail(ob.getString("email"))
+                        .setTelefon(ob.getString("telefon"))
+                        .setVarsta(ob.getString("varsta"))
                         .build();
                 calatorii.calatoriiInAsteptare.add(c);
             }

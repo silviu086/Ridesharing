@@ -62,7 +62,7 @@ public class CalatoriiAdapter extends BaseAdapter {
         TextView buttonMerg;
     }
 
-    private boolean searchPasageriInAsteptare(String pasager, String[] listaPasageri){
+    private boolean searchPasager(String pasager, String[] listaPasageri){
         for(int i=0;i<listaPasageri.length;i++){
             if(listaPasageri[i].equals(pasager)){
                 return true;
@@ -97,8 +97,21 @@ public class CalatoriiAdapter extends BaseAdapter {
         h.textViewLocuriDisponibile.setText(String.valueOf(calatorie.getLocuriDisponibile()) + " locuri");
 
         final String[] accountInAsteptare = calatorie.getPasageriInAsteptare().split(",");
-        if(searchPasageriInAsteptare(String.valueOf(NavigationActivity.account.getId()), accountInAsteptare)){
+        final String[] accountConfirmat = calatorie.getPasageriConfirmati().split(",");
+        if(searchPasager(String.valueOf(NavigationActivity.account.getId()), accountInAsteptare)){
             h.buttonMerg.setText("In asteptare");
+            h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
+            h.buttonMerg.setEnabled(false);
+        }
+
+        if(searchPasager(String.valueOf(NavigationActivity.account.getId()), accountConfirmat)){
+            h.buttonMerg.setText("Confirmata");
+            h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
+            h.buttonMerg.setEnabled(false);
+        }
+
+        if(calatorie.getLocuriDisponibile() == 0){
+            h.buttonMerg.setText("Locuri ocupate");
             h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
             h.buttonMerg.setEnabled(false);
         }
@@ -121,16 +134,14 @@ public class CalatoriiAdapter extends BaseAdapter {
                         if(result.equals("sent|adaugat")){
                             Toast.makeText(context, "O cerere a fost trimisa catre " + account.getNume() + "!", Toast.LENGTH_LONG).show();
                             h.buttonMerg.setText("In asteptare");
-                            /*
                             Handler mainHandler = new Handler(context.getMainLooper());
                             mainHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     SystemClock.sleep(1000);
-                                    NavigationActivity.setFragmentCalatorii(2);
+                                    NavigationActivity.setFragmentCalatorii(1);
                                 }
                             });
-                            */
                         }
                     }
                 });
