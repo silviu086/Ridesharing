@@ -9,6 +9,10 @@ import java.util.List;
 public class CalatorieConfirmata {
     private Calatorie calatorie;
     private List<HolderPasageri> altiPasageri;
+    private String nume;
+    private String email;
+    private String telefon;
+    private String varsta;
 
     public CalatorieConfirmata(){calatorie = new Calatorie();
         calatorie = new Calatorie();
@@ -167,5 +171,41 @@ public class CalatorieConfirmata {
     public void addPasager(String id, String email, String nume, String dataCerere){
         HolderPasageri h = new HolderPasageri(id, email, nume, dataCerere);
         altiPasageri.add(h);
+    }
+
+    public String getNume(){
+        return this.nume;
+    }
+
+    public void setNume(String nume){
+        this.nume = nume;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public void setVarsta(String varsta) {
+        this.varsta = varsta;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public String getVarsta() {
+        return varsta;
+    }
+
+    public Calatorie getCalatorie(){
+        return this.calatorie;
     }
 }

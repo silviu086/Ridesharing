@@ -204,7 +204,7 @@ public class SlidingTabLayoutCalatorii extends HorizontalScrollView {
 
             if (tabView == null) {
                 if(i == 0) {
-                    tabView = createDefaultTabView(getContext(), getResources().getColor(R.color.tabSelectedBackgroundColorCalatorii), getResources().getColor(R.color.colorWhite));
+                    tabView = createDefaultTabView(getContext(), getResources().getColor(R.color.tabSelectedBackgroundColorCalatorii), getResources().getColor(R.color.colorBlue));
 
                 }else if(i == 1) {
                     tabView = createDefaultTabView(getContext(), getResources().getColor(R.color.tabBackgroundColorCalatorii), getResources().getColor(R.color.tabTextColorCalatorii));
@@ -276,17 +276,17 @@ public class SlidingTabLayoutCalatorii extends HorizontalScrollView {
 
         private void setBackgroundSelectedTab(View calatoriiAdauga, int colorCalatoriiAdaugate, View calatoriiInAsteptare, int colorCalatoriiInAsteptare, View calatoriiConfirmate, int colorCalatoriiConfirmate, int indexSelected){
             if(indexSelected == 1){
-                ((TextView)calatoriiAdauga).setTextColor(getResources().getColor(R.color.colorWhite));
+                ((TextView)calatoriiAdauga).setTextColor(getResources().getColor(R.color.colorBlue));
                 ((TextView)calatoriiInAsteptare).setTextColor(getResources().getColor(R.color.tabTextColorCalatorii));
                 ((TextView)calatoriiConfirmate).setTextColor(getResources().getColor(R.color.tabTextColorCalatorii));
             }else if(indexSelected == 2){
                 ((TextView)calatoriiAdauga).setTextColor(getResources().getColor(R.color.tabTextColorCalatorii));
-                ((TextView)calatoriiInAsteptare).setTextColor(getResources().getColor(R.color.colorWhite));
+                ((TextView)calatoriiInAsteptare).setTextColor(getResources().getColor(R.color.colorBlue));
                 ((TextView)calatoriiConfirmate).setTextColor(getResources().getColor(R.color.tabTextColorCalatorii));
             }else{
                 ((TextView)calatoriiAdauga).setTextColor(getResources().getColor(R.color.tabTextColorCalatorii));
                 ((TextView)calatoriiInAsteptare).setTextColor(getResources().getColor(R.color.tabTextColorCalatorii));
-                ((TextView)calatoriiConfirmate).setTextColor(getResources().getColor(R.color.colorWhite));
+                ((TextView)calatoriiConfirmate).setTextColor(getResources().getColor(R.color.colorBlue));
             }
             calatoriiAdauga.setBackgroundColor(getResources().getColor(colorCalatoriiAdaugate));
             calatoriiInAsteptare.setBackgroundColor(getResources().getColor(colorCalatoriiInAsteptare));

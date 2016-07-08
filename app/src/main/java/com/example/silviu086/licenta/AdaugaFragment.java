@@ -383,7 +383,7 @@ public class AdaugaFragment extends Fragment {
                 dateAn = year;
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(dateAn, dateLuna, dateZi, 23, 59);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
                 Calendar calendarPresent = Calendar.getInstance();
                 if(calendar.after(calendarPresent) || calendar.equals(calendarPresent)){
                     textViewDate.setText(simpleDateFormat.format(calendar.getTime()).toString());

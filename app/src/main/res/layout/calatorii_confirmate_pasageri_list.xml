@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cauta_layout_shape_6"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:layout_marginTop="-2dp"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="1"
+            android:textSize="15dp"
+            android:textColor="@color/colorGray"
+            android:id="@+id/textViewPasagerNumar" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="right" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Burada Silviu"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorGreen"
+                android:id="@+id/textViewPasagerNume" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -162,7 +162,9 @@ public class NavigationActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_mesaje){
+            Intent it = new Intent(this, MesajeActivity.class);
+            startActivity(it);
             return true;
         }
 
@@ -308,6 +310,17 @@ public class NavigationActivity extends AppCompatActivity
         });
         task.execute();
     }
+
+    public static void setFragmentCalatoriiSortare(final int page){
+        fragmentCalatorii = CalatoriiFragment.newInstance(calatoriiHolder);
+        fragmentCalatorii.setIndexPage(page);
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contentPanel, fragmentCalatorii);
+        fragmentTransaction.commit();
+        toolbar.setTitle("Calatoriile mele");
+        navigationView.setCheckedItem(navigationView.getMenu().getItem(3).getItemId());;
+    }
+
     public static void setFragment(int index){
         final int i = index;
         if(i == 1){

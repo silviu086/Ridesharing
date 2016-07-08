@@ -3,4 +3,255 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayoutTitle">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/cauta_layout_shape_6">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/calatorii_adaugate_shape_textview">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Adaugata de"
+                android:textSize="15dp"
+                android:textColor="@color/colorGrayDarker"
+                android:id="@+id/textViewNumeTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Silviu"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:textColor="#469ff2"
+                android:id="@+id/textViewNume" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right">
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Vezi profil"
+                    android:textSize="14dp"
+                    android:background="#798aed"
+                    android:textColor="@color/colorWhite"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:id="@+id/buttonProfil" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/calatorii_adaugate_shape_textview" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Punct plecare"
+                android:textSize="15dp"
+                android:textColor="@color/colorGray"
+                android:id="@+id/textView71" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Bucuresti"
+                android:textSize="16dp"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlue"
+                android:layout_marginLeft="7dp"
+                android:id="@+id/textViewPunctPlecare" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/calatorii_adaugate_shape_textview" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Punct sosire"
+                android:textSize="15dp"
+                android:textColor="@color/colorGray"
+                android:id="@+id/textView55" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Turnu Magurele,Teleorman"
+                android:textSize="16dp"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlue"
+                android:layout_marginLeft="7dp"
+                android:id="@+id/textViewPunctSosire" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/calatorii_adaugate_shape_textview" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Data"
+                android:textSize="15dp"
+                android:textColor="@color/colorGray"
+                android:id="@+id/textView57" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="2016.07.08"
+                android:textSize="16dp"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlue"
+                android:layout_marginLeft="7dp"
+                android:id="@+id/textViewData" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:padding="6dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/cauta_layout_shape_2">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayoutPasageri">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Cine mai merge?"
+                    android:textSize="16dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginTop="-2dp"
+                    android:textColor="@color/colorGray"
+                    android:id="@+id/textView61" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-1dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:id="@+id/linearLayoutFaraPasageri"
+                    android:background="@drawable/calatorii_confirmate_shape" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Niciun alt pasager!"
+                            android:textSize="15dp"
+                            android:textColor="@color/colorRedLighter"
+                            android:textStyle="italic"
+                            android:id="@+id/textViewFaraPasageri" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/calatorii_confirmate_shape"
+                android:text="Mai multe detalii"
+                android:textColor="@color/colorBlue"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:id="@+id/buttonDetalii" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -102,6 +102,26 @@ public class CalatorieConfirmataBuilder implements IBuilder {
         return this;
     }
 
+    public CalatorieConfirmataBuilder setNume(String nume){
+        this.calatorie.setNume(nume);
+        return this;
+    }
+
+    public CalatorieConfirmataBuilder setEmail(String email){
+        this.calatorie.setEmail(email);
+        return this;
+    }
+
+    public CalatorieConfirmataBuilder setTelefon(String telefon){
+        this.calatorie.setTelefon(telefon);
+        return this;
+    }
+
+    public CalatorieConfirmataBuilder setVarsta(String varsta){
+        this.calatorie.setVarsta(varsta);
+        return this;
+    }
+
     @Override
     public CalatorieConfirmata build() {
         return calatorie;

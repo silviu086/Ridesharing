@@ -103,6 +103,10 @@ public class CalatoriiFragmentTask extends AsyncTask<String, Integer, CalatoriiH
                         .setDistantaCalatorie(ob.getString("distanta_calatorie"))
                         .setPasageriInAsteptare(ob.getString("pasageri_in_asteptare"))
                         .setPasageriConfirmati(ob.getString("pasageri_confirmati"))
+                        .setNume(ob.getString("nume"))
+                        .setEmail(ob.getString("email"))
+                        .setTelefon(ob.getString("telefon"))
+                        .setVarsta(ob.getString("varsta"))
                         .build();
                 JSONArray jsonInAsteptare = ob.getJSONArray("in_asteptare");
                 JSONArray jsonConfirmate = ob.getJSONArray("confirmate");
@@ -170,6 +174,10 @@ public class CalatoriiFragmentTask extends AsyncTask<String, Integer, CalatoriiH
                         .setMarimeBagaj(ob.getString("marime_bagaj"))
                         .setDurataCalatorie(ob.getString("durata_calatorie"))
                         .setDistantaCalatorie(ob.getString("distanta_calatorie"))
+                        .setNume(ob.getString("nume"))
+                        .setEmail(ob.getString("email"))
+                        .setTelefon(ob.getString("telefon"))
+                        .setVarsta(ob.getString("varsta"))
                         .build();
                 JSONArray jsonAltiPasageri = ob.getJSONArray("alti_pasageri");
 

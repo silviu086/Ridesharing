@@ -10,6 +10,10 @@ public class CalatorieAdaugata {
     private Calatorie calatorie;
     private List<HolderPasageri> pasageriInAsteptare;
     private List<HolderPasageri> pasageriConfirmati;
+    private String nume;
+    private String email;
+    private String telefon;
+    private String varsta;
 
     public CalatorieAdaugata(){
         calatorie = new Calatorie();
@@ -178,5 +182,41 @@ public class CalatorieAdaugata {
     public void addPasagerConfirmat(String id, String email, String nume, String dataCerere){
         HolderPasageri h = new HolderPasageri(id, email, nume, dataCerere);
         pasageriConfirmati.add(h);
+    }
+
+    public String getNume(){
+        return this.nume;
+    }
+
+    public void setNume(String nume){
+        this.nume = nume;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public void setVarsta(String varsta) {
+        this.varsta = varsta;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public String getVarsta() {
+        return varsta;
+    }
+
+    public Calatorie getCalatorie(){
+        return this.calatorie;
     }
 }

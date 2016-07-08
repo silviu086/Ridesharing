@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,6 @@ import java.util.List;
  * Created by Silviu086 on 03.06.2016.
  */
 public class CalatoriiAdaugateAdapter extends BaseAdapter {
-
     private Context context;
     private List<CalatorieAdaugata> calatorii;
     private LayoutInflater inflater;
@@ -28,22 +29,32 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    class HolderCalatorie{
-        TextView textViewCalatorieNumar;
-        Button buttonDetalii;
+    class HolderAdaugate{
+        TextView textViewNumarCalatorie;
         TextView textViewPunctPlecare;
         TextView textViewPunctSosire;
         TextView textViewDataCalatorie;
         TextView textViewLocuri;
-        LinearLayout linearLayoutCereri;
-        LinearLayout linearLayoutFaraCereri;
-    }
+        TextView textViewCereriInAsteptare;
+        TextView textViewCereriConfirmate;
+        Button buttonDetalii;
+        LinearLayout linearLayoutTitle;
+        View t;
+        TextView textViewTitleData;
+        TextView textViewTitlePunctPlecare;
+        TextView textViewTitlePunctSosire;
 
-    class HolderCerere{
-        TextView textViewNume;
-        TextView textViewEmail;
-        TextView textViewDataCerere;
-        Button buttonConfirma;
+        public HolderAdaugate(View v, CalatorieAdaugata calatorie){
+            textViewNumarCalatorie = (TextView) v.findViewById(R.id.textviewNumarCalatorie);
+            textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
+            textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
+            textViewDataCalatorie = (TextView) v.findViewById(R.id.textViewDataCalatorie);
+            textViewLocuri = (TextView) v.findViewById(R.id.textViewLocuri);
+            textViewCereriInAsteptare = (TextView) v.findViewById(R.id.textViewCereriInAsteptare);
+            textViewCereriConfirmate = (TextView) v.findViewById(R.id.textViewCereriConfirmate);
+            buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
+            linearLayoutTitle = (LinearLayout) v.findViewById(R.id.linearLayoutTitle);
+        }
     }
 
     @Override
@@ -51,37 +62,65 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         return calatorii.size();
     }
 
+    private boolean cautaId(int id, List<Integer> lista){
+        for(int i=0;i<lista.size();i++){
+            if(id == lista.get(i)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v;
-        v = inflater.inflate(R.layout.calatorii_adaugate_list, null);
+        View v = convertView;
+        HolderAdaugate hCalatorie = null;
         final CalatorieAdaugata calatorie = calatorii.get(position);
-        final List<HolderPasageri> pasageriInAsteptare = calatorie.getListaPasageriInAsteptare();
-        final List<HolderPasageri> pasageriConfirmati = calatorie.getListaPasageriConfirmati();
 
+        if (convertView == null) {
+            v = inflater.inflate(R.layout.calatorii_adaugate_list, null);
+            hCalatorie = new HolderAdaugate(v, calatorie);
+            v.setTag(hCalatorie);
+        } else {
+            hCalatorie = (HolderAdaugate)v.getTag();
+        }
 
-        final HolderCalatorie hCalatorie = new HolderCalatorie();
-        hCalatorie.textViewCalatorieNumar = (TextView) v.findViewById(R.id.textViewCalatorieNumar);
-        hCalatorie.buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
-        hCalatorie.textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
-        hCalatorie.textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
-        hCalatorie.textViewDataCalatorie = (TextView) v.findViewById(R.id.textViewDataCalatorie);
-        hCalatorie.textViewLocuri = (TextView) v.findViewById(R.id.textViewLocuri);
-        hCalatorie.linearLayoutCereri = (LinearLayout) v.findViewById(R.id.linearLayoutCereri);
-        hCalatorie.linearLayoutFaraCereri = (LinearLayout) v.findViewById(R.id.linearLayoutFaraCereri);
-
-        hCalatorie.textViewCalatorieNumar.setText(String.valueOf(calatorie.getId()));
+        hCalatorie.linearLayoutTitle.removeAllViews();
+        if(CalatoriiFragment.TIP_AFISARE == 2) {
+            if (cautaId(calatorie.getId(), CalatoriiFragment.calatoriiTitleAdaugateData)) {
+                hCalatorie.t = inflater.inflate(R.layout.calatorii_title_data, null);
+                hCalatorie.textViewTitleData = (TextView) hCalatorie.t.findViewById(R.id.textViewTitleData);
+                hCalatorie.textViewTitleData.setText(calatorie.getDataPlecare());
+                hCalatorie.linearLayoutTitle.addView(hCalatorie.t);
+            }
+        }else if(CalatoriiFragment.TIP_AFISARE == 1) {
+            if(cautaId(calatorie.getId(), CalatoriiFragment.calatoriiTitleAdaugateLocatii)) {
+                hCalatorie.t = inflater.inflate(R.layout.calatorii_title_locatii, null);
+                hCalatorie.textViewTitlePunctPlecare = (TextView) hCalatorie.t.findViewById(R.id.textViewTitlePunctPlecare);
+                hCalatorie.textViewTitlePunctSosire = (TextView) hCalatorie.t.findViewById(R.id.textViewTitlePunctSosire);
+                hCalatorie.textViewTitlePunctPlecare.setText(calatorie.getPunctPlecare());
+                hCalatorie.textViewTitlePunctSosire.setText(calatorie.getPunctSosire());
+                hCalatorie.linearLayoutTitle.addView(hCalatorie.t);
+            }
+        }
+        hCalatorie.textViewNumarCalatorie.setText("Calatoria " + calatorie.getId());
         hCalatorie.textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         hCalatorie.textViewPunctSosire.setText(calatorie.getPunctSosire());
         hCalatorie.textViewDataCalatorie.setText(calatorie.getDataPlecare() + ", " + calatorie.getOraPlecare());
         hCalatorie.textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()));
+        hCalatorie.textViewCereriInAsteptare.setText(String.valueOf(calatorie.getListaPasageriInAsteptare().size()));
+        hCalatorie.textViewCereriConfirmate.setText(String.valueOf(calatorie.getListaPasageriConfirmati().size()));
+
+
+
         hCalatorie.buttonDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Detalii calatorie", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Detalii", Toast.LENGTH_SHORT).show();
             }
         });
-
+        /*
         if(pasageriInAsteptare.size() != 0 || pasageriConfirmati.size() != 0){
             hCalatorie.linearLayoutFaraCereri.setVisibility(View.GONE);
             for(int i=0;i<pasageriInAsteptare.size();i++){
@@ -150,7 +189,7 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
                     }
                 });
             }
-        }
+        }*/
         return v;
     }
 

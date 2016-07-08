@@ -32,6 +32,8 @@ public class CalatoriiConfirmateFragment extends Fragment {
         linearLayoutFaraCalatorii = (LinearLayout) v.findViewById(R.id.linearLayoutFaraCalatorii);
         if(calatorii.size()>0){
             linearLayoutFaraCalatorii.setVisibility(View.GONE);
+            CalatoriiConfirmateAdapter adapter = new CalatoriiConfirmateAdapter(getContext(), calatorii);
+            listView.setAdapter(adapter);
         }
         return v;
     }

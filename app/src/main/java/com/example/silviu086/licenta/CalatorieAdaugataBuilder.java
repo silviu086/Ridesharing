@@ -104,6 +104,26 @@ public class CalatorieAdaugataBuilder implements IBuilder {
         return this;
     }
 
+    public CalatorieAdaugataBuilder setNume(String nume){
+        this.calatorie.setNume(nume);
+        return this;
+    }
+
+    public CalatorieAdaugataBuilder setEmail(String email){
+        this.calatorie.setEmail(email);
+        return this;
+    }
+
+    public CalatorieAdaugataBuilder setTelefon(String telefon){
+        this.calatorie.setTelefon(telefon);
+        return this;
+    }
+
+    public CalatorieAdaugataBuilder setVarsta(String varsta){
+        this.calatorie.setVarsta(varsta);
+        return this;
+    }
+
     @Override
     public CalatorieAdaugata build() {
         return calatorie;
