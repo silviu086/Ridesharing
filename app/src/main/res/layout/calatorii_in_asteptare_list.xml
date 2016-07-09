@@ -10,12 +10,54 @@
         android:id="@+id/linearLayoutTitle" />
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/calatorii_in_asteptare_shape" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calatoria 55"
+            android:textColor="#979797"
+            android:textSize="15dp"
+            android:id="@+id/textViewNumarCalatorieInAsteptare" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right" >
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:text="Vezi profil"
+                android:textSize="14dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="10dp"
+                android:background="#798aed"
+                android:textColor="@color/colorWhite"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:id="@+id/buttonDetalii" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="-2dp"
         android:layout_marginBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -56,17 +98,6 @@
                 android:layout_gravity="right"
                 android:gravity="right" >
 
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:text="Vezi profil"
-                    android:textSize="14dp"
-                    android:background="#798aed"
-                    android:textColor="@color/colorWhite"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:id="@+id/buttonDetalii" />
             </LinearLayout>
         </LinearLayout>
 

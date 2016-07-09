@@ -83,7 +83,8 @@
             android:exported="false" />
 
         <activity android:name=".CalatorieDetaliiActivity" />
-        <activity android:name=".MesajeActivity"></activity>
+        <activity android:name=".MesajeActivity" />
+        <activity android:name=".MesajeConversatieActivity"></activity>
     </application>
 
 </manifest>

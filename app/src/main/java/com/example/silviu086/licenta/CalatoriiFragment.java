@@ -299,19 +299,53 @@ public class CalatoriiFragment extends Fragment {
         radioButtonLocatii.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     //LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     TIP_AFISARE = 1;
                     List<CalatorieAdaugata> listaCalatoriiAdaugate = NavigationActivity.calatoriiHolder.calatoriiAdaugate;
-                    if(listaCalatoriiAdaugate.size()>0){
+                    if (listaCalatoriiAdaugate.size() > 0) {
                         Collections.sort(listaCalatoriiAdaugate, new Comparator<CalatorieAdaugata>() {
                             @Override
-                            public int compare(CalatorieAdaugata lhs, CalatorieAdaugata rhs){
-                                if((lhs.getPunctPlecare() + " - " + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + " - " + rhs.getPunctSosire())) < 0){
+                            public int compare(CalatorieAdaugata lhs, CalatorieAdaugata rhs) {
+                                if ((lhs.getPunctPlecare() + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + rhs.getPunctSosire())) < 0) {
                                     return -1;
-                                } else if((lhs.getPunctPlecare() + " - " + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + " - " + rhs.getPunctSosire()))>0){
+                                } else if ((lhs.getPunctPlecare()+ lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + rhs.getPunctSosire())) > 0) {
                                     return 1;
-                                }else{
+                                } else {
+                                    return 0;
+                                }
+                            }
+                        });
+                        NavigationActivity.setFragmentCalatoriiSortare(viewPager.getCurrentItem());
+                    }
+
+                    List<CalatorieInAsteptare> listaCalatoriiInAsteptare = NavigationActivity.calatoriiHolder.calatoriiInAsteptare;
+                    if (listaCalatoriiInAsteptare.size() > 0) {
+                        Collections.sort(listaCalatoriiInAsteptare, new Comparator<CalatorieInAsteptare>() {
+                            @Override
+                            public int compare(CalatorieInAsteptare lhs, CalatorieInAsteptare rhs) {
+                                if ((lhs.getPunctPlecare() + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + rhs.getPunctSosire())) < 0) {
+                                    return -1;
+                                } else if ((lhs.getPunctPlecare() + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + rhs.getPunctSosire())) > 0) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
+                            }
+                        });
+                        NavigationActivity.setFragmentCalatoriiSortare(viewPager.getCurrentItem());
+                    }
+
+                    List<CalatorieConfirmata> listaCalatoriiConfirmate = NavigationActivity.calatoriiHolder.calatoriiConfirmate;
+                    if (listaCalatoriiConfirmate.size() > 0) {
+                        Collections.sort(listaCalatoriiConfirmate, new Comparator<CalatorieConfirmata>() {
+                            @Override
+                            public int compare(CalatorieConfirmata lhs, CalatorieConfirmata rhs) {
+                                if ((lhs.getPunctPlecare() + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + rhs.getPunctSosire())) < 0) {
+                                    return -1;
+                                } else if ((lhs.getPunctPlecare() + lhs.getPunctSosire()).compareTo((rhs.getPunctPlecare() + rhs.getPunctSosire())) > 0) {
+                                    return 1;
+                                } else {
                                     return 0;
                                 }
                             }
@@ -319,8 +353,7 @@ public class CalatoriiFragment extends Fragment {
                         NavigationActivity.setFragmentCalatoriiSortare(viewPager.getCurrentItem());
                     }
                 }
-            }
-        });
+            }});
 
         radioButtonData.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -338,6 +371,40 @@ public class CalatoriiFragment extends Fragment {
                                 } else if(lhs.getDataPlecare().compareTo(rhs.getDataPlecare())>0){
                                     return 1;
                                 }else{
+                                    return 0;
+                                }
+                            }
+                        });
+                        NavigationActivity.setFragmentCalatoriiSortare(viewPager.getCurrentItem());
+                    }
+
+                    List<CalatorieInAsteptare> listaCalatoriiInAsteptare = NavigationActivity.calatoriiHolder.calatoriiInAsteptare;
+                    if(listaCalatoriiInAsteptare.size()>0){
+                        Collections.sort(listaCalatoriiInAsteptare, new Comparator<CalatorieInAsteptare>() {
+                            @Override
+                            public int compare(CalatorieInAsteptare lhs, CalatorieInAsteptare rhs){
+                                if(lhs.getDataPlecare().compareTo(rhs.getDataPlecare()) < 0){
+                                    return -1;
+                                } else if(lhs.getDataPlecare().compareTo(rhs.getDataPlecare())>0){
+                                    return 1;
+                                }else{
+                                    return 0;
+                                }
+                            }
+                        });
+                        NavigationActivity.setFragmentCalatoriiSortare(viewPager.getCurrentItem());
+                    }
+
+                    List<CalatorieConfirmata> listaCalatoriiConfirmate = NavigationActivity.calatoriiHolder.calatoriiConfirmate;
+                    if(listaCalatoriiConfirmate.size()>0){
+                        Collections.sort(listaCalatoriiConfirmate, new Comparator<CalatorieConfirmata>() {
+                            @Override
+                            public int compare(CalatorieConfirmata lhs, CalatorieConfirmata rhs) {
+                                if (lhs.getDataPlecare().compareTo(rhs.getDataPlecare()) < 0) {
+                                    return -1;
+                                } else if (lhs.getDataPlecare().compareTo(rhs.getDataPlecare()) > 0) {
+                                    return 1;
+                                } else {
                                     return 0;
                                 }
                             }

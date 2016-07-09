@@ -44,7 +44,7 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         TextView textViewTitlePunctPlecare;
         TextView textViewTitlePunctSosire;
 
-        public HolderAdaugate(View v, CalatorieAdaugata calatorie){
+        public HolderAdaugate(View v){
             textViewNumarCalatorie = (TextView) v.findViewById(R.id.textviewNumarCalatorie);
             textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
             textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
@@ -80,7 +80,7 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
 
         if (convertView == null) {
             v = inflater.inflate(R.layout.calatorii_adaugate_list, null);
-            hCalatorie = new HolderAdaugate(v, calatorie);
+            hCalatorie = new HolderAdaugate(v);
             v.setTag(hCalatorie);
         } else {
             hCalatorie = (HolderAdaugate)v.getTag();

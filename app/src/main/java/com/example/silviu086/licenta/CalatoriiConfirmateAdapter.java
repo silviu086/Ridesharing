@@ -2,6 +2,7 @@ package com.example.silviu086.licenta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
     }
 
     class HolderConfirmate{
+        TextView textViewNumarCalatorie;
         TextView textViewNume;
         TextView textViewPunctPlecare;
         TextView textViewPunctSosire;
@@ -45,7 +47,8 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
         TextView textViewPasagerNumar;
         TextView textViewPasagerNume;
 
-        public HolderConfirmate(View v, CalatorieConfirmata calatorie){
+        public HolderConfirmate(View v){
+            textViewNumarCalatorie = (TextView) v.findViewById(R.id.textViewNumarCalatorieConfirmate);
             textViewNume = (TextView) v.findViewById(R.id.textViewNume);
             textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
             textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
@@ -91,7 +94,7 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
 
         if (convertView == null) {
             v = inflater.inflate(R.layout.calatorii_confirmate_list, null);
-            h = new HolderConfirmate(v, calatorie);
+            h = new HolderConfirmate(v);
             v.setTag(h);
         } else {
             h = (HolderConfirmate)v.getTag();
@@ -116,6 +119,7 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
             }
         }
 
+        h.textViewNumarCalatorie.setText("Calatoria " + String.valueOf(calatorie.getId()));
         h.textViewNume.setText(calatorie.getNume());
         h.textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         h.textViewPunctSosire.setText(calatorie.getPunctSosire());

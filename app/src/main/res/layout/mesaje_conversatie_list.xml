@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayoutNume">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Burada Silviu"
+                android:padding="6dp"
+                android:textSize="16dp"
+                android:background="@color/colorSilverDarker"
+                android:textColor="@color/colorGrayDarker"
+                android:id="@+id/textViewNume" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Salut! Am vazut ca mergi nduas asjda dkas as dasfjaskfj aksjfkas"
+            android:padding="7dp"
+            android:singleLine="false"
+            android:textColor="@color/colorGrayDarker"
+            android:textSize="16dp"
+            android:id="@+id/textViewMesaj" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="data"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:textColor="@color/colorGray"
+            android:id="@+id/textViewData" />
+
+    </LinearLayout>
+
+</LinearLayout>

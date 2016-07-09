@@ -29,6 +29,7 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
     }
 
     class HolderInAsteptare{
+        TextView textViewNumarCalatorie;
         TextView textViewNume;
         TextView textViewPunctPlecare;
         TextView textViewPunctSosire;
@@ -42,7 +43,8 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
         TextView textViewTitlePunctPlecare;
         TextView textViewTitlePunctSosire;
 
-        public HolderInAsteptare(View v, CalatorieInAsteptare calatorie){
+        public HolderInAsteptare(View v){
+            textViewNumarCalatorie = (TextView) v.findViewById(R.id.textViewNumarCalatorieInAsteptare);
             textViewNume = (TextView) v.findViewById(R.id.textViewNume);
             textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
             textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
@@ -86,7 +88,7 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
 
         if (convertView == null) {
             v = inflater.inflate(R.layout.calatorii_in_asteptare_list, null);
-            h = new HolderInAsteptare(v, calatorie);
+            h = new HolderInAsteptare(v);
             v.setTag(h);
         } else {
             h = (HolderInAsteptare)v.getTag();
@@ -111,6 +113,7 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
             }
         }
 
+        h.textViewNumarCalatorie.setText("Calatoria " + String.valueOf(calatorie.getId()));
         h.textViewNume.setText(calatorie.getNume());
         h.textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         h.textViewPunctSosire.setText(calatorie.getPunctSosire());
