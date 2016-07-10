@@ -66,6 +66,11 @@ public class AccountBuilder implements IBuilder{
         return this;
     }
 
+    public AccountBuilder haveProfilPhoto(boolean aBoolean) {
+        this.account.setHaveProfilPhoto(aBoolean);
+        return this;
+    }
+
     @Override
     public Account build() {
         return account;

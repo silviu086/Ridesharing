@@ -1,8 +1,10 @@
 package com.example.silviu086.licenta;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -16,6 +18,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -143,7 +146,21 @@ public class NavigationActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            new AlertDialog.Builder(this)
+                    .setTitle("Inchidere aplicatie")
+                    .setMessage("Doriti sa inchideti aplicatia?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.exit = true;
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .show();
         }
     }
 
@@ -284,6 +301,14 @@ public class NavigationActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.contentPanel, fragmentSetari);
                 fragmentTransaction.commit();
                 toolbar.setTitle("Setari");
+                break;
+            case R.id.logout:
+                SharedPreferences.Editor edit = MainActivity.sharedPreferences.edit();
+                edit.remove("username");
+                edit.remove("password");
+                edit.remove("id");
+                edit.commit();
+                finish();
                 break;
 
             default:

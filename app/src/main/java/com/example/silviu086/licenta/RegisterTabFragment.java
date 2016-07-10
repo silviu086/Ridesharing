@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.InputType;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -63,6 +67,7 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class RegisterTabFragment extends Fragment implements TaskCompleted {
 
+    private View v;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextPasswordAgain;
@@ -84,7 +89,7 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.register_tab, container, false);
+        v = inflater.inflate(R.layout.register_tab, container, false);
 
         //PRELUARE CONTROALE
         editTextEmail = (EditText) v.findViewById(R.id.editTextEmail);
@@ -111,10 +116,12 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.lista_marci));
         autoCompleteMarca.setThreshold(1);
+        autoCompleteMarca.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         autoCompleteMarca.setAdapter(arrayAdapterMarca);
 
         //MODEL
         autoCompleteModel.setThreshold(1);
+        autoCompleteModel.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         autoCompleteMarca.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -196,7 +203,7 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
         //FUNCTIONALITATE APASARE BUTON CREATE
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if(verificaCampuri()){
                     //CREARE OBIECT ACCOUNT
                     Account account;
@@ -267,63 +274,111 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
     private Boolean verificaCampuri(){
         if (editTextEmail.getText().toString().equals("")) {
             editTextEmail.setError("Trebuie sa completezi acest camp!");
-            MainActivity.setWarning("Trebuie sa introduceti emailul!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Trebuie sa introduceti emailul!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if (editTextPassword.getText().toString().equals("")) {
             editTextPassword.setError("Trebuie sa completezi acest camp!");
-            MainActivity.setWarning("Trebuie sa introduceti parola!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Trebuie sa introduceti parola!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if (editTextPasswordAgain.getText().toString().equals("")) {
             editTextPasswordAgain.setError("Trebuie sa introduceti parola!");
-            MainActivity.setWarning("Trebuie sa introduceti parola!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Trebuie sa introduceti parola!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if (!editTextPassword.getText().toString().equals(editTextPasswordAgain.getText().toString())) {
             editTextPassword.setError("Reintroduceti parola!");
             editTextPasswordAgain.setError("Reintroduceti parola!");
-            MainActivity.setWarning("Trebuie sa introduceti aceeasi parola!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length() - 1, builder.length(), 0);
+            builder.append(" Parola nu coincide!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if (editTextNume.getText().toString().equals("")) {
             editTextNume.setError("Trebuie sa completezi acest camp!");
-            MainActivity.setWarning("Trebuie sa introduceti numele!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Trebuie sa introduceti numele!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if (editTextTelefon.getText().toString().equals("")) {
             editTextTelefon.setError("Trebuie sa completezi acest camp!");
-            MainActivity.setWarning("Trebuie sa introduceti telefonul!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Trebuie sa introduceti telefonul!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if (editTextVarsta.getText().toString().equals("")) {
             editTextVarsta.setError("Trebuie sa completezi acest camp!");
-            MainActivity.setWarning("Trebuie sa introduceti varsta!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Trebuie sa introduceti varsta!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
         if(checkBoxMasina.isChecked()){
             if (autoCompleteMarca.getText().toString().equals("")) {
                 autoCompleteMarca.setError("Trebuie sa completezi acest camp!");
-                MainActivity.setWarning("Trebuie sa introduceti marca masina!", ColorsEnum.RED);
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+                builder.append(" ");
+                builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+                builder.append(" Trebuie sa introduceti marca masinii!");
+                Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                 return false;
             }
             if (autoCompleteModel.getText().toString().equals("")) {
                 autoCompleteModel.setError("Trebuie sa completezi acest camp!");
-                MainActivity.setWarning("Trebuie sa introduceti model masina!", ColorsEnum.RED);
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+                builder.append(" ");
+                builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+                builder.append(" Trebuie sa introduceti modelul masinii!");
+                Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                 return false;
             }
             if (editTextAnFabricatie.getText().toString().equals("")) {
                 editTextAnFabricatie.setError("Trebuie sa completezi acest camp!");
-                MainActivity.setWarning("Trebuie sa introduceti anul de fabricatie!", ColorsEnum.RED);
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+                builder.append(" ");
+                builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+                builder.append(" Trebuie sa introduceti anul de fabricatie!");
+                Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                 return false;
             }
             if(spinnerExperienta.getSelectedItemPosition()==5){
-                MainActivity.setWarning("Trebuie sa selectati experienta auto!", ColorsEnum.RED);
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+                builder.append(" ");
+                builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+                builder.append(" Trebuie sa selectati experienta auto!");
+                Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                 return false;
             }
         }
         if(!checkBoxTermeni.isChecked()){
-            MainActivity.setWarning("Acceptati termenii de utilizare!", ColorsEnum.RED);
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            builder.append(" ");
+            builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+            builder.append(" Acceptati termenii de utilizare!");
+            Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
             return false;
         }
 

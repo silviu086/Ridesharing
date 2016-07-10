@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/parent_view"
     tools:context="com.example.silviu086.licenta.ContFragment">
 
 
@@ -21,21 +22,53 @@
             android:paddingBottom="10dp"
             android:background="#4e9cea">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/colorWhite"
-                android:id="@+id/textViewEmailContHeader" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#32e8ff"
-                android:layout_marginTop="5dp"
-                android:id="@+id/textViewDateCreatedContHeader" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="4dp"
+                    android:id="@+id/linearLayoutProfil"
+                    android:background="@drawable/cauta_layout_shape_8">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/login_account"
+                        android:id="@+id/imageViewProfil" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginLeft="10dp"
+                        android:text="silviu086@gmail.com"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/textViewEmailContHeader" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#32e8ff"
+                        android:text="data"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/textViewDateCreatedContHeader" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -60,7 +93,28 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/cont_layout_shape">
+                    android:background="@drawable/cont_layout_shape"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/calatorii_confirmate_shape"
+                        android:padding="6dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="PAROLA"
+                            android:textSize="15dp"
+                            android:textStyle="italic"
+                            android:textColor="@color/colorGray"
+                            android:id="@+id/textView53" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -81,7 +135,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="25dp"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/textViewValueParolaCont" />
 
                         <ImageButton
@@ -100,13 +156,16 @@
                         android:gravity="right">
 
                         <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="105dp"
+                            android:layout_height="35dp"
                             android:text="@string/cont_button_modifica"
                             android:layout_marginTop="7dp"
+                            android:textColor="@color/colorGrayDarker"
+                            android:background="@color/colorSilverDarker"
                             android:id="@+id/buttonModificaParolaCont" />
 
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,12 +179,34 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/cont_layout_shape" >
+                    android:background="@drawable/cont_layout_shape"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/calatorii_confirmate_shape"
+                        android:padding="6dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="DATE PERSONALE"
+                            android:textSize="15dp"
+                            android:textStyle="italic"
+                            android:textColor="@color/colorGray"
+                            android:id="@+id/textView54" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="2dp"
                         android:layout_marginBottom="2dp"
                         android:background="@drawable/cont_textview_shape" >
 
@@ -140,7 +221,12 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="16dp"
+                            android:textColor="@color/colorGrayDarker"
+                            android:textStyle="bold"
+                            android:gravity="right"
+                            android:text="Burada Silviu"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/textViewValueNumeCont" />
                     </LinearLayout>
 
@@ -149,6 +235,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="2dp"
+                        android:padding="2dp"
                         android:background="@drawable/cont_textview_shape" >
 
                         <TextView
@@ -162,7 +249,12 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="16dp"
+                            android:textColor="@color/colorGrayDarker"
+                            android:textStyle="bold"
+                            android:gravity="right"
+                            android:text="0769456677"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/textViewValueTelefonCont" />
                     </LinearLayout>
 
@@ -171,6 +263,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="2dp"
+                        android:padding="2dp"
                         android:background="@drawable/cont_textview_shape" >
 
                         <TextView
@@ -184,7 +277,12 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="16dp"
+                            android:textColor="@color/colorGrayDarker"
+                            android:textStyle="bold"
+                            android:text="21 ani"
+                            android:gravity="right"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/textViewValueVarstaCont" />
                     </LinearLayout>
 
@@ -195,10 +293,12 @@
                         android:gravity="right" >
 
                         <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="105dp"
+                            android:layout_height="35dp"
                             android:text="@string/cont_button_modifica"
                             android:layout_marginTop="7dp"
+                            android:textColor="@color/colorGrayDarker"
+                            android:background="@color/colorSilverDarker"
                             android:id="@+id/buttonModificaDatePersonale" />
                     </LinearLayout>
                 </LinearLayout>
@@ -215,7 +315,28 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/cont_layout_shape">
+                    android:background="@drawable/cont_layout_shape"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/calatorii_confirmate_shape"
+                        android:padding="6dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="DATE MASINA"
+                            android:textSize="15dp"
+                            android:textStyle="italic"
+                            android:textColor="@color/colorGray"
+                            android:id="@+id/textView56" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -233,7 +354,9 @@
                                 android:layout_height="wrap_content"
                                 android:textStyle="italic"
                                 android:textSize="16dp"
+                                android:textColor="@color/colorGrayDarker"
                                 android:layout_marginTop="10dp"
+                                android:layout_marginLeft="5dp"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:text="@string/cont_texview_masina_adauga"
                                 android:id="@+id/textViewTitleMasinaAdaugaCont" />
@@ -246,9 +369,11 @@
                             android:gravity="right">
 
                             <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="85dp"
+                                android:layout_height="35dp"
                                 android:text="@string/cont_button_adauga"
+                                android:textColor="@color/colorGrayDarker"
+                                android:background="@color/colorSilverDarker"
                                 android:id="@+id/buttonAdaugaMasina" />
                         </LinearLayout>
                     </LinearLayout>
@@ -264,6 +389,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="2dp"
+                            android:padding="2dp"
                             android:background="@drawable/cont_textview_shape">
 
                             <TextView
@@ -275,8 +401,13 @@
                                 android:id="@+id/textViewTitleMarcaMasinaCont" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:gravity="right"
+                                android:textColor="@color/colorGrayDarker"
+                                android:textStyle="bold"
+                                android:text="BMW"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:id="@+id/textViewValueMarcaMasinaCont" />
                         </LinearLayout>
@@ -286,6 +417,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="2dp"
+                            android:padding="2dp"
                             android:background="@drawable/cont_textview_shape">
 
                             <TextView
@@ -297,8 +429,13 @@
                                 android:id="@+id/textViewTitleModelMasinaCont" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:gravity="right"
+                                android:textColor="@color/colorGrayDarker"
+                                android:textStyle="bold"
+                                android:text="M3"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:id="@+id/textViewValueModelMasinaCont" />
                         </LinearLayout>
@@ -308,6 +445,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="2dp"
+                            android:padding="2dp"
                             android:background="@drawable/cont_textview_shape">
 
                             <TextView
@@ -319,8 +457,13 @@
                                 android:id="@+id/textViewTitleAnFabricatieCont" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:gravity="right"
+                                android:textColor="@color/colorGrayDarker"
+                                android:textStyle="bold"
+                                android:text="2005"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:id="@+id/textViewValueAnFabricatieCont" />
                         </LinearLayout>
@@ -329,6 +472,7 @@
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:padding="2dp"
                             android:background="@drawable/cont_textview_shape">
 
                             <TextView
@@ -340,8 +484,13 @@
                                 android:id="@+id/textViewTitleExperientaAutoCont" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:gravity="right"
+                                android:textColor="@color/colorGrayDarker"
+                                android:textStyle="bold"
+                                android:text="1-5 ani"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:id="@+id/textViewValueExperientaAutoCont" />
                         </LinearLayout>
@@ -353,13 +502,104 @@
                             android:gravity="right">
 
                             <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="105dp"
+                                android:layout_height="35dp"
                                 android:text="@string/cont_button_modifica"
                                 android:layout_marginTop="7dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:background="@color/colorSilverDarker"
                                 android:id="@+id/buttonModificaMasina" />
                         </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:background="@drawable/cont_layout_shape" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/calatorii_confirmate_shape"
+                        android:padding="6dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="RECENZII"
+                            android:textSize="15dp"
+                            android:textStyle="italic"
+                            android:textColor="@color/colorGray"
+                            android:id="@+id/textView58" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/cont_textview_shape" >
+
+                        <TextView
+                            style="@style/TitleTextViewContStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Review"
+                            android:id="@+id/textView48" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="25dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:id="@+id/textView52" />
+
+                        <ImageButton
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_marginLeft="-25dp"
+                            android:background="@drawable/cont_eye_icon"
+                            android:id="@+id/imageButton" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right" >
+
+                        <Button
+                            android:layout_width="105dp"
+                            android:layout_height="35dp"
+                            android:text="@string/cont_button_modifica"
+                            android:textColor="@color/colorGrayDarker"
+                            android:background="@color/colorSilverDarker"
+                            android:layout_marginTop="7dp"
+                            android:id="@+id/button3" />
+                    </LinearLayout>
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style= "@style/CustomRatingBar"
+                        android:numStars="5"
+                        android:stepSize="0.01"
+                        android:id="@+id/ratingBar" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

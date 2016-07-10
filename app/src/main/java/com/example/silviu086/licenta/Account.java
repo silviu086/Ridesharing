@@ -17,6 +17,7 @@ public class Account implements Serializable {
     private String modelMasina;
     private int anFabricatie;
     private String experientaAuto;
+    private boolean haveProfilPhoto;
 
     public Account() {
         this.email = "";
@@ -96,5 +97,13 @@ public class Account implements Serializable {
     @Override
     public String toString() {
         return email + ", " + dateCreated + ", " + nume + ", " + telefon + ", " + marcaMasina;
+    }
+
+    public boolean isHaveProfilPhoto() {
+        return haveProfilPhoto;
+    }
+
+    public void setHaveProfilPhoto(boolean haveProfilPhoto) {
+        this.haveProfilPhoto = haveProfilPhoto;
     }
 }

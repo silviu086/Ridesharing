@@ -20,4 +20,6 @@ public class UrlLinks {
     public static String URL_MESAJE = "http://" + IP + "/mesaje.php";
     public static String URL_CONVERSATIE_TRIMITE_MESAJ = "http://" + IP + "/mesaje_conversatie_trimite_mesaj.php";
     public static String URL_MESAJE_MARCARE_CITITE = "http://" + IP + "/mesaje_marcare_citite.php";
+    public static String URL_UPLOAD_PHOTO = "http://" + IP + "/upload_photo.php";
+    public static String URL_DOWNLOAD_PHOTO = "http://" + IP + "/download_profile_photo.php";
 }

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -120,7 +123,11 @@ class RegisterTask extends AsyncTask<Void, Void, String> {
             if (success == 1) {
                 new Handler(mContext.getMainLooper()).post(new Runnable() {
                     public void run() {
-                        MainActivity.setWarning(messageServer, ColorsEnum.GREEN);
+                        SpannableStringBuilder builder = new SpannableStringBuilder();
+                        builder.append(" ");
+                        builder.setSpan(new ImageSpan(mContext, R.drawable.snackbar_ok), builder.length() - 1, builder.length(), 0);
+                        builder.append(" " + messageServer);
+                        Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                         MainActivity.setPage(0);
                     }
                 });
@@ -128,35 +135,25 @@ class RegisterTask extends AsyncTask<Void, Void, String> {
             }else{
                 new Handler(mContext.getMainLooper()).post(new Runnable() {
                     public void run() {
-                        MainActivity.setWarning(messageServer, ColorsEnum.RED);
+                        SpannableStringBuilder builder = new SpannableStringBuilder();
+                        builder.append(" ");
+                        builder.setSpan(new ImageSpan(mContext, R.drawable.snackbar_fail), builder.length() - 1, builder.length(), 0);
+                        builder.append(" " + messageServer);
+                        Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                     }
                 });
                 return "failed";
             }
-        }catch (ConnectException ex) {
+        }catch (Exception ex) {
             new Handler(mContext.getMainLooper()).post(new Runnable() {
                 public void run() {
-                    MainActivity.setWarning("Nu ma pot conecta la server!", ColorsEnum.RED);
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
+                    builder.append(" ");
+                    builder.setSpan(new ImageSpan(mContext, R.drawable.snackbar_fail), builder.length() - 1, builder.length(), 0);
+                    builder.append(" Nu ma pot conecta la server!");
+                    Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                 }
             });
-        }catch (SocketTimeoutException ex){
-            new Handler(mContext.getMainLooper()).post(new Runnable() {
-                public void run() {
-                    MainActivity.setWarning("Nu ma pot conecta la server!", ColorsEnum.RED);
-                }
-            });
-        }catch (MalformedURLException ex) {
-            ex.printStackTrace();
-        }catch (ProtocolException ex) {
-            ex.printStackTrace();
-        }catch (NullPointerException ex){
-            ex.printStackTrace();
-        }catch (UnsupportedEncodingException ex) {
-            ex.printStackTrace();
-        }catch (JSONException ex) {
-            ex.printStackTrace();
-        }catch (IOException ex) {
-            ex.printStackTrace();
         }
         return "null";
     }

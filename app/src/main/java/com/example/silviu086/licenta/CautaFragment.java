@@ -5,9 +5,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -45,6 +48,7 @@ import java.util.ArrayList;
  */
 public class CautaFragment extends Fragment {
 
+    private View v;
     private LinearLayout linearLayoutSearch;
     private LinearLayout linearLayoutSearchInfo;
     private AutoCompleteTextView autoCompleteTextViewPlecare;
@@ -80,7 +84,7 @@ public class CautaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_cauta, container, false);
+        v = inflater.inflate(R.layout.fragment_cauta, container, false);
 
         linearLayoutSearch = (LinearLayout) v.findViewById(R.id.linearLayoutSearch);
         linearLayoutSearchInfo = (LinearLayout) v.findViewById(R.id.linearLayoutSearchInfo);
@@ -175,7 +179,7 @@ public class CautaFragment extends Fragment {
 
         buttonCauta.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String punctPlecare = autoCompleteTextViewPlecare.getText().toString();
                 String punctSosire = autoCompleteTextViewSosire.getText().toString();
                 listViewCalatorii.setAdapter(null);
@@ -184,7 +188,12 @@ public class CautaFragment extends Fragment {
                 } else if (!oraseRomania.find(punctSosire)) {
                     autoCompleteTextViewSosire.setError("Selectati o locatie valida!");
                 }else if(!Internet.haveInternet(getContext())){
-                    Toast.makeText(getContext(), "Nu s-a putut realiza cautarea, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
+                    builder.append(" ");
+                    builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length() - 1, builder.length(), 0);
+                    builder.append(" Nu exista conexiune la Internet!");
+                    Snackbar.make(v.findViewById(R.id.parent_view), builder, Snackbar.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "Nu s-a putut realiza cautarea, este necesara conexiune la Internet!", Toast.LENGTH_LONG).show();
                 } else {
                     //InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     //in.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);

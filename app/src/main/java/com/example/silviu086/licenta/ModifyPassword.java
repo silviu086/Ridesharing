@@ -2,9 +2,12 @@ package com.example.silviu086.licenta;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -53,10 +56,18 @@ public class ModifyPassword extends AppCompatActivity{
                                 setResult(1, resultIntent);
                                 finish();
                             }else if(result.equals("failed")){
-                                Toast.makeText(ModifyPassword.this, "Parola incorecta!", Toast.LENGTH_SHORT).show();
+                                SpannableStringBuilder builder = new SpannableStringBuilder();
+                                builder.append(" ");
+                                builder.setSpan(new ImageSpan(ModifyPassword.this, R.drawable.snackbar_fail), builder.length() - 1, builder.length(), 0);
+                                builder.append(" Parola incorecta!");
+                                Snackbar.make(findViewById(R.id.parent_view), builder, Snackbar.LENGTH_LONG).show();
                                 editTextCurrentPassword.setError("Reintroduceti parola!");
                             }else if(result.equals("null")){
-                                Toast.makeText(ModifyPassword.this, "Modificare esuata, reincercati!", Toast.LENGTH_SHORT).show();
+                                SpannableStringBuilder builder = new SpannableStringBuilder();
+                                builder.append(" ");
+                                builder.setSpan(new ImageSpan(ModifyPassword.this, R.drawable.snackbar_fail), builder.length() - 1, builder.length(), 0);
+                                builder.append(" Modificare esuata, reincercati!");
+                                Snackbar.make(findViewById(R.id.parent_view), builder, Snackbar.LENGTH_LONG).show();
                             }
                         }
                     });

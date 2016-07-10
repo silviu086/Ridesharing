@@ -40,6 +40,7 @@
     <string name="nav_adauga">Adauga o calatorie</string>
     <string name="nav_calatorii">Calatoriile mele</string>
     <string name="nav_setari">Setari</string>
+    <string name="nav_logout">Logout</string>
 
     <!-- Cont Fragment -->
     <string name="cont_textview_parola">Parola</string>
@@ -50,7 +51,7 @@
     <string name="cont_textview_model">Model masina</string>
     <string name="cont_textview_an">An fabricatie</string>
     <string name="cont_textview_experienta">Experienta auto</string>
-    <string name="cont_button_modifica">Modifica</string>
+    <string name="cont_button_modifica">Modificare</string>
     <string name="cont_button_adauga">Adauga</string>
     <string name="cont_texview_masina_adauga">Nu ai masina adaugata!</string>
     <string name="title_activity_navigation2">NavigationActivity2</string>
