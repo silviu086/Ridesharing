@@ -11,10 +11,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBlue"
+        android:background="#367ab7"
         android:gravity="center_vertical"
+        android:paddingBottom="20dp"
         android:id="@+id/linearLayoutAutoLogin"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -34,35 +35,62 @@
                     android:layout_height="80dp"
                     android:src="@drawable/login_account"
                     android:id="@+id/imageViewProfil" />
+
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Se logheaza"
-                android:textSize="17dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/colorWhite"
-                android:id="@+id/textViewLogin" />
+                android:layout_height="match_parent">
 
-            <ProgressBar
-                style="@style/customProgress"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:visibility="visible"
-                android:background="@drawable/progress_bar"
-                android:id="@+id/progressBar" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="silviu086@gmail.com"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/textViewEmailLogin" />
 
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/login_reload"
-                android:visibility="gone"
-                android:id="@+id/imageButtonReload" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="15dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Se logheaza"
+                        android:textSize="17dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorSilverDarker"
+                        android:id="@+id/textViewLogin" />
+
+                    <ProgressBar
+                        style="@style/customProgress"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:visibility="visible"
+                        android:background="@drawable/progress_bar"
+                        android:id="@+id/progressBar" />
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/login_reload"
+                        android:visibility="gone"
+                        android:id="@+id/imageButtonReload" />
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

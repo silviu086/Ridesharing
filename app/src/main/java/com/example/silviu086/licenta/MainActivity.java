@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearLayoutAutoLogin;
     private ImageView imageViewProfil;
     private TextView textViewLogin;
+    private TextView textViewEmailLogin;
     private ProgressBar progressBar;
     private ImageButton imageButtonReload;
     private LinearLayout linearLayoutLogin;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutAutoLogin = (LinearLayout) findViewById(R.id.linearLayoutAutoLogin);
         imageViewProfil = (ImageView) findViewById(R.id.imageViewProfil);
         textViewLogin = (TextView) findViewById(R.id.textViewLogin);
+        textViewEmailLogin = (TextView) findViewById(R.id.textViewEmailLogin);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         imageButtonReload = (ImageButton) findViewById(R.id.imageButtonReload);
         parentView = findViewById(R.id.parent_view);
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             if(sharedPreferences != null){
                 if(sharedPreferences.getString("username", null) != null){
                     linearLayoutAutoLogin.setVisibility(View.VISIBLE);
+                    textViewEmailLogin.setText(sharedPreferences.getString("username",null));
                     File mypath=new File(MainActivity.this.getFilesDir(),"photo_" + String.valueOf(sharedPreferences.getInt("id", 0)) + ".png");
                     if (mypath.exists()) {
                         Drawable photo = Drawable.createFromPath(mypath.getAbsolutePath());
@@ -79,25 +82,37 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }else{
-            linearLayoutAutoLogin.setVisibility(View.VISIBLE);
-            linearLayoutLogin.setVisibility(View.GONE);
-            textViewLogin.setText("Logare esuata!");
-            progressBar.setVisibility(View.GONE);
-            imageButtonReload.setVisibility(View.VISIBLE);
-            imageButtonReload.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (Internet.haveInternet(MainActivity.this)) {
-                        finish();
-                        startActivity(getIntent());
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            if(sharedPreferences != null) {
+                if (sharedPreferences.getString("username", null) != null) {
+                    linearLayoutAutoLogin.setVisibility(View.VISIBLE);
+                    textViewEmailLogin.setText(sharedPreferences.getString("username", null));
+                    textViewLogin.setText("Logare esuata!");
+                    imageButtonReload.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    File mypath=new File(MainActivity.this.getFilesDir(),"photo_" + String.valueOf(sharedPreferences.getInt("id", 0)) + ".png");
+                    if (mypath.exists()) {
+                        Drawable photo = Drawable.createFromPath(mypath.getAbsolutePath());
+                        imageViewProfil.setImageDrawable(photo);
+                    }else{
+                        imageViewProfil.setImageDrawable(getResources().getDrawable(R.drawable.login_account));
                     }
+                    imageButtonReload.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (Internet.haveInternet(MainActivity.this)) {
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        }
+                    });
+                    SpannableStringBuilder builder = new SpannableStringBuilder();
+                    builder.append(" ");
+                    builder.setSpan(new ImageSpan(this, R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+                    builder.append(" Nu exista conexiune la Internet!");
+                    Snackbar.make(parentView, builder, Snackbar.LENGTH_INDEFINITE).show();
                 }
-            });
-            SpannableStringBuilder builder = new SpannableStringBuilder();
-            builder.append(" ");
-            builder.setSpan(new ImageSpan(this, R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
-            builder.append(" Nu exista conexiune la Internet!");
-            Snackbar.make(parentView, builder, Snackbar.LENGTH_INDEFINITE).show();
+            }
         }
         mContext = this;
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabTitle, tabCount);

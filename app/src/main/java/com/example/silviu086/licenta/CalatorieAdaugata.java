@@ -1,12 +1,13 @@
 package com.example.silviu086.licenta;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Silviu086 on 02.06.2016.
  */
-public class CalatorieAdaugata {
+public class CalatorieAdaugata implements Serializable {
     private Calatorie calatorie;
     private List<HolderPasageri> pasageriInAsteptare;
     private List<HolderPasageri> pasageriConfirmati;

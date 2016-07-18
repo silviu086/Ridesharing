@@ -102,6 +102,11 @@ public class CalatorieConfirmataBuilder implements IBuilder {
         return this;
     }
 
+    public CalatorieConfirmataBuilder setIdUtilizator(int id){
+        this.calatorie.setIdUtilizator(id);
+        return this;
+    }
+
     public CalatorieConfirmataBuilder setNume(String nume){
         this.calatorie.setNume(nume);
         return this;

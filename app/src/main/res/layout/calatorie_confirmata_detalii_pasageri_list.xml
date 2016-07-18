@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="5dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_marginTop="-2dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/calatorii_adaugate_shape"
+        android:id="@+id/linearLayoutFaraCereri" >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/adauga_minus_color"
+            android:id="@+id/imageViewProfilPasager" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Burada Silviu"
+            android:singleLine="true"
+            android:layout_marginRight="105dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="16dp"
+            android:id="@+id/textViewNume" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="10dp"
+            android:textSize="13dp"
+            android:textColor="#4b4b4b"
+            android:background="@drawable/calatorii_adaugate_shape_2"
+            android:layout_marginLeft="-105dp"
+            android:text="Vezi profil"
+            android:id="@+id/buttonProfil" />
+    </LinearLayout>
+
+</LinearLayout>

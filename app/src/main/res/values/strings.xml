@@ -53,7 +53,7 @@
     <string name="cont_textview_experienta">Experienta auto</string>
     <string name="cont_button_modifica">Modificare</string>
     <string name="cont_button_adauga">Adauga</string>
-    <string name="cont_texview_masina_adauga">Nu ai masina adaugata!</string>
+    <string name="cont_texview_masina_adauga">Nu ai masina adaugata.</string>
     <string name="title_activity_navigation2">NavigationActivity2</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

@@ -1,6 +1,7 @@
 package com.example.silviu086.licenta;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +74,7 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
         HolderAdaugate hCalatorie = null;
         final CalatorieAdaugata calatorie = calatorii.get(position);
@@ -117,7 +118,9 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         hCalatorie.buttonDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Detalii", Toast.LENGTH_SHORT).show();
+                Intent it = new Intent(context, CalatorieAdaugataDetaliiActivity.class);
+                it.putExtra("position", position);
+                context.startActivity(it);
             }
         });
         /*

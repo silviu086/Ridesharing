@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.silviu086.licenta.CalatorieAdaugataDetaliiActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginTop="-2dp"
+                android:padding="8dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/cauta_layout_shape_8" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calatoria 55"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        android:id="@+id/textViewIdCalatorie" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Adaugata pe 2016.07.14, 12:20"
+                        android:textSize="15dp"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorSilverDarker"
+                        android:id="@+id/textViewDataAdaugare" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right" >
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:text="Eliminare"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+                        android:textSize="14dp"
+                        android:background="#f55654"
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/buttonEliminare" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayoutInfoCalatorie">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:background="#4e9cea">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="9dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical" >
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/cauta_punct_plecare"
+                                    android:id="@+id/imageViewPunctPlecare" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Turnu Magurele,Teleorman"
+                                    android:textSize="16dp"
+                                    android:textStyle="italic"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="@color/colorWhite"
+                                    android:id="@+id/textViewPunctPlecare" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical" >
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/cauta_punct_sosire"
+                                    android:id="@+id/imageViewPunctSosire" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="Alexandria,Teleorman"
+                                    android:textSize="16dp"
+                                    android:textStyle="italic"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="@color/colorWhite"
+                                    android:id="@+id/textViewPunctSosire" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical" >
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/cauta_durata_calatorie"
+                                    android:id="@+id/imageViewDurata" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="1 ora 23 min"
+                                    android:textSize="16dp"
+                                    android:textStyle="italic"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="@color/colorWhite"
+                                    android:id="@+id/textViewDurata" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical" >
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/cauta_distanta"
+                                    android:id="@+id/imageViewDistanta" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="98,4 km"
+                                    android:textSize="16dp"
+                                    android:textStyle="italic"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="@color/colorWhite"
+                                    android:id="@+id/textViewDistanta" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="7dp"
+                        android:background="@drawable/cauta_shadow">
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/cauta_layout_shape_6"
+                android:visibility="visible">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:padding="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:background="@drawable/cauta_layout_shape_2"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Detalii calatorie"
+                            android:textSize="17dp"
+                            android:textColor="@color/colorGrayDarker"
+                            android:id="@+id/textView23" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="0dp"
+                        android:visibility="visible" >
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Data calatorie"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewDataTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="2016.06.22, 18:30"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewDataCalatorie" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Locuri"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewLocuriTite" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="3 locuri"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewLocuri" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Marca masina"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewMarcaTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Opel"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewMarca" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Model masina"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewModelTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Astra"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewModel" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="An fabricatie"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewAnFabricatieTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="2001"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewAnFabricatie" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Experienta auto"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewExperientaAutoTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="1-5 ani"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewExperientaAuto" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Nivel confort"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewNivelConfortTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Normal"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewNivelConfort" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Capacitate bagaj"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewCapacitateBagajTitle" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Mediu"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewCapacitateBagaj" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="-2dp"
+                android:background="@drawable/calatorie_detalii_shadow">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/cauta_layout_shape_6"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/cauta_layout_shape_2"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Cereri primite"
+                        android:textSize="17dp"
+                        android:textColor="@color/colorGrayDarker"
+                        android:id="@+id/textView99" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/calatorii_adaugate_shape_title"
+                    android:id="@+id/linearLayoutCereri" >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:background="@drawable/cauta_layout_shape_6"
+                        android:id="@+id/linearLayoutFaraCereri" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Nicio cerere primita"
+                            android:textStyle="italic"
+                            android:textSize="15dp"
+                            android:id="@+id/textViewFaraCereri" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="-1dp"
+                        android:background="@drawable/cauta_layout_shape_6"
+                        android:id="@+id/linearLayoutCerereBorder"
+                        android:visibility="gone"></LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="-2dp"
+                android:background="@drawable/calatorie_detalii_shadow">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/cauta_layout_shape_6"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/cauta_layout_shape_2"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Traseu calatorie"
+                        android:textSize="17dp"
+                        android:textColor="@color/colorGrayDarker"
+                        android:id="@+id/textView25" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:padding="3dp"
+                    android:background="@drawable/calatorii_adaugate_shape" >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageViewMap"
+                        android:src="@drawable/map_background" />
+
+                    <fragment
+                        class="com.google.android.gms.maps.SupportMapFragment"
+                        tools:layout="@layout/dummy_mapviewfragment"
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/map" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/calatorie_detalii_shadow">
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

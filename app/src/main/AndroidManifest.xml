@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -29,6 +29,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/MainActivityTheme"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
@@ -41,13 +42,19 @@
         <activity
             android:name=".NavigationActivity2"
             android:label="@string/title_activity_navigation2"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ModifyDate" />
-        <activity android:name=".ModifyMasina" />
+        <activity
+            android:name=".ModifyDate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ModifyMasina"
+            android:screenOrientation="portrait" />
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
@@ -84,9 +91,28 @@
             android:name=".RegistrationIntentService"
             android:exported="false" />
 
-        <activity android:name=".CalatorieDetaliiActivity" />
-        <activity android:name=".MesajeActivity" />
-        <activity android:name=".MesajeConversatieActivity"></activity>
+        <activity
+            android:name=".CalatorieDetaliiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MesajeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MesajeConversatieActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ContRecenziiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UtilizatorProfilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalatorieAdaugataDetaliiActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CalatorieInAsteptareDetalii" />
+        <activity android:name=".CalatorieConfirmataDetaliiActivity" />
+        <activity android:name=".TrimiteMesajActivity" />
+        <activity android:name=".AdaugaRecenzieActivity"></activity>
     </application>
 
 </manifest>

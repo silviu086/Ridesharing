@@ -73,7 +73,7 @@ public class MyGcmListenerService extends GcmListenerService {
          * In some cases it may be useful to show a notification indicating to the user
          * that a message was received.
          */
-        sendNotification(message, type, punctPlecare, punctSosire);
+        sendNotification(message, type);
         // [END_EXCLUDE]
     }
     // [END receive_message]
@@ -83,7 +83,7 @@ public class MyGcmListenerService extends GcmListenerService {
      *
      * @param message GCM message received.
      */
-    private void sendNotification(String message, String type, String punctPlecare, String punctSosire) {
+    private void sendNotification(String message, String type) {
         
         
         Intent intent = new Intent(this, MainActivity.class);
@@ -97,9 +97,8 @@ public class MyGcmListenerService extends GcmListenerService {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_cast_light)
-                .setContentTitle("Notificare de tip " + type)
+                .setContentTitle("Notificare de la Ridesharing")
                 .setContentText(message)
-                .setContentInfo("Click for more")
                 .setAutoCancel(true)
                 .setTicker("Notificare de la Ridesharing")
                 .setSound(defaultSoundUri)

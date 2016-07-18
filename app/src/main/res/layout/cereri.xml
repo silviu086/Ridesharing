@@ -4,50 +4,76 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="6dp"
-        android:paddingTop="2dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/calatorii_adaugate_shape_title"
-        android:id="@+id/linearLayout2" >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Cereri primite"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="@drawable/calatorii_in_asteptare_shape"
-            android:textSize="16dp"
-            android:textColor="@color/colorGray"
-            android:id="@+id/textView23" />
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="-2dp"
+        android:background="@drawable/cauta_layout_shape_6" >
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_marginTop="-2dp"
-            android:background="@drawable/cauta_layout_shape_6"
-            android:id="@+id/linearLayout" >
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Burada Silviu"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorBlue"
+                    android:id="@+id/textViewNume" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="(silviu086@gmail.com)"
+                    android:textSize="14dp"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorGray"
+                    android:id="@+id/textViewEmail" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nicio cerere primita"
-                android:textStyle="italic"
+                android:text="Trimisa la 2016.06.23, 13:34"
                 android:textSize="15dp"
-                android:id="@+id/textView25" />
+                android:textColor="#8c8c8c"
+                android:id="@+id/textViewDataCerere" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|right"
+            android:gravity="center_vertical|right" >
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="CONFIRMA"
+                android:textSize="13dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/colorBlue"
+                android:background="@drawable/cauta_layout_shape_5"
+                android:id="@+id/buttonConfirma" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

@@ -22,4 +22,7 @@ public class UrlLinks {
     public static String URL_MESAJE_MARCARE_CITITE = "http://" + IP + "/mesaje_marcare_citite.php";
     public static String URL_UPLOAD_PHOTO = "http://" + IP + "/upload_photo.php";
     public static String URL_DOWNLOAD_PHOTO = "http://" + IP + "/download_profile_photo.php";
+    public static String URL_PROFIL_UTILIZATOR = "http://" + IP + "/profil_utilizator.php";
+    public static String URL_TRIMITE_MESAJ = "http://" + IP + "/trimite_mesaj.php";
+    public static String URL_ADAUGA_RECENZIE = "http://" + IP + "/adauga_recenzie.php";
 }

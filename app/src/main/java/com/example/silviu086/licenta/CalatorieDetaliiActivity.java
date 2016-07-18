@@ -48,6 +48,7 @@ public class CalatorieDetaliiActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Detalii calatorie");
         calatorie = (Calatorie) getIntent().getExtras().getSerializable("calatorie");
         account = (Account) getIntent().getExtras().getSerializable("account");
+        getSupportActionBar().setSubtitle("Calatoria " + String.valueOf(calatorie.getId()));
         textViewPunctPlecare = (TextView) findViewById(R.id.textViewPunctPlecare);
         textViewPunctSosire = (TextView) findViewById(R.id.textViewPunctSosire);
         textViewDurataCalatorie = (TextView) findViewById(R.id.textViewDurataCalatorie);

@@ -22,10 +22,12 @@ import java.util.Date;
  * Created by Silviu086 on 31.05.2016.
  */
 public class CalatorieTask extends AsyncTask<String, Integer, String> {
+    private int accountId;
     private Calatorie calatorie;
     private TaskCompleted taskCompleted;
 
-    public CalatorieTask(Calatorie calatorie, TaskCompleted taskCompleted) {
+    public CalatorieTask(int accountId, Calatorie calatorie, TaskCompleted taskCompleted) {
+        this.accountId = accountId;
         this.calatorie = calatorie;
         this.taskCompleted = taskCompleted;
     }
@@ -54,8 +56,8 @@ public class CalatorieTask extends AsyncTask<String, Integer, String> {
             con.connect();
 
             String query = new Uri.Builder()
-                    .appendQueryParameter("id_calatorie", String.valueOf(calatorie.getId()))
-                    .appendQueryParameter("message", "Cerere noua primita!")
+                    .appendQueryParameter("id_account", String.valueOf(accountId))
+                    .appendQueryParameter("message", "Ati primit o cerere noua!")
                     .appendQueryParameter("type", "0").build().getEncodedQuery();
 
             OutputStream os = con.getOutputStream();

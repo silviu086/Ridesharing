@@ -40,12 +40,9 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
         LinearLayout linearLayoutPasageri;
         LinearLayout linearLayoutTitle;
         View t;
-        View view;
         TextView textViewTitleData;
         TextView textViewTitlePunctPlecare;
         TextView textViewTitlePunctSosire;
-        TextView textViewPasagerNumar;
-        TextView textViewPasagerNume;
 
         public HolderConfirmate(View v){
             textViewNumarCalatorie = (TextView) v.findViewById(R.id.textViewNumarCalatorieConfirmate);
@@ -87,7 +84,7 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
         HolderConfirmate h = null;
         final CalatorieConfirmata calatorie = calatorii.get(position);
@@ -127,34 +124,64 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
         h.buttonDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Detalii " + String.valueOf(calatorie.getId()), Toast.LENGTH_SHORT).show();
+                Intent it = new Intent(context, CalatorieConfirmataDetaliiActivity.class);
+                it.putExtra("position", position);
+                context.startActivity(it);
             }
         });
         h.buttonProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent it = new Intent(context, UtilizatorProfilActivity.class);
+                it.putExtra("nume", calatorie.getNume());
+                it.putExtra("id_utilizator", calatorie.getIdUtilizator());
+                context.startActivity(it);
             }
         });
         if(calatorie.getListaAltiPasageri().size() > 0){
-            h.linearLayoutPasageri.removeAllViews();
-            h.linearLayoutFaraPasageri.setVisibility(View.GONE);
-            View border = inflater.inflate(R.layout.calatorii_confirmate_pasageri_border, null);
-            h.linearLayoutPasageri.addView(border);
-            for(int i=0;i<calatorie.getListaAltiPasageri().size();i++){
-                h.view = inflater.inflate(R.layout.calatorii_confirmate_pasageri_list, null);
-                h.textViewPasagerNumar = (TextView) h.view.findViewById(R.id.textViewPasagerNumar);
-                h.textViewPasagerNume = (TextView) h.view.findViewById(R.id.textViewPasagerNume);
-                h.textViewPasagerNumar.setText(String.valueOf(i+1));
-                h.textViewPasagerNume.setText(calatorie.getListaAltiPasageri().get(i).getNume());
-                h.linearLayoutPasageri.addView(h.view);
-                final HolderConfirmate finalH = h;
-                h.textViewPasagerNume.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Profil " + finalH.textViewPasagerNume.getText().toString(), Toast.LENGTH_SHORT).show();
+            if(calatorie.getListaAltiPasageri().size() == 1){
+                if(!calatorie.getListaAltiPasageri().get(0).getId().equals(String.valueOf(NavigationActivity.account.getId()))){
+                    h.linearLayoutPasageri.removeAllViews();
+                    h.linearLayoutFaraPasageri.setVisibility(View.GONE);
+                    View border = inflater.inflate(R.layout.calatorii_confirmate_pasageri_border, null);
+                    h.linearLayoutPasageri.addView(border);
+                    for(int i=0;i<calatorie.getListaAltiPasageri().size();i++){
+                        View view = inflater.inflate(R.layout.calatorii_confirmate_pasageri_list, null);
+                        TextView textViewPasagerNumar = (TextView) view.findViewById(R.id.textViewPasagerNumar);
+                        final TextView textViewPasagerNume = (TextView) view.findViewById(R.id.textViewPasagerNume);
+                        textViewPasagerNumar.setText(String.valueOf(i + 1));
+                        textViewPasagerNume.setText(calatorie.getListaAltiPasageri().get(i).getNume());
+                        h.linearLayoutPasageri.addView(view);
+                        textViewPasagerNume.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(context, "Profil " + textViewPasagerNume.getText().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                });
+                }
+            }else{
+                h.linearLayoutPasageri.removeAllViews();
+                h.linearLayoutFaraPasageri.setVisibility(View.GONE);
+                View border = inflater.inflate(R.layout.calatorii_confirmate_pasageri_border, null);
+                h.linearLayoutPasageri.addView(border);
+                for(int i=0;i<calatorie.getListaAltiPasageri().size();i++){
+                    if(!calatorie.getListaAltiPasageri().get(i).getId().equals(String.valueOf(NavigationActivity.account.getId()))) {
+                        View view = inflater.inflate(R.layout.calatorii_confirmate_pasageri_list, null);
+                        TextView textViewPasagerNumar = (TextView) view.findViewById(R.id.textViewPasagerNumar);
+                        final TextView textViewPasagerNume = (TextView) view.findViewById(R.id.textViewPasagerNume);
+                        textViewPasagerNumar.setText(String.valueOf(i+1));
+                        textViewPasagerNume.setText(calatorie.getListaAltiPasageri().get(i).getNume());
+                        h.linearLayoutPasageri.addView(view);
+                        final HolderConfirmate finalH = h;
+                        textViewPasagerNume.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(context, "Profil " + textViewPasagerNume.getText().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
             }
         }
         return v;

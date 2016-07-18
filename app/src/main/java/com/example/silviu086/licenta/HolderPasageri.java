@@ -1,9 +1,11 @@
 package com.example.silviu086.licenta;
 
+import java.io.Serializable;
+
 /**
  * Created by Silviu086 on 02.06.2016.
  */
-public class HolderPasageri {
+public class HolderPasageri implements Serializable {
     String id;
     String email;
     String nume;

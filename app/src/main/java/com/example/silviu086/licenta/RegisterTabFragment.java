@@ -207,7 +207,7 @@ public class RegisterTabFragment extends Fragment implements TaskCompleted {
                 if(verificaCampuri()){
                     //CREARE OBIECT ACCOUNT
                     Account account;
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                    DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
                     Date date = new Date();
                     String dateCreated = dateFormat.format(date);
                     if(checkBoxMasina.isChecked()){

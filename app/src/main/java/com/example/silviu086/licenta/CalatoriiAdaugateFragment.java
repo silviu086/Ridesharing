@@ -38,4 +38,15 @@ public class CalatoriiAdaugateFragment extends Fragment {
         }
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        List<CalatorieAdaugata> calatorii = NavigationActivity.calatoriiHolder.calatoriiAdaugate;
+        if(calatorii.size()>0) {
+            linearLayoutFaraCalatorii.setVisibility(View.GONE);
+            CalatoriiAdaugateAdapter adapter = new CalatoriiAdaugateAdapter(getContext(), calatorii);
+            listView.setAdapter(adapter);
+        }
+    }
 }

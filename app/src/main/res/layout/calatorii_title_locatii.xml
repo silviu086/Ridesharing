@@ -6,77 +6,66 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#4e9cea"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cont_layout_shape"
         android:layout_marginTop="10dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp">
+        android:id="@+id/linearLayoutTitleLocatii">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/cauta_layout_shape_8"
-            android:id="@+id/linearLayoutTitleLocatii">
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/calatorii_adaugate_punct_plecare"
+                android:id="@+id/imageView2" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="3dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical">
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:textSize="16dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="italic"
+                android:textColor="@color/colorGrayDarker"
+                android:id="@+id/textViewTitlePunctPlecare" />
+        </LinearLayout>
 
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/calatorii_adaugate_punct_plecare"
-                    android:id="@+id/imageView2" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:textStyle="italic"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/textViewTitlePunctPlecare" />
-            </LinearLayout>
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/calatorii_adaugate_punct_sosire"
+                android:id="@+id/imageView4" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="4dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/calatorii_adaugate_punct_sosire"
-                    android:id="@+id/imageView4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:textSize="16dp"
-                    android:textStyle="italic"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/textViewTitlePunctSosire" />
-            </LinearLayout>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:textSize="16dp"
+                android:textStyle="italic"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorGrayDarker"
+                android:id="@+id/textViewTitlePunctSosire" />
         </LinearLayout>
     </LinearLayout>
 

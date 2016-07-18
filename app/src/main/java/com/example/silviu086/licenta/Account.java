@@ -1,6 +1,8 @@
 package com.example.silviu086.licenta;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Silviu086 on 24.03.2016.
@@ -17,6 +19,7 @@ public class Account implements Serializable {
     private String modelMasina;
     private int anFabricatie;
     private String experientaAuto;
+    private List<Recenzie> listaRecenzii;
     private boolean haveProfilPhoto;
 
     public Account() {
@@ -29,6 +32,7 @@ public class Account implements Serializable {
         this.modelMasina = "";
         this.anFabricatie = 0;
         this.experientaAuto = "";
+        listaRecenzii = new ArrayList<>();
     }
     public int getId(){
         return this.id;
@@ -105,5 +109,13 @@ public class Account implements Serializable {
 
     public void setHaveProfilPhoto(boolean haveProfilPhoto) {
         this.haveProfilPhoto = haveProfilPhoto;
+    }
+
+    public List<Recenzie> getListaRecenzii() {
+        return listaRecenzii;
+    }
+
+    public void addRecenzie(Recenzie r) {
+        this.listaRecenzii.add(r);
     }
 }

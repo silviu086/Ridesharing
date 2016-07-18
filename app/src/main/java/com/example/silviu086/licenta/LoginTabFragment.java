@@ -31,6 +31,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Silviu086 on 28.02.2016.
@@ -72,12 +74,6 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                             .build();
                     LoginTask login = new LoginTask(getContext(), buttonLogin, progress, account, LoginTabFragment.this);
                     login.execute();
-                }else{
-                    SpannableStringBuilder builder = new SpannableStringBuilder();
-                    builder.append(" ");
-                    builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
-                    builder.append(" Nu exista conexiune la Internet!");
-                    Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -93,7 +89,11 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                         LoginTask login = new LoginTask(getContext(), buttonLogin, progress, account, LoginTabFragment.this);
                         login.execute();
                     }else{
-
+                        SpannableStringBuilder builder = new SpannableStringBuilder();
+                        builder.append(" ");
+                        builder.setSpan(new ImageSpan(getContext(), R.drawable.snackbar_fail), builder.length()-1, builder.length(), 0);
+                        builder.append(" Nu exista conexiune la Internet!");
+                        Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_LONG).show();
                     }
                 }
             }
@@ -113,6 +113,8 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
     public void onTaskCompleted(String result) {
         if (!result.equals("failed")) {
             try {
+
+                /*
                 SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
                 if(sharedPreferences != null) {
                     if (sharedPreferences.getString("username", null) == null) {
@@ -123,6 +125,8 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                         Snackbar.make(MainActivity.parentView, builder, Snackbar.LENGTH_SHORT).show();
                     }
                 }
+                */
+
                 JSONObject json = new JSONObject(result);
                 JSONObject jsonAccount = json.getJSONObject("account");
                 final Account account = new AccountBuilder()
@@ -138,6 +142,32 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                         .setAnFabricatie(Integer.valueOf(jsonAccount.getString("an_fabricatie").equals("null")? "0" : jsonAccount.getString("an_fabricatie")))
                         .setExperientaAuto(jsonAccount.getString("experienta_auto").equals("null")? "" : jsonAccount.getString("experienta_auto"))
                         .build();
+                JSONArray jsonRecenzii = jsonAccount.getJSONArray("recenzii");
+                for(int i=0;i<jsonRecenzii.length();i++){
+                    JSONObject jsonRecenzie = jsonRecenzii.getJSONObject(i);
+                    Recenzie recenzie = new Recenzie(
+                            Integer.valueOf(jsonRecenzie.getString("id")),
+                            jsonRecenzie.getString("nume"),
+                            jsonRecenzie.getString("data"),
+                            Float.valueOf(jsonRecenzie.getString("scor")),
+                            jsonRecenzie.getString("descriere")
+                    );
+                    account.addRecenzie(recenzie);
+                }
+                if(account.getListaRecenzii().size() > 0) {
+                    Collections.sort(account.getListaRecenzii(), new Comparator<Recenzie>() {
+                        @Override
+                        public int compare(Recenzie lhs, Recenzie rhs) {
+                            if ((lhs.getData()).compareTo((rhs.getData())) > 0) {
+                                return -1;
+                            } else if (((lhs.getData()).compareTo((rhs.getData())) < 0)) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        }
+                    });
+                }
                 int profilePhoto = jsonAccount.getInt("profile_photo");
                 if(profilePhoto == 1){
                     account.setHaveProfilPhoto(true);

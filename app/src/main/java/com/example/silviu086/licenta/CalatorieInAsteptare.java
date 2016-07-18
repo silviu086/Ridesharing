@@ -8,6 +8,7 @@ import java.util.List;
 public class CalatorieInAsteptare {
     private Calatorie calatorie;
     private String dataCerere;
+    private int idUtilizator;
     private String nume;
     private String email;
     private String telefon;
@@ -205,5 +206,13 @@ public class CalatorieInAsteptare {
 
     public Calatorie getCalatorie(){
         return this.calatorie;
+    }
+
+    public int getIdUtilizator() {
+        return idUtilizator;
+    }
+
+    public void setIdUtilizator(int idUtilizator) {
+        this.idUtilizator = idUtilizator;
     }
 }

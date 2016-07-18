@@ -72,6 +72,15 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:background="@drawable/cauta_shadow">
+
+
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,8 +102,7 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/cont_layout_shape"
-                    android:visibility="visible">
+                    android:background="@drawable/cont_layout_shape">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -121,6 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="2dp"
+                        android:padding="2dp"
                         android:background="@drawable/cont_textview_shape">
 
                         <TextView
@@ -179,8 +188,7 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/cont_layout_shape"
-                    android:visibility="gone">
+                    android:background="@drawable/cont_layout_shape">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -315,8 +323,7 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/cont_layout_shape"
-                    android:visibility="gone">
+                    android:background="@drawable/cont_layout_shape">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -548,58 +555,95 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="2dp"
-                        android:background="@drawable/cont_textview_shape" >
+                        android:id="@+id/linearLayoutFaraRecenzii">
 
                         <TextView
-                            style="@style/TitleTextViewContStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Review"
-                            android:id="@+id/textView48" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="25dp"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:id="@+id/textView52" />
-
-                        <ImageButton
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_marginLeft="-25dp"
-                            android:background="@drawable/cont_eye_icon"
-                            android:id="@+id/imageButton" />
+                            android:text="Nu exista nicio recenzie."
+                            android:textSize="16dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="italic"
+                            android:textColor="@color/colorGrayDarker"
+                            android:id="@+id/textViewFaraRecenzii" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="right" >
+                        android:id="@+id/linearLayoutRecenzii"
+                        android:visibility="visible">
 
-                        <Button
-                            android:layout_width="105dp"
-                            android:layout_height="35dp"
-                            android:text="@string/cont_button_modifica"
-                            android:textColor="@color/colorGrayDarker"
-                            android:background="@color/colorSilverDarker"
-                            android:layout_marginTop="7dp"
-                            android:id="@+id/button3" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:padding="2dp"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/cont_textview_shape" >
+
+                            <TextView
+                                style="@style/TitleTextViewContStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="2 recenzii"
+                                android:gravity="bottom"
+                                android:id="@+id/textViewNumarRecenzii" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="4,3"
+                                    android:gravity="bottom"
+                                    android:textSize="16dp"
+                                    android:layout_marginRight="5dp"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:id="@+id/textViewScorRecenzii" />
+
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    style= "@style/CustomRatingBar"
+                                    android:numStars="5"
+                                    android:stepSize="0.01"
+                                    android:id="@+id/ratingBar" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right" >
+
+                            <Button
+                                android:layout_width="140dp"
+                                android:layout_height="35dp"
+                                android:text="Afisare recenzii"
+                                android:textColor="@color/colorGrayDarker"
+                                android:background="@color/colorSilverDarker"
+                                android:layout_marginTop="7dp"
+                                android:id="@+id/buttonAfisareRecenzii" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style= "@style/CustomRatingBar"
-                        android:numStars="5"
-                        android:stepSize="0.01"
-                        android:id="@+id/ratingBar" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

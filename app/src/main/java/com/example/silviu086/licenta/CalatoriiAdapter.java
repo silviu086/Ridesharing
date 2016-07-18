@@ -128,7 +128,7 @@ public class CalatoriiAdapter extends BaseAdapter {
                 h.buttonMerg.setEnabled(false);
                 h.buttonMerg.setText("Trimitere cerere...");
                 h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
-                CalatorieTask calatorieTask = new CalatorieTask(listaCalatorii.get(position), new TaskCompleted() {
+                CalatorieTask calatorieTask = new CalatorieTask(account.getId(), listaCalatorii.get(position), new TaskCompleted() {
                     @Override
                     public void onTaskCompleted(String result) {
                         if(result.equals("sent|adaugat")){

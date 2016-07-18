@@ -117,6 +117,11 @@ public class CalatorieInAsteptareBuilder implements IBuilder {
         return this;
     }
 
+    public CalatorieInAsteptareBuilder setIdUtilizator(int id){
+        this.calatorie.setIdUtilizator(id);
+        return this;
+    }
+
     @Override
     public CalatorieInAsteptare build() {
         return calatorie;

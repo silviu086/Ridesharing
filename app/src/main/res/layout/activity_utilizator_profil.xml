@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/parent_view"
+    tools:context="com.example.silviu086.licenta.UtilizatorProfilActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#4e9cea" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:id="@+id/linearLayout4"
+                android:background="@drawable/cauta_layout_shape_8" >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/login_account"
+                    android:id="@+id/imageViewProfil" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_marginLeft="10dp"
+                    android:text="silviu086@gmail.com"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/textViewEmailProfil" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#32e8ff"
+                    android:text="Membru din data de 2016.07.11"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/textViewData" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@drawable/cauta_shadow">
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/cont_layout_shape_2"
+                    android:padding="8dp" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/cauta_layout_shape_6">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:padding="10dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/cauta_layout_shape_2"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Date personale"
+                                android:textSize="17dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textView48" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:background="@drawable/cauta_layout_shape_4" >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_nume"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView52" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:layout_gravity="right"
+                                        android:gravity="right"
+                                        android:text="Burada Silviu"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewNume" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:background="@drawable/cauta_layout_shape_4" >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_telefon"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView60" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:layout_gravity="right"
+                                        android:gravity="right"
+                                        android:text="0769453245"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewTelefon" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:layout_marginBottom="1dp"
+                                android:background="@drawable/cauta_layout_shape_4" >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_varsta"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView63" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="23 ani"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewVarsta" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="-3dp"
+                    android:background="@drawable/cont_layout_shape_2"
+                    android:padding="8dp" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/cauta_layout_shape_6" >
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:padding="10dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/cauta_layout_shape_2"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Date masina"
+                                android:textSize="17dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textView65" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Nu are o masina adaugata."
+                            android:textSize="16dp"
+                            android:padding="10dp"
+                            android:textStyle="italic"
+                            android:textColor="@color/colorGrayDarker"
+                            android:id="@+id/textViewFaraMasina" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:id="@+id/linearLayoutMasina"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:background="@drawable/cauta_layout_shape_4">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_marca"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView66" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:layout_gravity="right"
+                                        android:gravity="right"
+                                        android:text="BMW"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewMarcaMasina" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:background="@drawable/cauta_layout_shape_4">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_model"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView68" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:layout_gravity="right"
+                                        android:gravity="right"
+                                        android:text="320d"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewModelMasina" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:layout_marginBottom="1dp"
+                                android:background="@drawable/cauta_layout_shape_4">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_an"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView70" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="2005"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewAnFabricatie" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="8dp"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginLeft="-2dp"
+                                android:layout_marginRight="-2dp"
+                                android:layout_marginBottom="1dp"
+                                android:background="@drawable/cauta_layout_shape_4">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:text="@string/cont_textview_experienta"
+                                    android:textSize="15dp"
+                                    android:textColor="#8c8c8c"
+                                    android:id="@+id/textView80" />
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right"
+                                    android:gravity="right" >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="1-5 an"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:textSize="16dp"
+                                        android:id="@+id/textViewExperientaAuto" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/cont_layout_shape_2"
+                    android:padding="8dp" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/cauta_layout_shape_6" >
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:padding="10dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/cauta_layout_shape_2"
+                            android:layout_height="match_parent" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Recenzii"
+                                android:textSize="17dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textView73" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:visibility="visible" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Nu exista nicio recenzie"
+                                android:textSize="16dp"
+                                android:padding="10dp"
+                                android:textStyle="italic"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textViewFaraRecenzii" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/linearLayoutRecenzii"
+                                android:visibility="visible">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="-2dp"
+                                    android:layout_marginLeft="-2dp"
+                                    android:layout_marginRight="-2dp"
+                                    android:padding="2dp"
+                                    android:gravity="center_vertical"
+                                    android:background="@drawable/cauta_layout_shape_4" >
+
+                                    <TextView
+                                        style="@style/TitleTextViewContStyle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:textAppearance="?android:attr/textAppearanceMedium"
+                                        android:text="2 recenzii"
+                                        android:padding="8dp"
+                                        android:id="@+id/textViewNumarRecenzii" />
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="right" >
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:text="4,3"
+                                            android:textSize="16dp"
+                                            android:padding="8dp"
+                                            android:textAppearance="?android:attr/textAppearanceSmall"
+                                            android:id="@+id/textViewScorRecenzii" />
+
+                                        <RatingBar
+                                            style="@style/CustomRatingBar"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:numStars="5"
+                                            android:stepSize="0.01"
+                                            android:isIndicator="true"
+                                            android:id="@+id/ratingBar" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/cauta_layout_shape_4"
+                                    android:layout_marginTop="-3dp"
+                                    android:layout_marginLeft="-2dp"
+                                    android:layout_marginRight="-2dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:gravity="right" >
+
+                                    <Button
+                                        android:layout_width="match_parent"
+                                        android:layout_height="35dp"
+                                        android:text="Afisare recenzii"
+                                        android:textColor="@color/colorGrayDarker"
+                                        android:background="@color/colorSilverDarker"
+                                        android:layout_marginTop="7dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:id="@+id/buttonAfisareRecenzii" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

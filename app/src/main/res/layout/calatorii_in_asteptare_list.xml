@@ -47,7 +47,7 @@
                 android:textColor="@color/colorWhite"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:id="@+id/buttonDetalii" />
+                android:id="@+id/buttonProfil" />
         </LinearLayout>
     </LinearLayout>
 
@@ -312,7 +312,7 @@
                 android:textSize="14dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:id="@+id/button2" />
+                android:id="@+id/buttonDetalii" />
 
         </LinearLayout>
 

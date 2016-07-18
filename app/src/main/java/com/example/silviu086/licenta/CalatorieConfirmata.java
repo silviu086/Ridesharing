@@ -1,14 +1,16 @@
 package com.example.silviu086.licenta;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Silviu086 on 02.06.2016.
  */
-public class CalatorieConfirmata {
+public class CalatorieConfirmata implements Serializable {
     private Calatorie calatorie;
     private List<HolderPasageri> altiPasageri;
+    private int idUtilizator;
     private String nume;
     private String email;
     private String telefon;
@@ -171,6 +173,14 @@ public class CalatorieConfirmata {
     public void addPasager(String id, String email, String nume, String dataCerere){
         HolderPasageri h = new HolderPasageri(id, email, nume, dataCerere);
         altiPasageri.add(h);
+    }
+
+    public int getIdUtilizator() {
+        return idUtilizator;
+    }
+
+    public void setIdUtilizator(int idUtilizator) {
+        this.idUtilizator = idUtilizator;
     }
 
     public String getNume(){

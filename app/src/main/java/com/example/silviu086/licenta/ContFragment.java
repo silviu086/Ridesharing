@@ -39,6 +39,7 @@ import org.w3c.dom.Text;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 
 /**
@@ -58,11 +59,15 @@ public class ContFragment extends Fragment {
     private TextView textViewValueModelMasina;
     private TextView textViewValueAnFabricatie;
     private TextView textViewValueExperientaAuto;
+    private TextView textViewNumarRecenzii;
+    private TextView textViewScorRecenzii;
     private RatingBar ratingBar;
     private ImageView imageViewProfil;
     private LinearLayout linearLayoutMasinaAdauga;
     private LinearLayout linearLayoutMasinaInfo;
     private LinearLayout linearLayoutProfil;
+    private LinearLayout linearLayoutFaraRecenzii;
+    private LinearLayout linearLayoutRecenzii;
     private String imagePath;
     private Bitmap bitmapProfil = null;
 
@@ -207,6 +212,7 @@ public class ContFragment extends Fragment {
         Button buttonModificaDatePersonale;
         Button buttonModificaMasina;
         Button buttonAdaugaMasina;
+        Button buttonAfisareRecenzii;
 
         textViewEmailHeader = (TextView) v.findViewById(R.id.textViewEmailContHeader);
         textViewDateCreatedHeader = (TextView) v.findViewById(R.id.textViewDateCreatedContHeader);
@@ -218,16 +224,21 @@ public class ContFragment extends Fragment {
         textViewValueModelMasina = (TextView) v.findViewById(R.id.textViewValueModelMasinaCont);
         textViewValueAnFabricatie = (TextView) v.findViewById(R.id.textViewValueAnFabricatieCont);
         textViewValueExperientaAuto = (TextView) v.findViewById(R.id.textViewValueExperientaAutoCont);
+        textViewNumarRecenzii = (TextView) v.findViewById(R.id.textViewNumarRecenzii);
+        textViewScorRecenzii = (TextView) v.findViewById(R.id.textViewScorRecenzii);
         ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
         imageButtonPassword = (ImageButton) v.findViewById(R.id.imageButtonPasswordCont);
         buttonModificaParola = (Button) v.findViewById(R.id.buttonModificaParolaCont);
         buttonModificaDatePersonale = (Button) v.findViewById(R.id.buttonModificaDatePersonale);
         buttonModificaMasina = (Button) v.findViewById(R.id.buttonModificaMasina);
         buttonAdaugaMasina = (Button) v.findViewById(R.id.buttonAdaugaMasina);
+        buttonAfisareRecenzii = (Button) v.findViewById(R.id.buttonAfisareRecenzii);
         imageViewProfil = (ImageView) v.findViewById(R.id.imageViewProfil);
         linearLayoutMasinaAdauga = (LinearLayout) v.findViewById(R.id.layout_masina_adauga);
         linearLayoutMasinaInfo = (LinearLayout) v.findViewById(R.id.layout_masina_info);
         linearLayoutProfil = (LinearLayout) v.findViewById(R.id.linearLayoutProfil);
+        linearLayoutFaraRecenzii = (LinearLayout) v.findViewById(R.id.linearLayoutFaraRecenzii);
+        linearLayoutRecenzii = (LinearLayout) v.findViewById(R.id.linearLayoutRecenzii);
 
         File mypath=new File(getContext().getFilesDir(),"photo_" + String.valueOf(account.getId()) + ".png");
         if (mypath.exists()) {
@@ -254,6 +265,32 @@ public class ContFragment extends Fragment {
         }
 
 
+        //set recenzii
+        if(account.getListaRecenzii().size() > 0){
+            linearLayoutFaraRecenzii.setVisibility(View.GONE);
+            linearLayoutRecenzii.setVisibility(View.VISIBLE);
+            textViewNumarRecenzii.setText(String.valueOf(account.getListaRecenzii().size()) + " recenzii");
+            float medie = 0;
+            for(int i=0;i<account.getListaRecenzii().size();i++){
+                medie += account.getListaRecenzii().get(i).getScor();
+            }
+            medie = medie/account.getListaRecenzii().size();
+            DecimalFormat df = new DecimalFormat("#.0");
+            textViewScorRecenzii.setText(String.valueOf(df.format(medie)));
+            ratingBar.setRating(medie);
+            ratingBar.setIsIndicator(true);
+            buttonAfisareRecenzii.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it = new Intent(getContext(), ContRecenziiActivity.class);
+                    it.putExtra("account", account);
+                    startActivity(it);
+                }
+            });
+        }else{
+            linearLayoutFaraRecenzii.setVisibility(View.VISIBLE);
+            linearLayoutRecenzii.setVisibility(View.GONE);
+        }
 
         imageButtonPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override

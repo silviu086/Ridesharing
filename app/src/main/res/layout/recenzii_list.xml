@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/cauta_layout_shape_6" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:background="@drawable/cauta_layout_shape_6" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Burada Silviu"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlue"
+                    android:id="@+id/textViewNume" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="2016.07.12, 15:44"
+                    android:textSize="15dp"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorGray"
+                    android:id="@+id/textViewData" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="4,3"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="bottom"
+                    android:textSize="16dp"
+                    android:layout_marginRight="5dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/textViewScorRecenzii" />
+
+                <RatingBar
+                    style="@style/CustomRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.01"
+                    android:isIndicator="true"
+                    android:id="@+id/ratingBar" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/cauta_layout_shape_2"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="6dp"
+            android:padding="5dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Calatoria a fost foarte ok.Am ascultat muzica, am vorbit. Este un sofer bun!"
+                android:padding="10dp"
+                android:textColor="@color/colorGrayDarker"
+                android:background="@drawable/calatorii_adaugate_shape"
+                android:textSize="15dp"
+                android:textStyle="italic"
+                android:id="@+id/textViewDescriere" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

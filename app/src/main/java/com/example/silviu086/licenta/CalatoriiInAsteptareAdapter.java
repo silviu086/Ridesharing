@@ -37,6 +37,7 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
         TextView textViewData;
         TextView textViewDataCerere;
         Button buttonDetalii;
+        Button buttonProfil;
         LinearLayout linearLayoutTitle;
         View t;
         TextView textViewTitleData;
@@ -52,6 +53,7 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
             textViewData = (TextView) v.findViewById(R.id.textViewData);
             textViewDataCerere = (TextView) v.findViewById(R.id.textViewDataCerere);
             buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
+            buttonProfil = (Button) v.findViewById(R.id.buttonProfil);
             linearLayoutTitle = (LinearLayout) v.findViewById(R.id.linearLayoutTitle);
         }
     }
@@ -81,7 +83,7 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
         HolderInAsteptare h = null;
         final CalatorieInAsteptare calatorie = calatorii.get(position);
@@ -123,16 +125,17 @@ public class CalatoriiInAsteptareAdapter extends BaseAdapter {
         h.buttonDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(context, CalatorieDetaliiActivity.class);
-                it.putExtra("calatorie", calatorie.getCalatorie());
-                AccountBuilder builder = new AccountBuilder();
-                Account ac = builder
-                        .setNume(calatorie.getNume())
-                        .setEmail(calatorie.getEmail())
-                        .setTelefon(calatorie.getTelefon())
-                        .setVarsta(Integer.valueOf(calatorie.getVarsta()))
-                        .build();
-                it.putExtra("account", ac);
+                Intent it = new Intent(context, CalatorieInAsteptareDetalii.class);
+                it.putExtra("position", position);
+                context.startActivity(it);
+            }
+        });
+        h.buttonProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(context, UtilizatorProfilActivity.class);
+                it.putExtra("id_utilizator", calatorie.getIdUtilizator());
+                it.putExtra("nume", calatorie.getNume());
                 context.startActivity(it);
             }
         });

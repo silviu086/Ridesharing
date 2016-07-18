@@ -9,11 +9,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -45,6 +47,42 @@ public class CalatoriiAdaugateConfirmareTask extends AsyncTask<String, Integer, 
 
     @Override
     protected String doInBackground(String... params) {
+        try{
+            URL url = new URL(UrlLinks.URL_GCM_MESSAGE);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setDoInput(true);
+            con.setDoOutput(true);
+            con.setRequestMethod("POST");
+            con.connect();
+
+            String query = new Uri.Builder()
+                    .appendQueryParameter("id_account", String.valueOf(pasagerId))
+                    .appendQueryParameter("message", "Cererea ta a fost confirmata!")
+                    .appendQueryParameter("type", "0").build().getEncodedQuery();
+
+            OutputStream os = con.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(query);
+            writer.flush();
+            writer.close();
+            os.close();
+
+            InputStream is = con.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while( (line = reader.readLine()) != null){
+                sb.append(line);
+            }
+            Log.i("CalatoriiAdaugateConfir", sb.toString());
+            reader.close();
+            is.close();
+            con.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try{
             URL url = new URL(UrlLinks.URL_CONFIRMA_CERERE);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
