@@ -56,8 +56,9 @@ public class CalatorieTask extends AsyncTask<String, Integer, String> {
             con.connect();
 
             String query = new Uri.Builder()
-                    .appendQueryParameter("id_account", String.valueOf(accountId))
-                    .appendQueryParameter("message", "Ati primit o cerere noua!")
+                    .appendQueryParameter("id_destinatar", String.valueOf(accountId))
+                    .appendQueryParameter("id_expeditor", String.valueOf(NavigationActivity.account.getId()))
+                    .appendQueryParameter("id_calatorie", String.valueOf(calatorie.getId()))
                     .appendQueryParameter("type", "0").build().getEncodedQuery();
 
             OutputStream os = con.getOutputStream();

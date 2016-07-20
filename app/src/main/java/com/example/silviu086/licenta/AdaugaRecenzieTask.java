@@ -11,11 +11,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -93,6 +95,38 @@ public class AdaugaRecenzieTask extends AsyncTask<String, Integer, Integer> {
 
             JSONObject json = new JSONObject(sb.toString());
             int success = json.getInt("success");
+            if(success == 1) {
+                url = new URL(UrlLinks.URL_GCM_MESSAGE);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setDoInput(true);
+                con.setDoOutput(true);
+                con.setRequestMethod("POST");
+                con.connect();
+
+                query = new Uri.Builder()
+                        .appendQueryParameter("id_calatorie", bundle.getString("id_calatorie").toString())
+                        .appendQueryParameter("id_expeditor", bundle.getString("id_utilizator").toString())
+                        .appendQueryParameter("id_destinatar", bundle.getString("id_utilizator_vizat").toString())
+                        .appendQueryParameter("type", "2").build().getEncodedQuery();
+
+                os = con.getOutputStream();
+                writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                is = con.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(is));
+                sb = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                Log.i("CalatoriiAdaugateConfir", sb.toString());
+                reader.close();
+                is.close();
+                con.disconnect();
+            }
             return success;
         }catch (Exception ex){
             Log.e("AdaugaRecenzieTask: ", ex.toString());

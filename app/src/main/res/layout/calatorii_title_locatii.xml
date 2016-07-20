@@ -4,69 +4,31 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cont_layout_shape"
         android:layout_marginTop="10dp"
+        android:padding="8dp"
         android:id="@+id/linearLayoutTitleLocatii">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/calatorii_adaugate_punct_plecare"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="3dp"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical">
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Turnu-Magurele - Alexandria"
+            android:textSize="16dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="italic"
+            android:textColor="@color/colorGrayDarker"
+            android:id="@+id/textViewTitleLocatii" />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/calatorii_adaugate_punct_plecare"
-                android:id="@+id/imageView2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:textSize="16dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="italic"
-                android:textColor="@color/colorGrayDarker"
-                android:id="@+id/textViewTitlePunctPlecare" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="4dp"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/calatorii_adaugate_punct_sosire"
-                android:id="@+id/imageView4" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:textSize="16dp"
-                android:textStyle="italic"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/colorGrayDarker"
-                android:id="@+id/textViewTitlePunctSosire" />
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

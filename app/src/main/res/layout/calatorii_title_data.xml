@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:src="@drawable/adauga_datepicker_color"
+            android:src="@drawable/adauga_datepicker"
             android:id="@+id/imageView5" />
 
         <TextView

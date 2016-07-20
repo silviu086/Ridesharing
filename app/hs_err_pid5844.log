@@ -1,0 +1,117 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 35744 bytes for Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:323), pid=5844, tid=4904
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_79-b15) (build 1.7.0_79-b15)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.79-b02 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000809f000):  JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=4904, stack(0x0000000009730000,0x0000000009830000)]
+
+Stack: [0x0000000009730000,0x0000000009830000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+[error occurred during error reporting (printing native stack), id 0xc0000005]
+
+
+Current CompileTask:
+C2:    238    4             java.lang.String::replace (127 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00000000080a5000 JavaThread "Service Thread" daemon [_thread_blocked, id=4548, stack(0x0000000009830000,0x0000000009930000)]
+=>0x000000000809f000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=4904, stack(0x0000000009730000,0x0000000009830000)]
+  0x0000000008095000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=6788, stack(0x0000000009630000,0x0000000009730000)]
+  0x0000000008094000 JavaThread "Attach Listener" daemon [_thread_blocked, id=5048, stack(0x0000000009530000,0x0000000009630000)]
+  0x0000000008091000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5368, stack(0x0000000009430000,0x0000000009530000)]
+  0x000000000805f000 JavaThread "Finalizer" daemon [_thread_blocked, id=4256, stack(0x0000000009310000,0x0000000009410000)]
+  0x0000000008056000 JavaThread "Reference Handler" daemon [_thread_blocked, id=696, stack(0x0000000009210000,0x0000000009310000)]
+  0x000000000068d800 JavaThread "main" [_thread_in_Java, id=6880, stack(0x0000000001fd0000,0x00000000020d0000)]
+
+Other Threads:
+  0x0000000008052000 VMThread [stack: 0x0000000009110000,0x0000000009210000] [id=5812]
+  0x00000000080b3800 WatcherThread [stack: 0x0000000009930000,0x0000000009a30000] [id=404]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 18944K, used 1639K [0x00000000eaa80000, 0x00000000ebf80000, 0x0000000100000000)
+  eden space 16384K, 10% used [0x00000000eaa80000,0x00000000eac19e78,0x00000000eba80000)
+  from space 2560K, 0% used [0x00000000ebd00000,0x00000000ebd00000,0x00000000ebf80000)
+  to   space 2560K, 0% used [0x00000000eba80000,0x00000000eba80000,0x00000000ebd00000)
+ ParOldGen       total 42496K, used 0K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c2980000)
+ PSPermGen       total 21504K, used 3276K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 15% used [0x00000000bae00000,0x00000000bb1332d8,0x00000000bc300000)
+
+Card table byte_map: [0x00000000052c0000,0x00000000054f0000] byte_map_base: 0x0000000004ce9000
+
+Polling page: 0x0000000000730000
+
+Code Cache  [0x0000000002200000, 0x0000000002470000, 0x0000000005200000)
+ total_blobs=193 nmethods=3 adapters=143 free_code_cache=48762Kb largest_free_block=49921216
+
+Compilation events (7 events):
+Event: 0.163 Thread 0x0000000008095000    1             java.lang.String::indexOf (70 bytes)
+Event: 0.171 Thread 0x0000000008095000 nmethod 1 0x0000000002260e10 code [0x0000000002260f60, 0x00000000022610e8]
+Event: 0.180 Thread 0x000000000809f000    2             java.lang.String::hashCode (55 bytes)
+Event: 0.183 Thread 0x000000000809f000 nmethod 2 0x0000000002260ad0 code [0x0000000002260c00, 0x0000000002260d58]
+Event: 0.190 Thread 0x0000000008095000    3             java.lang.String::lastIndexOf (52 bytes)
+Event: 0.192 Thread 0x0000000008095000 nmethod 3 0x00000000022604d0 code [0x0000000002260620, 0x0000000002260788]
+Event: 0.230 Thread 0x000000000809f000    4             java.lang.String::replace (127 bytes)
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 0.193 Thread 0x000000000068d800 Threw 0x00000000eab8fc08 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.194 Thread 0x000000000068d800 Threw 0x00000000eab91db0 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.202 Thread 0x000000000068d800 Threw 0x00000000eab96970 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.202 Thread 0x000000000068d800 Threw 0x00000000eab9ade8 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.203 Thread 0x000000000068d800 Threw 0x00000000eab9f838 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.204 Thread 0x000000000068d800 Threw 0x00000000eaba3e08 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.209 Thread 0x000000000068d800 Threw 0x00000000eabab528 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.210 Thread 0x000000000068d800 Threw 0x00000000eabb0d00 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.211 Thread 0x000000000068d800 Threw 0x00000000eabb2e88 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+Event: 0.213 Thread 0x000000000068d800 Threw 0x00000000eabb8dc0 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jvm.cpp:1304
+
+Events (10 events):
+Event: 0.227 loading class 0x00000000080e68a0 done
+Event: 0.227 loading class 0x00000000080e6810 done
+Event: 0.227 loading class 0x00000000080e6110
+Event: 0.227 loading class 0x00000000080e6110 done
+Event: 0.227 loading class 0x00000000080e68d0
+Event: 0.227 loading class 0x00000000080e68d0 done
+Event: 0.227 loading class 0x000000000214da70
+Event: 0.228 loading class 0x00000000080e8620
+Event: 0.228 loading class 0x00000000080e8620 done
+Event: 0.228 loading class 0x000000000214da70 done
+
+
+Dynamic libraries:

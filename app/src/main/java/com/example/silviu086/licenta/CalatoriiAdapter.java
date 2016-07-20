@@ -2,19 +2,25 @@ package com.example.silviu086.licenta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -53,13 +59,27 @@ public class CalatoriiAdapter extends BaseAdapter {
     static class Holder {
         TextView textViewNumar;
         TextView textViewDataAdaugare;
+        ImageView imageViewProfil;
         TextView textViewNume;
         Button buttonDetalii;
         TextView textViewDataPlecare;
         TextView textViewOraPlecare;
         TextView textViewPret;
         TextView textViewLocuriDisponibile;
-        TextView buttonMerg;
+        Button buttonMerg;
+
+        public Holder(View v){
+            textViewNumar = (TextView) v.findViewById(R.id.textViewNumar);
+            textViewDataAdaugare = (TextView) v.findViewById(R.id.textViewDataAdaugare);
+            imageViewProfil = (ImageView) v.findViewById(R.id.imageViewProfil);
+            textViewNume = (TextView) v.findViewById(R.id.textViewNume);
+            buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
+            textViewDataPlecare = (TextView) v.findViewById(R.id.textViewDataPlecare);
+            textViewOraPlecare = (TextView) v.findViewById(R.id.textViewOraPlecare);
+            textViewPret = (TextView) v.findViewById(R.id.textViewPret);
+            textViewLocuriDisponibile = (TextView) v.findViewById(R.id.textViewLocuriDisponibile);
+            buttonMerg = (Button) v.findViewById(R.id.buttonMerg);
+        }
     }
 
     private boolean searchPasager(String pasager, String[] listaPasageri){
@@ -73,21 +93,23 @@ public class CalatoriiAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        View v;
-        v = inflater.inflate(R.layout.calatorii_list, null);
+        View v = convertView;
+        Holder h = null;
         final Calatorie calatorie = listaCalatorii.get(position);
         final Account account = listaConturi.get(position);
-        final Holder h = new Holder();
-        h.textViewNumar = (TextView) v.findViewById(R.id.textViewNumar);
-        h.textViewDataAdaugare = (TextView) v.findViewById(R.id.textViewDataAdaugare);
-        h.textViewNume = (TextView) v.findViewById(R.id.textViewNume);
-        h.buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
-        h.textViewDataPlecare = (TextView) v.findViewById(R.id.textViewDataPlecare);
-        h.textViewOraPlecare = (TextView) v.findViewById(R.id.textViewOraPlecare);
-        h.textViewPret = (TextView) v.findViewById(R.id.textViewPret);
-        h.textViewLocuriDisponibile = (TextView) v.findViewById(R.id.textViewLocuriDisponibile);
-        h.buttonMerg = (Button) v.findViewById(R.id.buttonMerg);
 
+        if (convertView == null) {
+            v = inflater.inflate(R.layout.calatorii_list, null);
+            h = new Holder(v);
+            v.setTag(h);
+        } else {
+            h = (Holder)v.getTag();
+        }
+        final File mypath = new File(context.getFilesDir(), "photo_" + String.valueOf(account.getId()) + ".png");
+        if(mypath.exists()){
+            Drawable photo = Drawable.createFromPath(mypath.getAbsolutePath());
+            h.imageViewProfil.setBackground(photo);
+        }
         h.textViewNumar.setText(String.valueOf(position + 1));
         h.textViewDataAdaugare.setText(calatorie.getDataCreare());
         h.textViewNume.setText(account.getNume());
@@ -122,18 +144,19 @@ public class CalatoriiAdapter extends BaseAdapter {
             h.buttonMerg.setEnabled(false);
         }
 
+        final Holder finalH1 = h;
         h.buttonMerg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                h.buttonMerg.setEnabled(false);
-                h.buttonMerg.setText("Trimitere cerere...");
-                h.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
+                finalH1.buttonMerg.setEnabled(false);
+                finalH1.buttonMerg.setText("Trimitere cerere...");
+                finalH1.buttonMerg.setTextColor(context.getResources().getColor(R.color.colorGray));
                 CalatorieTask calatorieTask = new CalatorieTask(account.getId(), listaCalatorii.get(position), new TaskCompleted() {
                     @Override
                     public void onTaskCompleted(String result) {
                         if(result.equals("sent|adaugat")){
                             Toast.makeText(context, "O cerere a fost trimisa catre " + account.getNume() + "!", Toast.LENGTH_LONG).show();
-                            h.buttonMerg.setText("In asteptare");
+                            finalH1.buttonMerg.setText("In asteptare");
                             Handler mainHandler = new Handler(context.getMainLooper());
                             mainHandler.post(new Runnable() {
                                 @Override

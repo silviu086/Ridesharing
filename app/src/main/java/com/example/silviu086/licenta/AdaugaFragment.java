@@ -659,7 +659,7 @@ public class AdaugaFragment extends Fragment {
         buttonAdauga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm");
                 Date date = new Date();
                 String dateCreated = dateFormat.format(date);
                 CalatorieBuilder builder = new CalatorieBuilder();
@@ -731,12 +731,12 @@ public class AdaugaFragment extends Fragment {
         textViewUnuBody.setBackgroundColor(getResources().getColor(R.color.colorBlue));
         textViewDoiHead.setTextColor(getResources().getColor(R.color.colorBlue));
         linearLayoutDoi.setBackground(getResources().getDrawable(R.drawable.cont_layout_shape));
-        imageButtonPretMinus.setBackground(getResources().getDrawable(R.drawable.adauga_minus_color));
-        imageButtonPretPlus.setBackground(getResources().getDrawable(R.drawable.adauga_plus_color));
-        imageButtonDatePicker.setBackground(getResources().getDrawable(R.drawable.adauga_datepicker_color));
-        imageButtonTimePicker.setBackground(getResources().getDrawable(R.drawable.adauga_timepicker_color));
-        imageButtonLocuriMinus.setBackground(getResources().getDrawable(R.drawable.adauga_minus_color));
-        imageButtonLocuriPlus.setBackground(getResources().getDrawable(R.drawable.adauga_plus_color));
+        imageButtonPretMinus.setBackground(getResources().getDrawable(R.drawable.adauga_minus));
+        imageButtonPretPlus.setBackground(getResources().getDrawable(R.drawable.adauga_plus));
+        imageButtonDatePicker.setBackground(getResources().getDrawable(R.drawable.adauga_datepicker));
+        imageButtonTimePicker.setBackground(getResources().getDrawable(R.drawable.adauga_timepicker));
+        imageButtonLocuriMinus.setBackground(getResources().getDrawable(R.drawable.adauga_minus));
+        imageButtonLocuriPlus.setBackground(getResources().getDrawable(R.drawable.adauga_plus));
 
         textViewPretTitle.setEnabled(true);
         textViewPret.setEnabled(true);

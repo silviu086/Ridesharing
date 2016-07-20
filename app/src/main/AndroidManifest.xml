@@ -43,6 +43,7 @@
             android:name=".NavigationActivity2"
             android:label="@string/title_activity_navigation2"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NavigationActivity"
@@ -112,7 +113,10 @@
         <activity android:name=".CalatorieInAsteptareDetalii" />
         <activity android:name=".CalatorieConfirmataDetaliiActivity" />
         <activity android:name=".TrimiteMesajActivity" />
-        <activity android:name=".AdaugaRecenzieActivity"></activity>
+        <activity android:name=".AdaugaRecenzieActivity" />
+        <activity
+            android:name=".CalatorieConfirmataChat"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

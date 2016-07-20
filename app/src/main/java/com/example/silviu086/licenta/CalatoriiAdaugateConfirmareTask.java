@@ -56,9 +56,10 @@ public class CalatoriiAdaugateConfirmareTask extends AsyncTask<String, Integer, 
             con.connect();
 
             String query = new Uri.Builder()
-                    .appendQueryParameter("id_account", String.valueOf(pasagerId))
-                    .appendQueryParameter("message", "Cererea ta a fost confirmata!")
-                    .appendQueryParameter("type", "0").build().getEncodedQuery();
+                    .appendQueryParameter("id_destinatar", String.valueOf(pasagerId))
+                    .appendQueryParameter("id_expeditor", String.valueOf(NavigationActivity.account.getId()))
+                    .appendQueryParameter("id_calatorie", String.valueOf(calatorieId))
+                    .appendQueryParameter("type", "1").build().getEncodedQuery();
 
             OutputStream os = con.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));

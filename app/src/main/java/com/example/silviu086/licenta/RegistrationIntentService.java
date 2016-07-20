@@ -88,6 +88,9 @@ public class RegistrationIntentService extends IntentService {
     private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
         GCMServer.register(token, String.valueOf(NavigationActivity.account.getId()));
+        SharedPreferences.Editor editor = MainActivity.sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.apply();
     }
 
     /**

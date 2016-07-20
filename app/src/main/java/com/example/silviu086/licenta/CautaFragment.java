@@ -3,6 +3,7 @@ package com.example.silviu086.licenta;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -40,6 +41,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 
@@ -211,7 +214,10 @@ public class CautaFragment extends Fragment {
                                 JSONObject jsonObject = new JSONObject(result);
                                 int success = jsonObject.getInt("success");
                                 if (success == 1) {
-                                    linearLayoutInfoCalatorie.setVisibility(View.VISIBLE);
+                                    final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                                    progressDialog.setTitle("Loading...");
+                                    progressDialog.setMessage("Se preiau datele!!");
+                                    progressDialog.show();
                                     JSONArray jsonCalatorii = jsonObject.getJSONArray("calatorii");
                                     for (int i = 0; i < jsonCalatorii.length(); i++) {
                                         JSONObject jsonCalatorie = jsonCalatorii.getJSONObject(i);
@@ -247,17 +253,44 @@ public class CautaFragment extends Fragment {
                                         listaCalatorii.add(calatorie);
                                         listaConturi.add(account);
                                     }
-                                    CalatoriiAdapter adapter = new CalatoriiAdapter(getContext(), listaCalatorii, listaConturi);
-                                    linearLayoutLocatii.setVisibility(View.GONE);
-                                    textViewPunctPlecare.setText(listaCalatorii.get(0).getPunctPlecare());
-                                    textViewPunctSosire.setText(listaCalatorii.get(0).getPunctSosire());
-                                    textViewDurataCalatorie.setText(listaCalatorii.get(0).getDurataCalatorie());
-                                    textViewDistantaCalatorie.setText(listaCalatorii.get(0).getDistantaCalatorie());
-                                    listViewCalatorii.setAdapter(adapter);
-                                    if (listaCalatorii.size() == 1) {
-                                        textViewSearchInfo.setText("o calatorie gasita");
-                                    } else {
-                                        textViewSearchInfo.setText(listaCalatorii.size() + " calatorii gasite");
+                                    for (int i = 0; i < listaConturi.size(); i++) {
+                                        final File mypath = new File(getContext().getFilesDir(), "photo_" + String.valueOf(listaConturi.get(i).getId()) + ".png");
+                                        final int finalI = i;
+                                        ContDownloadPhotoTask pasagerDownloadPhotoTask = new ContDownloadPhotoTask(getContext(), listaConturi.get(i).getId(), new TaskCompletedUpload() {
+                                            @Override
+                                            public void onTaskCompleted(Bitmap bitmap) {
+                                                if (bitmap != null) {
+                                                    try {
+                                                        FileOutputStream out = new FileOutputStream(mypath);
+                                                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                                                        out.flush();
+                                                        out.close();
+                                                    } catch (Exception ex) {
+                                                        Log.e("CalatoriiInAsteptare", ex.getMessage());
+                                                    }
+                                                }
+                                                if (finalI == listaConturi.size() - 1) {
+                                                    progressDialog.dismiss();
+                                                    textViewSearchResult.setVisibility(View.GONE);
+                                                    linearLayoutSearch.setVisibility(View.GONE);
+                                                    linearLayoutSearchInfo.setVisibility(View.VISIBLE);
+                                                    linearLayoutInfoCalatorie.setVisibility(View.VISIBLE);
+                                                    CalatoriiAdapter adapter = new CalatoriiAdapter(getContext(), listaCalatorii, listaConturi);
+                                                    linearLayoutLocatii.setVisibility(View.GONE);
+                                                    textViewPunctPlecare.setText(listaCalatorii.get(0).getPunctPlecare());
+                                                    textViewPunctSosire.setText(listaCalatorii.get(0).getPunctSosire());
+                                                    textViewDurataCalatorie.setText(listaCalatorii.get(0).getDurataCalatorie());
+                                                    textViewDistantaCalatorie.setText(listaCalatorii.get(0).getDistantaCalatorie());
+                                                    listViewCalatorii.setAdapter(adapter);
+                                                    if (listaCalatorii.size() == 1) {
+                                                        textViewSearchInfo.setText("o calatorie gasita");
+                                                    } else {
+                                                        textViewSearchInfo.setText(listaCalatorii.size() + " calatorii gasite");
+                                                    }
+                                                }
+                                            }
+                                        });
+                                        pasagerDownloadPhotoTask.execute();
                                     }
                                 } else {
                                     linearLayoutInfoCalatorie.setVisibility(View.GONE);

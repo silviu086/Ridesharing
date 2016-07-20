@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.silviu086.licenta.CalatorieConfirmataChat">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:background="#4895ed">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayoutUsers"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="9dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:stackFromBottom="true"
+        android:background="@drawable/cauta_layout_shape_6"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="-2dp"
+        android:transcriptMode="alwaysScroll" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/cauta_layout_shape_2"
+        android:layout_marginTop="-60dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:textSize="16dp"
+            android:hint="scrie un mesaj"
+            android:paddingRight="55dp"
+            android:gravity="bottom"
+            android:id="@+id/message_et" />
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="-45dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/mesaje_conversatie_send"
+            android:onClick="sendMessage"
+            android:id="@+id/imageButtonSend" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

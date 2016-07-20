@@ -126,7 +126,7 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                     }
                 }
                 */
-
+                Setari.LOGAT = true;
                 JSONObject json = new JSONObject(result);
                 JSONObject jsonAccount = json.getJSONObject("account");
                 final Account account = new AccountBuilder()
@@ -210,13 +210,13 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                             editor.putString("username", account.getEmail());
                             editor.putString("password", account.getParola());
                             editor.putInt("id", account.getId());
-                            editor.commit();
+                            editor.apply();
                         }else{
                             SharedPreferences.Editor edit = MainActivity.sharedPreferences.edit();
                             edit.remove("username");
                             edit.remove("password");
                             edit.remove("id");
-                            edit.commit();
+                            edit.apply();
                         }
                         startActivity(it);
                     }

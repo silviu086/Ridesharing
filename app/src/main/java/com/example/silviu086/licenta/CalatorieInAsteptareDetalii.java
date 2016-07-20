@@ -38,6 +38,7 @@ public class CalatorieInAsteptareDetalii extends AppCompatActivity {
     private TextView textViewDistanta;
     private TextView textViewDataCalatorie;
     private TextView textViewLocuri;
+    private TextView textViewPret;
     private TextView textViewMarca;
     private TextView textViewModel;
     private TextView textViewAnFabricatie;
@@ -71,6 +72,7 @@ public class CalatorieInAsteptareDetalii extends AppCompatActivity {
         textViewDistanta = (TextView) findViewById(R.id.textViewDistanta);
         textViewDataCalatorie = (TextView) findViewById(R.id.textViewDataCalatorie);
         textViewLocuri = (TextView) findViewById(R.id.textViewLocuri);
+        textViewPret = (TextView) findViewById(R.id.textViewPret);
         textViewMarca = (TextView) findViewById(R.id.textViewMarca);
         textViewModel = (TextView) findViewById(R.id.textViewModel);
         textViewAnFabricatie = (TextView) findViewById(R.id.textViewAnFabricatie);
@@ -87,13 +89,14 @@ public class CalatorieInAsteptareDetalii extends AppCompatActivity {
 
         textViewEmail.setText(calatorie.getEmail());
         textViewIdCalatorie.setText("Calatoria " + String.valueOf(calatorie.getId()));
-        textViewDataAdaugare.setText("Adaugata pe " + calatorie.getDataCreare());
+        textViewDataAdaugare.setText(calatorie.getDataCreare());
         textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         textViewPunctSosire.setText(calatorie.getPunctSosire());
         textViewDurata.setText(calatorie.getDurataCalatorie());
         textViewDistanta.setText(calatorie.getDistantaCalatorie());
-        textViewDataCalatorie.setText(calatorie.getDataPlecare());
+        textViewDataCalatorie.setText(calatorie.getDataPlecare() + ", " + calatorie.getOraPlecare());
         textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()) + " locuri");
+        textViewPret.setText(String.valueOf(calatorie.getPret()) + " lei");
         textViewMarca.setText(calatorie.getMarcaMasina());
         textViewModel.setText(calatorie.getModelMasina());
         textViewAnFabricatie.setText(String.valueOf(calatorie.getAnFabricatie()));
@@ -112,7 +115,12 @@ public class CalatorieInAsteptareDetalii extends AppCompatActivity {
         buttonMesaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent it = new Intent(CalatorieInAsteptareDetalii.this, TrimiteMesajActivity.class);
+                it.putExtra("id_calatorie", calatorie.getId());
+                it.putExtra("id_destinatar", calatorie.getIdUtilizator());
+                it.putExtra("nume", calatorie.getNume());
+                it.putExtra("email", calatorie.getEmail());
+                startActivity(it);
             }
         });
 
@@ -127,12 +135,10 @@ public class CalatorieInAsteptareDetalii extends AppCompatActivity {
                 if (bitmap != null) {
                     try {
                         File mypath = new File(getFilesDir(), "photo_" + String.valueOf(calatorie.getIdUtilizator()) + ".png");
-                        if (!mypath.exists()) {
-                            FileOutputStream out = new FileOutputStream(mypath);
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
-                            out.flush();
-                            out.close();
-                        }
+                        FileOutputStream out = new FileOutputStream(mypath);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                        out.flush();
+                        out.close();
                     } catch (Exception ex) {
                         Log.e("LoginTabFragment", ex.getMessage());
                     }

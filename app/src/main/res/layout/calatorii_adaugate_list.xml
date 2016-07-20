@@ -12,154 +12,151 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
+        android:layout_height="65dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/cauta_layout_shape_8">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Calatoria 55"
-            android:textColor="@color/colorWhite"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:layout_marginTop="-2dp"
-            android:layout_marginBottom="-2dp"
-            android:layout_marginLeft="-2dp"
-            android:layout_marginRight="-2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="5dp"
-            android:gravity="center_vertical"
-            android:id="@+id/textviewNumarCalatorie" />
 
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="7dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calatoria 55"
+                android:textColor="@color/colorWhite"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginTop="-2dp"
+                android:layout_marginBottom="-2dp"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginRight="-2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textviewNumarCalatorie" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="2016.07.08, 12:30"
+                android:textSize="15dp"
+                android:textStyle="italic"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/textViewData" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Adaugata pe 2016.07.08, 12:30"
-            android:textSize="15dp"
-            android:textColor="@color/colorWhite"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/textViewData" />
+            android:layout_marginLeft="-149dp"
+            android:layout_marginTop="-1dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="4dp"
+            android:background="@drawable/cauta_layout_shape_8">
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:paddingBottom="2dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/calatorii_adaugate_cereri_in_asteptare"
+                    android:id="@+id/imageView4" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="4"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:background="@drawable/cauta_layout_shape_6"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/colorRedLighter"
+                        android:id="@+id/textViewCereriInAsteptare" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="7dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/calatorii_adaugate_cereri_confirmate"
+                    android:id="@+id/imageView5" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="2"
+                        android:textSize="16dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:background="@drawable/cauta_layout_shape_6"
+                        android:textStyle="bold"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#53a6ff"
+                        android:id="@+id/textViewCereriConfirmate" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="-1dp"
-        android:background="@drawable/cont_layout_shape">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:background="@drawable/cauta_layout_shape_2"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:paddingBottom="2dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Cereri in asteptare"
-                android:textSize="15dp"
-                android:textColor="#878787"
-                android:id="@+id/textView36" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:gravity="right" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="4"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:background="@drawable/cauta_layout_shape_6"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textColor="@color/colorRedLighter"
-                    android:id="@+id/textViewCereriInAsteptare" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="7dp"
-            android:paddingRight="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/cauta_layout_shape_2"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Cereri confirmate"
-                android:textSize="15dp"
-                android:textColor="#878787"
-                android:id="@+id/textView32" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:gravity="right" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="2"
-                    android:textSize="16dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:background="@drawable/cauta_layout_shape_6"
-                    android:textStyle="bold"
-                    android:textColor="#53a6ff"
-                    android:id="@+id/textViewCereriConfirmate" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
         android:layout_marginTop="-3dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/cauta_layout_shape_6">
 
         <LinearLayout
@@ -307,39 +304,53 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="7dp"
-            android:paddingRight="7dp"
-            android:background="@drawable/cauta_layout_shape_2" >
+            android:gravity="right"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="7dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/linearLayoutDetalii"
+            android:background="@drawable/calatorii_adaugate_shape_textview" >
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" >
+                android:gravity="center_vertical"
+                android:textSize="16dp"
+                android:textColor="#3d9bff"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Mai multe detalii despre calatorie"
+                android:id="@+id/textView32" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/calatorii_confirmate_shape"
-                    android:text="Mai multe detalii"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/colorBlue"
-                    android:textSize="14dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:id="@+id/buttonDetalii" />
-
-            </LinearLayout>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:background="@drawable/right_arrow"
+                android:id="@+id/imageView7" />
 
         </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="-2dp"
+        android:background="@drawable/calatorie_detalii_shadow">
 
 
     </LinearLayout>

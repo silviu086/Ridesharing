@@ -1,0 +1,142 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_STACK_OVERFLOW (0xc00000fd) at pc=0x000000005aaf30e7, pid=3208, tid=6344
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_79-b15) (build 1.7.0_79-b15)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.79-b02 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# C  [msvcr100.dll+0x230e7]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000008504000):  JavaThread "Attach Listener" daemon [_thread_new, id=6344, stack(0x0000000009970000,0x0000000009a70000)]
+
+siginfo: ExceptionCode=0xc00000fd, ExceptionInformation=0x0000000000000001 0x0000000009a6d000 
+
+Registers:
+RAX=0x0000000000001b30, RBX=0x0000000000000058, RCX=0x0000000000000001, RDX=0x0000000009a6f380
+RSP=0x0000000009a6f288, RBP=0x0000000009a6d870, RSI=0x000000000000002b, RDI=0x0000000000000001
+R8 =0x000000000000002b, R9 =0x000000005aad0000, R10=0x0000000009a6d000, R11=0x0000000009a6d000
+R12=0x0000000009a6f380, R13=0x0000000000000000, R14=0x000000005ab89b40, R15=0x0000000000000000
+RIP=0x000000005aaf30e7, EFLAGS=0x0000000000010286
+
+Top of Stack: (sp=0x0000000009a6f288)
+0x0000000009a6f288:   0000000000000000 0000000000000200
+0x0000000009a6f298:   000000005ab3cbc2 0000000000000000
+0x0000000009a6f2a8:   000000005ab89b40 0000000000000000
+0x0000000009a6f2b8:   0000000009a6f380 0000000000000001
+0x0000000009a6f2c8:   000000000000002b 000000000000002b
+0x0000000009a6f2d8:   000000005ab3d395 0000000000000058
+0x0000000009a6f2e8:   000000000000002b 0000000000000001
+0x0000000009a6f2f8:   0000000000000058 0000000000000000
+0x0000000009a6f308:   0000000000000000 00000000000018c8
+0x0000000009a6f318:   0000000002541850 0000000009a6f380
+0x0000000009a6f328:   000000005b19fb67 0000000000000001
+0x0000000009a6f338:   0000000009a6f380 0000000009a6fb90
+0x0000000009a6f348:   00007ff81a46c7ad 0000000000000000
+0x0000000009a6f358:   000000005b19d5ff 0000000000870150
+0x0000000009a6f368:   0000000009a6fc50 0000000002541850
+0x0000000009a6f378:   0000000009a6f3ac 746f48206176614a 
+
+Instructions: (pc=0x000000005aaf30e7)
+0x000000005aaf30c7:   d0 4d 0f 42 d3 65 4c 8b 1c 25 10 00 00 00 4d 3b
+0x000000005aaf30d7:   d3 73 16 66 41 81 e2 00 f0 4d 8d 9b 00 f0 ff ff
+0x000000005aaf30e7:   41 c6 03 00 4d 3b d3 75 f0 4c 8b 14 24 4c 8b 5c
+0x000000005aaf30f7:   24 08 48 83 c4 10 c3 cc cc cc cc cc cc 48 89 5c 
+
+
+Register to memory mapping:
+
+RAX=0x0000000000001b30 is an unknown value
+RBX=0x0000000000000058 is an unknown value
+RCX=0x0000000000000001 is an unknown value
+RDX=0x0000000009a6f380 is pointing into the stack for thread: 0x0000000008504000
+RSP=0x0000000009a6f288 is pointing into the stack for thread: 0x0000000008504000
+RBP=0x0000000009a6d870 is pointing into the stack for thread: 0x0000000008504000
+RSI=0x000000000000002b is an unknown value
+RDI=0x0000000000000001 is an unknown value
+R8 =0x000000000000002b is an unknown value
+R9 =0x000000005aad0000 is an unknown value
+R10=0x0000000009a6d000 is pointing into the stack for thread: 0x0000000008504000
+R11=0x0000000009a6d000 is pointing into the stack for thread: 0x0000000008504000
+R12=0x0000000009a6f380 is pointing into the stack for thread: 0x0000000008504000
+R13=0x0000000000000000 is an unknown value
+R14=0x000000005ab89b40 is an unknown value
+R15=0x0000000000000000 is an unknown value
+
+
+Stack: [0x0000000009970000,0x0000000009a70000],  sp=0x0000000009a6f288,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [msvcr100.dll+0x230e7]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000008512000 JavaThread "Service Thread" daemon [_thread_blocked, id=5740, stack(0x0000000009c70000,0x0000000009d70000)]
+  0x000000000850f000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=6904, stack(0x0000000009b70000,0x0000000009c70000)]
+  0x0000000008505000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=6420, stack(0x0000000009a70000,0x0000000009b70000)]
+=>0x0000000008504000 JavaThread "Attach Listener" daemon [_thread_new, id=6344, stack(0x0000000009970000,0x0000000009a70000)]
+  0x0000000008501000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5808, stack(0x0000000009870000,0x0000000009970000)]
+  0x00000000084cf000 JavaThread "Finalizer" daemon [_thread_blocked, id=420, stack(0x0000000009770000,0x0000000009870000)]
+  0x00000000084c6000 JavaThread "Reference Handler" daemon [_thread_blocked, id=7016, stack(0x0000000009670000,0x0000000009770000)]
+  0x000000000254d800 JavaThread "main" [_thread_in_vm, id=7024, stack(0x00000000023d0000,0x00000000024d0000)]
+
+Other Threads:
+  0x00000000084c2000 VMThread [stack: 0x0000000009570000,0x0000000009670000] [id=1840]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000000000254bab0] tty_lock - owner thread: 0x0000000008504000
+
+Heap
+ PSYoungGen      total 18944K, used 655K [0x00000000eaa80000, 0x00000000ebf80000, 0x0000000100000000)
+  eden space 16384K, 4% used [0x00000000eaa80000,0x00000000eab23e68,0x00000000eba80000)
+  from space 2560K, 0% used [0x00000000ebd00000,0x00000000ebd00000,0x00000000ebf80000)
+  to   space 2560K, 0% used [0x00000000eba80000,0x00000000eba80000,0x00000000ebd00000)
+ ParOldGen       total 42496K, used 0K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c2980000)
+ PSPermGen       total 21504K, used 2175K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 10% used [0x00000000bae00000,0x00000000bb01ff68,0x00000000bc300000)
+
+Card table byte_map: [0x0000000005730000,0x0000000005960000] byte_map_base: 0x0000000005159000
+
+Polling page: 0x0000000000b20000
+
+Code Cache  [0x0000000002670000, 0x00000000028e0000, 0x0000000005670000)
+ total_blobs=158 nmethods=0 adapters=126 free_code_cache=48777Kb largest_free_block=49948288
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (1 events):
+Event: 0.138 Thread 0x000000000254d800 Threw 0x00000000eaa8f668 at C:\re\jdk7u79\2331\hotspot\src\share\vm\prims\jni.cpp:3991
+
+Events (10 events):
+Event: 0.205 loading class 0x00000000025ff5b0 done
+Event: 0.205 loading class 0x000000000260b500
+Event: 0.205 loading class 0x000000000260b500 done
+Event: 0.206 loading class 0x00000000025c4290
+Event: 0.206 loading class 0x00000000025c4290 done
+Event: 0.206 Thread 0x0000000008501000 Thread added: 0x0000000008501000
+Event: 0.207 Thread 0x0000000008504000 Thread added: 0x0000000008504000
+Event: 0.207 Thread 0x0000000008505000 Thread added: 0x0000000008505000
+Event: 0.220 Thread 0x000000000850f000 Thread added: 0x000000000850f000
+Event: 0.255 Thread 0x0000000008512000 Thread added: 0x0000000008512000
+
+
+Dynamic libraries:

@@ -152,6 +152,10 @@ public class NavigationActivity extends AppCompatActivity
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             MainActivity.exit = true;
+                            SharedPreferences sp = MainActivity.sharedPreferences;
+                            if(sp.getString("username", null) == null){
+                                Setari.LOGAT = false;
+                            }
                             finish();
                         }
                     })
@@ -307,7 +311,8 @@ public class NavigationActivity extends AppCompatActivity
                 edit.remove("username");
                 edit.remove("password");
                 edit.remove("id");
-                edit.commit();
+                edit.apply();
+                Setari.LOGAT = false;
                 finish();
                 break;
 

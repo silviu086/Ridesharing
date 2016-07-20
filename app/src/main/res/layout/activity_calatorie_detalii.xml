@@ -740,6 +740,30 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginBottom="-10dp"
+                    android:padding="10dp"
+                    android:id="@+id/linearLayoutMesaj"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/cont_layout_shape">
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="TRIMITE UN MESAJ"
+                        android:textSize="15dp"
+                        android:textColor="@color/colorBlue"
+                        android:background="@drawable/cauta_layout_shape_5"
+                        android:id="@+id/buttonMesaj" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout

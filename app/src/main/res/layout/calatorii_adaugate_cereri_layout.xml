@@ -17,6 +17,21 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/login_account"
+                android:id="@+id/imageViewProfil" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <LinearLayout
@@ -49,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Trimisa la 2016.06.23, 13:34"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:textColor="#8c8c8c"
                 android:id="@+id/textViewDataCerere" />
 
@@ -66,7 +81,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:text="CONFIRMA"
+                android:text="CONFIRMARE"
                 android:textSize="13dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"

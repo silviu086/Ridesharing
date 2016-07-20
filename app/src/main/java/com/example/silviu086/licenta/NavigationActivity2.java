@@ -1,9 +1,7 @@
 package com.example.silviu086.licenta;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,11 +14,17 @@ import android.view.MenuItem;
 public class NavigationActivity2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Toolbar toolbar;
+    private static android.support.v4.app.FragmentTransaction fragmentTransaction;
+    public static FragmentManager fragmentManager;
+    private static CautaFragmentOffline fragmentCauta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Cauta o calatorie");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -31,6 +35,18 @@ public class NavigationActivity2 extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        navigationView.getMenu().findItem(R.id.cauta).setChecked(true);
+        //Initializing fragments
+        fragmentCauta = new CautaFragmentOffline();
+
+        //Default fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.contentPanel, fragmentCauta);
+        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -57,11 +73,6 @@ public class NavigationActivity2 extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -71,16 +82,15 @@ public class NavigationActivity2 extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.cauta) {
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentCauta = new CautaFragmentOffline();
+            fragmentTransaction.replace(R.id.contentPanel, fragmentCauta);
+            fragmentTransaction.commit();
+            toolbar.setTitle("Cauta o calatorie");
+        } else if (id == R.id.conectare) {
+            finish();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

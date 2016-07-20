@@ -26,6 +26,8 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
     private LinearLayout parentView;
@@ -40,6 +42,7 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
     private TextView textViewDistanta;
     private TextView textViewDataCalatorie;
     private TextView textViewLocuri;
+    private TextView textViewPret;
     private TextView textViewMarca;
     private TextView textViewModel;
     private TextView textViewAnFabricatie;
@@ -80,6 +83,7 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
         textViewDistanta = (TextView) findViewById(R.id.textViewDistanta);
         textViewDataCalatorie = (TextView) findViewById(R.id.textViewDataCalatorie);
         textViewLocuri = (TextView) findViewById(R.id.textViewLocuri);
+        textViewPret = (TextView) findViewById(R.id.textViewPret);
         textViewMarca = (TextView) findViewById(R.id.textViewMarca);
         textViewModel = (TextView) findViewById(R.id.textViewModel);
         textViewAnFabricatie = (TextView) findViewById(R.id.textViewAnFabricatie);
@@ -107,6 +111,7 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
         textViewDistanta.setText(calatorie.getDistantaCalatorie());
         textViewDataCalatorie.setText(calatorie.getDataPlecare());
         textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()) + " locuri");
+        textViewPret.setText(String.valueOf(calatorie.getPret()) + " lei");
         textViewMarca.setText(calatorie.getMarcaMasina());
         textViewModel.setText(calatorie.getModelMasina());
         textViewAnFabricatie.setText(String.valueOf(calatorie.getAnFabricatie()));
@@ -147,7 +152,19 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
         buttonChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent it = new Intent(CalatorieConfirmataDetaliiActivity.this, CalatorieConfirmataChat.class);
+                it.putExtra("username", NavigationActivity.account.getEmail());
+                it.putExtra("id_calatorie", calatorie.getId());
+                ArrayList<HolderPasageri> usernames = new ArrayList<HolderPasageri>();
+                HolderPasageri p = new HolderPasageri(String.valueOf(calatorie.getIdUtilizator()), calatorie.getEmail(), calatorie.getNume(), null);
+                usernames.add(p);
+                for(int i=0;i<calatorie.getListaAltiPasageri().size();i++){
+                    HolderPasageri pasager = calatorie.getListaAltiPasageri().get(i);
+                    usernames.add(pasager);
+                }
+                it.putExtra("usernames", usernames);
+                it.putExtra("activity", "CalatorieConfirmataDetaliiActivity");
+                startActivity(it);
             }
         });
 
@@ -162,12 +179,10 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
                 if (bitmap != null) {
                     try {
                         File mypath = new File(getFilesDir(), "photo_" + String.valueOf(calatorie.getIdUtilizator()) + ".png");
-                        if (!mypath.exists()) {
-                            FileOutputStream out = new FileOutputStream(mypath);
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
-                            out.flush();
-                            out.close();
-                        }
+                        FileOutputStream out = new FileOutputStream(mypath);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                        out.flush();
+                        out.close();
                     } catch (Exception ex) {
                         Log.e("LoginTabFragment", ex.getMessage());
                     }
@@ -200,12 +215,10 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
                             if (bitmap != null) {
                                 try {
                                     File mypath = new File(getFilesDir(), "photo_" + String.valueOf(pasager.getId()) + ".png");
-                                    if (!mypath.exists()) {
-                                        FileOutputStream out = new FileOutputStream(mypath);
-                                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
-                                        out.flush();
-                                        out.close();
-                                    }
+                                    FileOutputStream out = new FileOutputStream(mypath);
+                                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                                    out.flush();
+                                    out.close();
                                 } catch (Exception ex) {
                                     Log.e("LoginTabFragment", ex.getMessage());
                                 }

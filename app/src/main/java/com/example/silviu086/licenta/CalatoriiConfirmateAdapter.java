@@ -2,16 +2,22 @@ package com.example.silviu086.licenta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -29,31 +35,30 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
     }
 
     class HolderConfirmate{
+        ImageView imageViewProfil;
         TextView textViewNumarCalatorie;
         TextView textViewNume;
+        TextView textViewAltiPasageri;
         TextView textViewPunctPlecare;
         TextView textViewPunctSosire;
+        TextView textViewPret;
         TextView textViewData;
-        Button buttonDetalii;
-        Button buttonProfil;
-        LinearLayout linearLayoutFaraPasageri;
-        LinearLayout linearLayoutPasageri;
+        LinearLayout linearLayoutDetalii;
         LinearLayout linearLayoutTitle;
         View t;
         TextView textViewTitleData;
-        TextView textViewTitlePunctPlecare;
-        TextView textViewTitlePunctSosire;
+        TextView textViewTitleLocatii;
 
         public HolderConfirmate(View v){
+            imageViewProfil = (ImageView) v.findViewById(R.id.imageViewProfil);
             textViewNumarCalatorie = (TextView) v.findViewById(R.id.textViewNumarCalatorieConfirmate);
             textViewNume = (TextView) v.findViewById(R.id.textViewNume);
+            textViewAltiPasageri = (TextView) v.findViewById(R.id.textViewAltiPasageri);
             textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
             textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
+            textViewPret = (TextView) v.findViewById(R.id.textViewPret);
             textViewData = (TextView) v.findViewById(R.id.textViewData);
-            buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
-            buttonProfil = (Button) v.findViewById(R.id.buttonProfil);
-            linearLayoutFaraPasageri = (LinearLayout) v.findViewById(R.id.linearLayoutFaraPasageri);
-            linearLayoutPasageri = (LinearLayout) v.findViewById(R.id.linearLayoutPasageri);
+            linearLayoutDetalii = (LinearLayout) v.findViewById(R.id.linearLayoutDetalii);
             linearLayoutTitle = (LinearLayout) v.findViewById(R.id.linearLayoutTitle);
         }
 
@@ -97,6 +102,30 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
             h = (HolderConfirmate)v.getTag();
         }
 
+        final File mypath = new File(context.getFilesDir(), "photo_" + String.valueOf(calatorie.getIdUtilizator()) + ".png");
+        if (mypath.exists()) {
+            Drawable photo = Drawable.createFromPath(mypath.getAbsolutePath());
+            h.imageViewProfil.setBackground(photo);
+        }else{
+            final HolderConfirmate finalH = h;
+            ContDownloadPhotoTask pasagerDownloadPhotoTask = new ContDownloadPhotoTask(context, calatorie.getIdUtilizator(), new TaskCompletedUpload() {
+                @Override
+                public void onTaskCompleted(Bitmap bitmap) {
+                    if (bitmap != null) {
+                        try {
+                            FileOutputStream out = new FileOutputStream(mypath);
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                            out.flush();
+                            out.close();
+                        } catch (Exception ex) {
+                            Log.e("CalatoriiInAsteptare", ex.getMessage());
+                        }
+                        Drawable photo = Drawable.createFromPath(mypath.getAbsolutePath());
+                        finalH.imageViewProfil.setBackground(photo);
+                    }
+                }});
+            pasagerDownloadPhotoTask.execute();
+        }
         h.linearLayoutTitle.removeAllViews();
         if(CalatoriiFragment.TIP_AFISARE == 2) {
             if (cautaId(calatorie.getId(), CalatoriiFragment.calatoriiTitleConfirmateData)) {
@@ -108,20 +137,20 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
         }else if(CalatoriiFragment.TIP_AFISARE == 1) {
             if(cautaId(calatorie.getId(), CalatoriiFragment.calatoriiTitleConfirmateLocatii)) {
                 h.t = inflater.inflate(R.layout.calatorii_title_locatii, null);
-                h.textViewTitlePunctPlecare = (TextView) h.t.findViewById(R.id.textViewTitlePunctPlecare);
-                h.textViewTitlePunctSosire = (TextView) h.t.findViewById(R.id.textViewTitlePunctSosire);
-                h.textViewTitlePunctPlecare.setText(calatorie.getPunctPlecare());
-                h.textViewTitlePunctSosire.setText(calatorie.getPunctSosire());
+                h.textViewTitleLocatii = (TextView) h.t.findViewById(R.id.textViewTitleLocatii);
+                h.textViewTitleLocatii.setText(calatorie.getPunctPlecare().split(",")[0] + " - " + calatorie.getPunctSosire().split(",")[0]);
                 h.linearLayoutTitle.addView(h.t);
             }
         }
 
         h.textViewNumarCalatorie.setText("Calatoria " + String.valueOf(calatorie.getId()));
         h.textViewNume.setText(calatorie.getNume());
+        h.textViewAltiPasageri.setText(String.valueOf(calatorie.getListaAltiPasageri().size()));
         h.textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         h.textViewPunctSosire.setText(calatorie.getPunctSosire());
+        h.textViewPret.setText(String.valueOf(calatorie.getPret()) + " lei");
         h.textViewData.setText(calatorie.getDataPlecare() + ", " + calatorie.getOraPlecare());
-        h.buttonDetalii.setOnClickListener(new View.OnClickListener() {
+        h.linearLayoutDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(context, CalatorieConfirmataDetaliiActivity.class);
@@ -129,61 +158,6 @@ public class CalatoriiConfirmateAdapter extends BaseAdapter {
                 context.startActivity(it);
             }
         });
-        h.buttonProfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(context, UtilizatorProfilActivity.class);
-                it.putExtra("nume", calatorie.getNume());
-                it.putExtra("id_utilizator", calatorie.getIdUtilizator());
-                context.startActivity(it);
-            }
-        });
-        if(calatorie.getListaAltiPasageri().size() > 0){
-            if(calatorie.getListaAltiPasageri().size() == 1){
-                if(!calatorie.getListaAltiPasageri().get(0).getId().equals(String.valueOf(NavigationActivity.account.getId()))){
-                    h.linearLayoutPasageri.removeAllViews();
-                    h.linearLayoutFaraPasageri.setVisibility(View.GONE);
-                    View border = inflater.inflate(R.layout.calatorii_confirmate_pasageri_border, null);
-                    h.linearLayoutPasageri.addView(border);
-                    for(int i=0;i<calatorie.getListaAltiPasageri().size();i++){
-                        View view = inflater.inflate(R.layout.calatorii_confirmate_pasageri_list, null);
-                        TextView textViewPasagerNumar = (TextView) view.findViewById(R.id.textViewPasagerNumar);
-                        final TextView textViewPasagerNume = (TextView) view.findViewById(R.id.textViewPasagerNume);
-                        textViewPasagerNumar.setText(String.valueOf(i + 1));
-                        textViewPasagerNume.setText(calatorie.getListaAltiPasageri().get(i).getNume());
-                        h.linearLayoutPasageri.addView(view);
-                        textViewPasagerNume.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(context, "Profil " + textViewPasagerNume.getText().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                }
-            }else{
-                h.linearLayoutPasageri.removeAllViews();
-                h.linearLayoutFaraPasageri.setVisibility(View.GONE);
-                View border = inflater.inflate(R.layout.calatorii_confirmate_pasageri_border, null);
-                h.linearLayoutPasageri.addView(border);
-                for(int i=0;i<calatorie.getListaAltiPasageri().size();i++){
-                    if(!calatorie.getListaAltiPasageri().get(i).getId().equals(String.valueOf(NavigationActivity.account.getId()))) {
-                        View view = inflater.inflate(R.layout.calatorii_confirmate_pasageri_list, null);
-                        TextView textViewPasagerNumar = (TextView) view.findViewById(R.id.textViewPasagerNumar);
-                        final TextView textViewPasagerNume = (TextView) view.findViewById(R.id.textViewPasagerNume);
-                        textViewPasagerNumar.setText(String.valueOf(i+1));
-                        textViewPasagerNume.setText(calatorie.getListaAltiPasageri().get(i).getNume());
-                        h.linearLayoutPasageri.addView(view);
-                        final HolderConfirmate finalH = h;
-                        textViewPasagerNume.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(context, "Profil " + textViewPasagerNume.getText().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                }
-            }
-        }
         return v;
     }
 }

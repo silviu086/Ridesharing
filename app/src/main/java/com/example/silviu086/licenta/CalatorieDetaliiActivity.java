@@ -1,6 +1,7 @@
 package com.example.silviu086.licenta;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -38,6 +39,8 @@ public class CalatorieDetaliiActivity extends AppCompatActivity {
     private TextView textViewVarsta;
     private LinearLayout linearLayoutEmail;
     private LinearLayout linearLayoutTelefon;
+    private LinearLayout linearLayoutMesaj;
+    private Button buttonMesaj;
     private Button buttonInchide;
 
     @Override
@@ -69,6 +72,8 @@ public class CalatorieDetaliiActivity extends AppCompatActivity {
         textViewVarsta = (TextView) findViewById(R.id.textViewVarsta);
         linearLayoutEmail = (LinearLayout) findViewById(R.id.linearLayoutEmail);
         linearLayoutTelefon = (LinearLayout) findViewById(R.id.linearLayoutTelefon);
+        linearLayoutMesaj = (LinearLayout) findViewById(R.id.linearLayoutMesaj);
+        buttonMesaj = (Button) findViewById(R.id.buttonMesaj);
         buttonInchide = (Button) findViewById(R.id.buttonInchide);
 
         textViewPunctPlecare.setText(calatorie.getPunctPlecare());
@@ -90,6 +95,10 @@ public class CalatorieDetaliiActivity extends AppCompatActivity {
         textViewTelefon.setText(account.getTelefon());
         textViewVarsta.setText(String.valueOf(account.getVarsta()) + " ani");
 
+        if(!Setari.LOGAT){
+            linearLayoutMesaj.setVisibility(View.GONE);
+        }
+
         linearLayoutEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +112,18 @@ public class CalatorieDetaliiActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setClipboard(account.getTelefon());
                 Toast.makeText(CalatorieDetaliiActivity.this, "Telefon copiat in clipboard!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonMesaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(CalatorieDetaliiActivity.this, TrimiteMesajActivity.class);
+                it.putExtra("id_calatorie", calatorie.getId());
+                it.putExtra("id_destinatar", account.getId());
+                it.putExtra("nume", account.getNume());
+                it.putExtra("email", account.getEmail());
+                startActivity(it);
             }
         });
 

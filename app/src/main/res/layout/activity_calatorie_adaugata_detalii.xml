@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.silviu086.licenta.CalatorieAdaugataDetaliiActivity">
 
@@ -30,8 +31,9 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="120dp"
                     android:layout_marginLeft="5dp">
 
                     <TextView
@@ -47,31 +49,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Adaugata pe 2016.07.14, 12:20"
+                        android:text="2016.07.14, 12:20"
                         android:textSize="15dp"
                         android:textStyle="italic"
                         android:textColor="@color/colorSilverDarker"
                         android:id="@+id/textViewDataAdaugare" />
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_marginLeft="-120dp"
+                    android:layout_height="wrap_content"
                     android:gravity="right" >
 
+
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:text="Eliminare"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="Chat calatorie"
+                        android:textSize="13dp"
+                        android:textColor="#ffffff"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="5dp"
-                        android:padding="5dp"
-                        android:textSize="14dp"
-                        android:background="#f55654"
-                        android:textColor="@color/colorWhite"
-                        android:id="@+id/buttonEliminare" />
+                        android:background="@drawable/cauta_layout_shape_8"
+                        android:id="@+id/buttonChat" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -205,14 +209,63 @@
                                     android:textColor="@color/colorWhite"
                                     android:id="@+id/textViewDistanta" />
                             </LinearLayout>
+
                         </LinearLayout>
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginTop="-2dp"
+                        android:padding="8dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/cauta_layout_shape_8" >
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical" >
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Notifica pasagerii dupa stergere!"
+                                android:textColor="@color/colorWhite"
+                                app:buttonTint="@color/colorWhite"
+                                android:id="@+id/checkBoxNotificare" />
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right" >
+
+                                <Button
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:text="Eliminare"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:padding="5dp"
+                                    android:textSize="14dp"
+                                    android:background="#f55654"
+                                    android:textColor="@color/colorWhite"
+                                    android:id="@+id/buttonEliminare" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="7dp"
+                        android:layout_marginTop="-2dp"
                         android:background="@drawable/cauta_shadow">
 
 
@@ -323,6 +376,39 @@
                                 android:textColor="@color/colorBlue"
                                 android:layout_marginLeft="7dp"
                                 android:id="@+id/textViewLocuri" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_marginRight="-2dp"
+                            android:background="@drawable/cauta_layout_shape_4" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Pret"
+                                android:textSize="15dp"
+                                android:textColor="@color/colorGrayDarker"
+                                android:id="@+id/textView30" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="15 lei"
+                                android:textSize="16dp"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlue"
+                                android:layout_marginLeft="7dp"
+                                android:id="@+id/textViewPret" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -573,12 +659,6 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/calatorii_adaugate_shape_title"
                     android:id="@+id/linearLayoutCereri" >
 
                     <LinearLayout

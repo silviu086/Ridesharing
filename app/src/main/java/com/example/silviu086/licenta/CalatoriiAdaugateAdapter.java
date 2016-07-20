@@ -32,28 +32,29 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
 
     class HolderAdaugate{
         TextView textViewNumarCalatorie;
+        TextView textViewData;
         TextView textViewPunctPlecare;
         TextView textViewPunctSosire;
         TextView textViewDataCalatorie;
         TextView textViewLocuri;
         TextView textViewCereriInAsteptare;
         TextView textViewCereriConfirmate;
-        Button buttonDetalii;
+        LinearLayout linearLayoutDetalii;
         LinearLayout linearLayoutTitle;
         View t;
         TextView textViewTitleData;
-        TextView textViewTitlePunctPlecare;
-        TextView textViewTitlePunctSosire;
+        TextView textViewTitleLocatii;
 
         public HolderAdaugate(View v){
             textViewNumarCalatorie = (TextView) v.findViewById(R.id.textviewNumarCalatorie);
+            textViewData = (TextView) v.findViewById(R.id.textViewData);
             textViewPunctPlecare = (TextView) v.findViewById(R.id.textViewPunctPlecare);
             textViewPunctSosire = (TextView) v.findViewById(R.id.textViewPunctSosire);
             textViewDataCalatorie = (TextView) v.findViewById(R.id.textViewDataCalatorie);
             textViewLocuri = (TextView) v.findViewById(R.id.textViewLocuri);
             textViewCereriInAsteptare = (TextView) v.findViewById(R.id.textViewCereriInAsteptare);
             textViewCereriConfirmate = (TextView) v.findViewById(R.id.textViewCereriConfirmate);
-            buttonDetalii = (Button) v.findViewById(R.id.buttonDetalii);
+            linearLayoutDetalii = (LinearLayout) v.findViewById(R.id.linearLayoutDetalii);
             linearLayoutTitle = (LinearLayout) v.findViewById(R.id.linearLayoutTitle);
         }
     }
@@ -98,24 +99,22 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
         }else if(CalatoriiFragment.TIP_AFISARE == 1) {
             if(cautaId(calatorie.getId(), CalatoriiFragment.calatoriiTitleAdaugateLocatii)) {
                 hCalatorie.t = inflater.inflate(R.layout.calatorii_title_locatii, null);
-                hCalatorie.textViewTitlePunctPlecare = (TextView) hCalatorie.t.findViewById(R.id.textViewTitlePunctPlecare);
-                hCalatorie.textViewTitlePunctSosire = (TextView) hCalatorie.t.findViewById(R.id.textViewTitlePunctSosire);
-                hCalatorie.textViewTitlePunctPlecare.setText(calatorie.getPunctPlecare());
-                hCalatorie.textViewTitlePunctSosire.setText(calatorie.getPunctSosire());
+                hCalatorie.textViewTitleLocatii = (TextView) hCalatorie.t.findViewById(R.id.textViewTitleLocatii);
+                hCalatorie.textViewTitleLocatii.setText(calatorie.getPunctPlecare().split(",")[0] + " - " + calatorie.getPunctSosire().split(",")[0]);
                 hCalatorie.linearLayoutTitle.addView(hCalatorie.t);
             }
         }
         hCalatorie.textViewNumarCalatorie.setText("Calatoria " + calatorie.getId());
+        hCalatorie.textViewData.setText(calatorie.getDataCreare());
         hCalatorie.textViewPunctPlecare.setText(calatorie.getPunctPlecare());
         hCalatorie.textViewPunctSosire.setText(calatorie.getPunctSosire());
         hCalatorie.textViewDataCalatorie.setText(calatorie.getDataPlecare() + ", " + calatorie.getOraPlecare());
-        hCalatorie.textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()));
+        hCalatorie.textViewLocuri.setText(String.valueOf(calatorie.getLocuriDisponibile()) + " locuri");
         hCalatorie.textViewCereriInAsteptare.setText(String.valueOf(calatorie.getListaPasageriInAsteptare().size()));
         hCalatorie.textViewCereriConfirmate.setText(String.valueOf(calatorie.getListaPasageriConfirmati().size()));
 
 
-
-        hCalatorie.buttonDetalii.setOnClickListener(new View.OnClickListener() {
+        hCalatorie.linearLayoutDetalii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(context, CalatorieAdaugataDetaliiActivity.class);
@@ -123,6 +122,7 @@ public class CalatoriiAdaugateAdapter extends BaseAdapter {
                 context.startActivity(it);
             }
         });
+
         /*
         if(pasageriInAsteptare.size() != 0 || pasageriConfirmati.size() != 0){
             hCalatorie.linearLayoutFaraCereri.setVisibility(View.GONE);

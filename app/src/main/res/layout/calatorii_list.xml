@@ -52,27 +52,39 @@
             android:layout_width="match_parent"
             android:padding="5dp"
             android:background="@drawable/cauta_layout_shape_5"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="150dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/cauta_account"
-                    android:id="@+id/imageView15" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:id="@+id/linearLayout4"
+                    android:background="@drawable/calatorii_adaugate_shape" >
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/cauta_account"
+                        android:id="@+id/imageViewProfil" />
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="170dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Burada Silviu-Nicolae"
                     android:textSize="16dp"
+                    android:singleLine="true"
                     android:layout_marginLeft="7dp"
                     android:textColor="@color/colorGrayDarker"
                     android:id="@+id/textViewNume" />
@@ -83,6 +95,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-150dp"
                 android:layout_gravity="right"
                 android:gravity="right|center_vertical">
 
@@ -92,9 +105,8 @@
                     android:layout_height="33dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="Detalii calatorie"
-                    android:textSize="13dp"
-                    android:layout_marginLeft="4dp"
+                    android:text="DETALII CALATORIE"
+                    android:textSize="14dp"
                     android:textColor="@color/colorWhite"
                     android:background="#53a6ff"
                     android:id="@+id/buttonDetalii" />
@@ -270,6 +282,19 @@
                 android:textColor="@color/colorBlue"
                 android:background="@drawable/cauta_layout_shape_5"
                 android:id="@+id/buttonMerg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/calatorie_detalii_shadow">
+
+
         </LinearLayout>
     </LinearLayout>
 

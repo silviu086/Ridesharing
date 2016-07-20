@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/adauga_minus_color"
+            android:src="@drawable/login_account"
             android:id="@+id/imageViewProfilPasager" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:textSize="13dp"
             android:textColor="#4b4b4b"
             android:background="@drawable/calatorii_adaugate_shape_2"
-            android:layout_marginLeft="-105dp"
+            android:layout_marginLeft="-100dp"
             android:text="Vezi profil"
             android:id="@+id/buttonProfil" />
     </LinearLayout>
