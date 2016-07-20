@@ -5,4 +5,5 @@ package com.example.silviu086.licenta;
  */
 public class Setari {
     public static boolean LOGAT = false;
+    public static boolean NOTIFICARI = true;
 }

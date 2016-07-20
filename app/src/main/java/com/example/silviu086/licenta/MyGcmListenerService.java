@@ -58,7 +58,9 @@ public class MyGcmListenerService extends GcmListenerService {
             String message = data.getString("message");
             String idCalatorie = data.getString("id_calatorie");
             String type = data.getString("type");
-            sendNotification(id, message, idCalatorie, type);
+            if(Setari.NOTIFICARI){
+                sendNotification(id, message, idCalatorie, type);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

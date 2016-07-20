@@ -48,43 +48,6 @@ public class CalatoriiAdaugateConfirmareTask extends AsyncTask<String, Integer, 
     @Override
     protected String doInBackground(String... params) {
         try{
-            URL url = new URL(UrlLinks.URL_GCM_MESSAGE);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setDoInput(true);
-            con.setDoOutput(true);
-            con.setRequestMethod("POST");
-            con.connect();
-
-            String query = new Uri.Builder()
-                    .appendQueryParameter("id_destinatar", String.valueOf(pasagerId))
-                    .appendQueryParameter("id_expeditor", String.valueOf(NavigationActivity.account.getId()))
-                    .appendQueryParameter("id_calatorie", String.valueOf(calatorieId))
-                    .appendQueryParameter("type", "1").build().getEncodedQuery();
-
-            OutputStream os = con.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            writer.write(query);
-            writer.flush();
-            writer.close();
-            os.close();
-
-            InputStream is = con.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while( (line = reader.readLine()) != null){
-                sb.append(line);
-            }
-            Log.i("CalatoriiAdaugateConfir", sb.toString());
-            reader.close();
-            is.close();
-            con.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try{
             URL url = new URL(UrlLinks.URL_CONFIRMA_CERERE);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -118,6 +81,36 @@ public class CalatoriiAdaugateConfirmareTask extends AsyncTask<String, Integer, 
             JSONObject json = new JSONObject(sb.toString());
             int success = json.getInt("success");
             if(success == 1){
+                url = new URL(UrlLinks.URL_GCM_MESSAGE);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setDoInput(true);
+                con.setDoOutput(true);
+                con.setRequestMethod("POST");
+                con.connect();
+
+                query = new Uri.Builder()
+                        .appendQueryParameter("id_destinatar", String.valueOf(pasagerId))
+                        .appendQueryParameter("id_expeditor", String.valueOf(NavigationActivity.account.getId()))
+                        .appendQueryParameter("id_calatorie", String.valueOf(calatorieId))
+                        .appendQueryParameter("type", "1").build().getEncodedQuery();
+
+                os = con.getOutputStream();
+                writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                is = con.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(is));
+                sb = new StringBuilder();
+                while( (line = reader.readLine()) != null){
+                    sb.append(line);
+                }
+                Log.i("CalatoriiAdaugateConfir", sb.toString());
+                reader.close();
+                is.close();
+                con.disconnect();
                 return "success";
             } else{
                 return "failed";

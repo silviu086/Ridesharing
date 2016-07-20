@@ -25,4 +25,5 @@ public class UrlLinks {
     public static String URL_PROFIL_UTILIZATOR = "http://" + IP + "/profil_utilizator.php";
     public static String URL_TRIMITE_MESAJ = "http://" + IP + "/trimite_mesaj.php";
     public static String URL_ADAUGA_RECENZIE = "http://" + IP + "/adauga_recenzie.php";
+    public static String URL_STERGE_CALATORIE = "http://" + IP + "/stergere_calatorie.php";
 }

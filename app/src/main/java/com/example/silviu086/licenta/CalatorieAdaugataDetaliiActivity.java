@@ -1,8 +1,11 @@
 package com.example.silviu086.licenta;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -150,7 +153,7 @@ public class CalatorieAdaugataDetaliiActivity extends AppCompatActivity {
                 it.putExtra("id_calatorie", calatorie.getId());
                 it.putExtra("username", NavigationActivity.account.getEmail());
                 ArrayList<HolderPasageri> lista = new ArrayList<HolderPasageri>();
-                for(int i=0;i<calatorie.getListaPasageriConfirmati().size();i++){
+                for (int i = 0; i < calatorie.getListaPasageriConfirmati().size(); i++) {
                     HolderPasageri pasager = calatorie.getListaPasageriConfirmati().get(i);
                     lista.add(pasager);
                 }
@@ -162,7 +165,67 @@ public class CalatorieAdaugataDetaliiActivity extends AppCompatActivity {
         buttonEliminare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new AlertDialog.Builder(CalatorieAdaugataDetaliiActivity.this)
+                        .setTitle("Stergere calatorie")
+                        .setMessage("Doresti sa stergi calatoria?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                ArrayList<String> listaPasageri = new ArrayList<String>();
+                                for (int i = 0; i < calatorie.getListaPasageriInAsteptare().size(); i++) {
+                                    listaPasageri.add(calatorie.getListaPasageriInAsteptare().get(i).getId());
+                                }
+                                for (int i = 0; i < calatorie.getListaPasageriConfirmati().size(); i++) {
+                                    listaPasageri.add(calatorie.getListaPasageriConfirmati().get(i).getId());
+                                }
+                                if (listaPasageri.size() > 0) {
+                                    CalatorieAdaugataDetaliiStergereTask task = new CalatorieAdaugataDetaliiStergereTask(
+                                            String.valueOf(calatorie.getId()),
+                                            listaPasageri,
+                                            checkBoxNotificare.isChecked(),
+                                            new TaskCompleted() {
+                                                @Override
+                                                public void onTaskCompleted(String result) {
+                                                    if (result.equals("success")) {
+                                                        Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "Calatoria a fost eliminata!", Toast.LENGTH_LONG).show();
+                                                        NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
+                                                        CalatoriiAdaugateFragment.adapter.notifyDataSetChanged();
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "A aparut o problema!", Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            }
+                                    );
+                                    task.execute();
+                                }else{
+                                    CalatorieAdaugataDetaliiStergereTask task = new CalatorieAdaugataDetaliiStergereTask(
+                                            String.valueOf(calatorie.getId()),
+                                            new ArrayList<String>(),
+                                            checkBoxNotificare.isChecked(),
+                                            new TaskCompleted() {
+                                                @Override
+                                                public void onTaskCompleted(String result) {
+                                                    if (result.equals("success")) {
+                                                        Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "Calatoria a fost eliminata!", Toast.LENGTH_LONG).show();
+                                                        NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
+                                                        CalatoriiAdaugateFragment.adapter.notifyDataSetChanged();
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "A aparut o problema!", Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            }
+                                    );
+                                    task.execute();
+                                }
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .show();
             }
         });
         loadCereri();

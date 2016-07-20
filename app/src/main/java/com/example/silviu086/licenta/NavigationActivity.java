@@ -141,6 +141,11 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //No call for super(). Bug on API Level > 11.
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -305,15 +310,6 @@ public class NavigationActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.contentPanel, fragmentSetari);
                 fragmentTransaction.commit();
                 toolbar.setTitle("Setari");
-                break;
-            case R.id.logout:
-                SharedPreferences.Editor edit = MainActivity.sharedPreferences.edit();
-                edit.remove("username");
-                edit.remove("password");
-                edit.remove("id");
-                edit.apply();
-                Setari.LOGAT = false;
-                finish();
                 break;
 
             default:

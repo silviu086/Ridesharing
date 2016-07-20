@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.List;
 
 public class CalatoriiAdaugateFragment extends Fragment {
+    public static CalatoriiAdaugateAdapter adapter;
     private LinearLayout linearLayoutFaraCalatorii;
     private ListView listView;
 
@@ -32,7 +33,7 @@ public class CalatoriiAdaugateFragment extends Fragment {
         listView = (ListView) v.findViewById(R.id.listView);
         if(calatorii.size()>0){
             linearLayoutFaraCalatorii.setVisibility(View.GONE);
-            CalatoriiAdaugateAdapter adapter = new CalatoriiAdaugateAdapter(getContext(), calatorii);
+            adapter = new CalatoriiAdaugateAdapter(getContext(), calatorii);
             listView.setAdapter(adapter);
         }else{
         }
