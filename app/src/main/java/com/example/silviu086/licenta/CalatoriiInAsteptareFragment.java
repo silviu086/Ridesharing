@@ -34,6 +34,7 @@ public class CalatoriiInAsteptareFragment extends Fragment {
         linearLayoutFaraCalatorii = (LinearLayout) v.findViewById(R.id.linearLayoutFaraCalatorii);
         if(calatorii.size()>0){
             linearLayoutFaraCalatorii.setVisibility(View.GONE);
+
             CalatoriiInAsteptareAdapter adapter = new CalatoriiInAsteptareAdapter(getContext(), calatorii);
             listView.setAdapter(adapter);
         }
