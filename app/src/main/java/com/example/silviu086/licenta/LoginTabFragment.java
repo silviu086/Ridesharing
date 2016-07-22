@@ -29,10 +29,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Properties;
 
 /**
  * Created by Silviu086 on 28.02.2016.
@@ -126,7 +130,6 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                     }
                 }
                 */
-                Setari.LOGAT = true;
                 JSONObject json = new JSONObject(result);
                 JSONObject jsonAccount = json.getJSONObject("account");
                 final Account account = new AccountBuilder()
@@ -205,6 +208,35 @@ public class LoginTabFragment extends Fragment implements TaskCompleted {
                         buttonLogin.setText("LOGIN");
                         buttonLogin.setBackgroundColor(getContext().getResources().getColor(R.color.colorBlue));
                         progress.setVisibility(View.INVISIBLE);
+                        try {
+                            File file = new File(getContext().getFilesDir(), Setari.FILE_CONFIG);
+                            if(!file.exists()){
+                                file.createNewFile();
+                            }
+                            FileInputStream input = new FileInputStream(file);
+                            Properties p = new Properties();
+                            p.load(input);
+                            input.close();
+                            String value = p.getProperty("NOTIFICARI", null);
+                            if(value == null){
+                                File f = new File(getContext().getFilesDir(), Setari.FILE_CONFIG);
+                                FileOutputStream output = new FileOutputStream(f);
+                                p.setProperty("NOTIFICARI", "true");
+                                p.store(output, null);
+                                output.close();
+                            }else if(value.equals("true")){
+                                Setari.NOTIFICARI = true;
+                            }else{
+                                Setari.NOTIFICARI = false;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                        SharedPreferences.Editor ed = MainActivity.sharedPreferences.edit();
+                        ed.putBoolean("logat", true);
+                        ed.apply();
                         if(checkboxRemember.isChecked()){
                             SharedPreferences.Editor editor = MainActivity.sharedPreferences.edit();
                             editor.putString("username", account.getEmail());

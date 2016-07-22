@@ -411,7 +411,6 @@ public class CalatorieConfirmataChat extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ChatMessage chatMsg = mChatAdapter.getItem(position);
                 getStateLogin(chatMsg.getUsername());
-                sendNotification(chatMsg.getUsername());
             }
         });
     }

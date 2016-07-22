@@ -159,7 +159,9 @@ public class NavigationActivity extends AppCompatActivity
                             MainActivity.exit = true;
                             SharedPreferences sp = MainActivity.sharedPreferences;
                             if(sp.getString("username", null) == null){
-                                Setari.LOGAT = false;
+                                SharedPreferences.Editor editor = MainActivity.sharedPreferences.edit();
+                                editor.putBoolean("logat", false);
+                                editor.apply();
                             }
                             finish();
                         }

@@ -187,8 +187,14 @@ public class CalatorieAdaugataDetaliiActivity extends AppCompatActivity {
                                                 public void onTaskCompleted(String result) {
                                                     if (result.equals("success")) {
                                                         Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "Calatoria a fost eliminata!", Toast.LENGTH_LONG).show();
-                                                        NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
-                                                        CalatoriiAdaugateFragment.adapter.notifyDataSetChanged();
+                                                        if(NavigationActivity.calatoriiHolder.calatoriiAdaugate.size() == 1){
+                                                            NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
+                                                            CalatoriiAdaugateFragment.linearLayoutFaraCalatorii.setVisibility(View.VISIBLE);
+                                                            CalatoriiAdaugateFragment.listView.setAdapter(null);
+                                                        }else{
+                                                            NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
+                                                            CalatoriiAdaugateFragment.adapter.notifyDataSetChanged();
+                                                        }
                                                         finish();
                                                     } else {
                                                         Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "A aparut o problema!", Toast.LENGTH_LONG).show();
@@ -207,8 +213,14 @@ public class CalatorieAdaugataDetaliiActivity extends AppCompatActivity {
                                                 public void onTaskCompleted(String result) {
                                                     if (result.equals("success")) {
                                                         Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "Calatoria a fost eliminata!", Toast.LENGTH_LONG).show();
-                                                        NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
-                                                        CalatoriiAdaugateFragment.adapter.notifyDataSetChanged();
+                                                        if(NavigationActivity.calatoriiHolder.calatoriiAdaugate.size() == 1){
+                                                            NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
+                                                            CalatoriiAdaugateFragment.linearLayoutFaraCalatorii.setVisibility(View.VISIBLE);
+                                                            CalatoriiAdaugateFragment.listView.setAdapter(null);
+                                                        }else{
+                                                            NavigationActivity.calatoriiHolder.calatoriiAdaugate.remove(calatorie);
+                                                            CalatoriiAdaugateFragment.adapter.notifyDataSetChanged();
+                                                        }
                                                         finish();
                                                     } else {
                                                         Toast.makeText(CalatorieAdaugataDetaliiActivity.this, "A aparut o problema!", Toast.LENGTH_LONG).show();

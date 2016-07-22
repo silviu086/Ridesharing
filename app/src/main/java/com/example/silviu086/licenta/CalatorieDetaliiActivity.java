@@ -95,7 +95,7 @@ public class CalatorieDetaliiActivity extends AppCompatActivity {
         textViewTelefon.setText(account.getTelefon());
         textViewVarsta.setText(String.valueOf(account.getVarsta()) + " ani");
 
-        if(!Setari.LOGAT){
+        if(!MainActivity.sharedPreferences.getBoolean("logat", false)){
             linearLayoutMesaj.setVisibility(View.GONE);
         }
 

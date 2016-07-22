@@ -269,7 +269,11 @@ public class ContFragment extends Fragment {
         if(account.getListaRecenzii().size() > 0){
             linearLayoutFaraRecenzii.setVisibility(View.GONE);
             linearLayoutRecenzii.setVisibility(View.VISIBLE);
-            textViewNumarRecenzii.setText(String.valueOf(account.getListaRecenzii().size()) + " recenzii");
+            if(account.getListaRecenzii().size() == 1){
+                textViewNumarRecenzii.setText(String.valueOf(account.getListaRecenzii().size()) + " recenzie");
+            }else{
+                textViewNumarRecenzii.setText(String.valueOf(account.getListaRecenzii().size()) + " recenzii");
+            }
             float medie = 0;
             for(int i=0;i<account.getListaRecenzii().size();i++){
                 medie += account.getListaRecenzii().get(i).getScor();

@@ -16,8 +16,8 @@ import java.util.List;
 
 public class CalatoriiAdaugateFragment extends Fragment {
     public static CalatoriiAdaugateAdapter adapter;
-    private LinearLayout linearLayoutFaraCalatorii;
-    private ListView listView;
+    public static LinearLayout linearLayoutFaraCalatorii;
+    public static ListView listView;
 
     public CalatoriiAdaugateFragment() {
         // Required empty public constructor

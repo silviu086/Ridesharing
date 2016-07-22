@@ -208,7 +208,6 @@ public class CautaFragment extends Fragment {
                         public void onTaskCompleted(String result) {
                             try {
                                 textViewSearchResult.setVisibility(View.GONE);
-                                //linearLayoutCauta.setVisibility(View.GONE);
                                 linearLayoutSearch.setVisibility(View.GONE);
                                 linearLayoutSearchInfo.setVisibility(View.VISIBLE);
                                 JSONObject jsonObject = new JSONObject(result);

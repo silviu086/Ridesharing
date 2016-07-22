@@ -206,6 +206,9 @@ public class CautaFragmentOffline extends Fragment {
                         @Override
                         public void onTaskCompleted(String result) {
                             try {
+                                textViewSearchResult.setVisibility(View.GONE);
+                                linearLayoutSearch.setVisibility(View.GONE);
+                                linearLayoutSearchInfo.setVisibility(View.VISIBLE);
                                 JSONObject jsonObject = new JSONObject(result);
                                 int success = jsonObject.getInt("success");
                                 if (success == 1) {
