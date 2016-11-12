@@ -181,6 +181,7 @@ public class CalatorieConfirmataDetaliiActivity extends AppCompatActivity {
                         File mypath = new File(getFilesDir(), "photo_" + String.valueOf(calatorie.getIdUtilizator()) + ".png");
                         FileOutputStream out = new FileOutputStream(mypath);
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+
                         out.flush();
                         out.close();
                     } catch (Exception ex) {
