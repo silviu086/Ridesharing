@@ -4,7 +4,7 @@ package com.example.silviu086.licenta;
  * Created by Silviu086 on 21.04.2016.
  */
 public class UrlLinks {
-    public static String IP = "android.laocazie.net";
+    public static String IP = "laocazie.net";
     public static String URL_LOGIN = "http://" + IP + "/login.php";
     public static String URL_CREATE_ACCOUNT = "http://" + IP + "/create_account.php";
     public static String URL_MODIFY_DATE = "http://" + IP + "/modify_date.php";

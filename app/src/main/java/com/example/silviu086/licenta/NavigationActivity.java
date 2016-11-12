@@ -41,7 +41,7 @@ public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private final int navigationItemNumber = 5;
+    //private final int navigationItemNumber = 5;
 
     //Defining Variables
     public static Account account;
